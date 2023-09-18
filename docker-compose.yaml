@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  jekyll:
+    container_name: 3olen-projet_31-jekyll
+    build:
+      context: ./docker/jekyll
+      dockerfile: Dockerfile
+    environment:
+      - JEKYLL_ENV=development
+    ports:
+      - "4000:4000"
+    volumes:
+      - ./docs:/app/docs:cached

@@ -1,0 +1,17 @@
+theme: jekyll-theme-minimal
+title: 3OLEN - Projet 31
+description: Informations et ressources sur le projet 31 de la promo 3OLEN.
+
+######### Configurations non-modifiables #########
+##################################################
+#
+#lsi: false
+#safe: true
+#source: [your repo's top level directory]
+#incremental: false
+#highlighter: rouge
+#gist:
+#  noscript: false
+#kramdown:
+#  math_engine: mathjax
+#  syntax_highlighter: rouge
