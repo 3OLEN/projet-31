@@ -1,13 +1,34 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>3OLEN - Projet 31</title>
-</head>
-<body>
-<main>
-  <h1>Projet 31</h1>
-  <p>Projet 31 pour la promotion 3OLEN.</p>
-</main>
-</body>
-</html>
+---
+layout: home
+title: Projet transverse N°1 « Bibli'OLEN »
+
+library_main_elements:
+  - label: Gestion des livres
+    description: lister l'ensemble des livres et pouvoir les modifier (ajout, modification, suppression), à condition d'en avoir les droits.
+  - label: Gestion de l'inventaire
+    description: indiquer le nombre d'exemplaires de chaque livre à l'instant actuel.
+  - label: Réservations
+    description: permettre aux étudiants et formateurs de demander la réservation d'un livre.
+  - label: Suivi des réservations
+    description: lister l'ensemble des réservations avec leur état (demandée, traitée, livre rendu) et l'historique.
+  - label: Informations utilisateurs
+    description: gérer les utilisateurs, leur rôle et leurs droits.
+---
+
+<p>Projet permettant de gérer la bibliothèque OLEN, à savoir :</p>
+
+<ul>
+    {% for library_main_element in page.library_main_elements %}
+        <li><strong>{{ library_main_element.label }}</strong> : {{ library_main_element.description }}</li>
+    {% endfor %}
+</ul>
+
+<h2>Objectifs</h2>
+<p>
+    Le projet transverse a pour objectif premier de mettre en pratique les éléments de formation intégrés depuis le
+    début de l'année et tout au long de la réalisation de ce projet 31.
+</p>
+<p>
+    Par ailleurs, il est du devoir de chaque groupe de proposer une solution <strong>fonctionnelle</strong> et de
+    soumettre des livrables d'une qualité <strong>professionnelle</strong>.
+</p>
