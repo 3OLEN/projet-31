@@ -1,0 +1,202 @@
+---
+layout: page
+title: Planning des séances
+
+project_dates:
+- year: 2023
+  months:
+  - month: Décembre
+    dates:
+    - date: 2023-12-18
+      type: session
+- year: 2024
+  months:
+  - month: Janvier
+    dates:
+    - date: 2024-01-08
+      type: session
+    - date: 2024-01-15
+      type: session
+    - date: 2024-01-23
+      type: session
+    - date: 2024-01-29
+      type: session
+  - month: Février
+    dates:
+    - date: 2024-02-05
+      type: session
+    - date: 2024-02-09
+      type: session
+  - month: Mars
+    dates:
+    - date: 2024-03-26
+      type: final
+---
+
+{% for year_dates in page.project_dates %}
+    <h2>{{ year_dates.year }}</h2>
+    {% for month_dates in year_dates.months %}
+    <table>
+        <caption>{{ month_dates.month }}</caption>
+        <thead>
+        <tr>
+            <th scope="col"></th>
+            <th scope="col">L</th>
+            <th scope="col">M</th>
+            <th scope="col">M</th>
+            <th scope="col">J</th>
+            <th scope="col">V</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% assign first_date_str = month_dates.dates[0].date %}
+        {% assign this_month = first_date_str | date: "%m" | plus: 0 %}
+        {% assign first_date_week = first_date_str | date: "%V" | plus: 0 %}
+        {% assign first_date_week_day = first_date_str | date: "%u" | plus: 0 %}
+        {% assign first_date_day = first_date_str | date: "%e" | plus: 0 %}
+
+        {% comment %} <!-- Gérer les dates à partir du premier lundi du mois --> {% endcomment %}
+        {% assign last_treated_week = nil %}
+        {% assign first_treated_day = nil %}
+        {% assign limit_date_day = first_date_day | minus: 1 %}
+        {% for this_month_date in (1..limit_date_day) %}
+            {% assign working_date_str = year_dates.year | append: "/" | append: this_month | append: "/" | append: this_month_date %}
+            {% assign working_date_week = working_date_str | date: "%V" | plus: 0 %}
+            {% assign working_date_week_day = working_date_str | date: "%u" | plus: 0 %}
+
+            {% if working_date_week < first_date_week and (1..5) contains working_date_week_day %}
+                {% if working_date_week != last_treated_week %}
+        <tr>
+            <th scope="row">{{ working_date_week }}</th>
+                    {% assign last_treated_week = working_date_week %}
+                {% endif %}
+
+                {% if first_treated_day == nil %}
+                    {% if working_date_week_day > 1 %}
+                        {% assign limit_first_month_week = working_date_week_day | minus: 1 %}
+                        {% for i in (1..limit_first_month_week) %}
+            <td></td>
+                        {% endfor %}
+                    {% endif %}
+                    {% assign first_treated_day = this_month_date %}
+                {% endif %}
+            <td>{{ this_month_date }}</td>
+
+                {% if working_date_week_day == 5 %}
+        </tr>
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+
+
+        {% comment %} <!-- Remplissage avec les dates prévues --> {% endcomment %}
+        {% assign last_week = nil %}
+        {% assign last_day = nil %}
+        {% for project_date in month_dates.dates %}
+            {% assign this_month = project_date.date | date: "%m" | plus: 0 %}
+            {% assign this_week = project_date.date | date: "%V" | plus: 0 %}
+            {% assign this_week_day = project_date.date | date: "%u" | plus: 0 %}
+            {% assign this_day = project_date.date | date: "%e" | plus: 0 %}
+
+            {% if this_week != last_week %}
+        <tr>
+            <th scope="row">{{ this_week }}</th>
+
+                {% assign last_week = this_week %}
+                {% comment %} <!-- Remplissage des jours qui précèdent --> {% endcomment %}
+                {% assign limit_week_day = this_week_day | minus: 1 %}
+                {% assign looping_week_days = (1..limit_week_day) | reverse %}
+                {% for i in looping_week_days %}
+            <td>{{ this_day | minus: i }}</td>
+                {% endfor %}
+            {% endif %}
+
+            <td
+                {% case project_date.type %}
+                    {% when "session" %}
+                title="Séance de projet transverse."
+                    {% when "final" %}
+                title="Soutenance du projet transverse."
+                    {% else %}
+                {% endcase %}
+            >
+                <strong
+                    {% case project_date.type %}
+                        {% when "session" %}
+                    class="color-primary"
+                        {% when "final" %}
+                    class="color-secondary"
+                        {% else %}
+                    {% endcase %}
+                >
+                    {{ project_date.date | date: "%e" }}
+                </strong>
+            </td>
+
+            {% if this_week_day == 5 %}
+        </tr>
+            {% else %}
+                {% comment %} <!-- Remplissage des jours qui suivent --> {% endcomment %}
+                {% assign next_defined_date_day = nil %}
+                {% if forloop.last == false %}
+                    {% assign next_defined_date_index = forloop.index0 | plus: 1 %}
+                    {% assign next_defined_date = month_dates.dates[next_defined_date_index].date %}
+                    {% assign next_defined_date_day = next_defined_date | date: "%e" | plus: 0 %}
+                {% endif %}
+
+                {% assign begin_week_day = this_week_day | plus: 1 %}
+                {% for following_week_day in (begin_week_day..5) %}
+                    {% assign following_day = this_day | minus: this_week_day | plus: following_week_day %}
+                    {% if next_defined_date_day != nil and following_day >= next_defined_date_day %}
+                        {% break %}
+                    {% endif %}
+            <td>{{ following_day }}</td>
+
+                    {% if following_week_day == 5 %}
+        </tr>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        {% endfor %}
+
+
+        {% comment %} <!-- Gérer les dates jusqu'à la fin du mois --> {% endcomment %}
+        {% assign last_date_str = month_dates.dates[-1].date %}
+        {% assign last_date_week = last_date_str | date: "%V" | plus: 0 %}
+        {% assign last_date_week_day = last_date_str | date: "%u" | plus: 0 %}
+        {% assign last_date_day = last_date_str | date: "%e" | plus: 0 %}
+
+        {% assign last_treated_week = nil %}
+        {% assign first_treated_day = nil %}
+        {% assign has_closed = nil %}
+        {% assign begin_date_day = last_date_day | plus: 1 %}
+        {% for this_month_date in (begin_date_day..31) %}
+            {% assign working_date_str = year_dates.year | append: "/" | append: this_month | append: "/" | append: this_month_date %}
+            {% assign working_date_month = working_date_str | date: "%m" | plus: 0 %}
+            {% assign working_date_week = working_date_str | date: "%V" | plus: 0 %}
+            {% assign working_date_week_day = working_date_str | date: "%u" | plus: 0 %}
+
+            {% if working_date_month == this_month and working_date_week > last_week and (1..5) contains working_date_week_day %}
+                {% if working_date_week != last_treated_week %}
+        <tr>
+            <th scope="row">{{ working_date_week }}</th>
+                    {% assign last_treated_week = working_date_week %}
+                    {% assign has_closed = false %}
+                {% endif %}
+
+            <td>{{ this_month_date }}</td>
+
+                {% if working_date_week_day == 5 %}
+        </tr>
+                    {% assign has_closed = true %}
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+        {% if has_closed == false %}
+        </tr>
+        {% endif %}
+
+        </tbody>
+    </table>
+    {% endfor %}
+{% endfor %}
