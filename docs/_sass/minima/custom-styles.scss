@@ -18,6 +18,13 @@ ul li + li {
   text-align: center;
 }
 
+// ---------- LINKED-NAV
+.linked-nav {
+  column-gap: 1em;
+  display: flex;
+  justify-content: center;
+}
+
 // ----- Others
 // ---------- COLORS
 .color-primary {

@@ -1,0 +1,8 @@
+---
+layout: base
+---
+{% include _layout/page/_article.html %}
+
+{% assign linked_pages = site.specifications | where: "listed", true %}
+{% assign main = site.specifications | where: "listed", false | first %}
+{% include _layout/linked_page/_linked_nav.html linked_pages=linked_pages main=main %}

@@ -1,0 +1,44 @@
+{% assign current_page = page.url %}
+{% assign previous_page = nil %}
+{% assign next_page = nil %}
+{% assign has_reached_current = false %}
+{% for linked_page in include.linked_pages %} {% if linked_page.url == current_page %}
+        {% assign has_reached_current = true %}
+        {% continue %}
+    {% endif %}
+
+    {% if has_reached_current == false %}
+        {% assign previous_page = linked_page %}
+    {% else %}
+        {% assign next_page = linked_page %}
+        {% break %}
+    {% endif %}
+{% endfor %}
+
+<nav class="linked-nav">
+    {% if previous_page %}
+    <div>
+        <a href="{{ previous_page.url | relative_url }}">
+            <span class="title">{{ previous_page.title }}</span>
+            <span class="arrow">&LeftTriangle;</span>
+        </a>
+    </div>
+    {% endif %}
+
+    {% if main %}
+    <div>
+        <a href="{{ main.url | relative_url }}" title="Retourner à la page principale">
+            <span class="title">{{ main.title }}</span>
+        </a>
+    </div>
+    {% endif %}
+
+    {% if next_page %}
+    <div>
+        <a href="{{ next_page.url | relative_url }}">
+            <span class="arrow">&RightTriangle;</span>
+            <span class="title">{{ next_page.title }}</span>
+        </a>
+    </div>
+    {% endif %}
+</nav>
