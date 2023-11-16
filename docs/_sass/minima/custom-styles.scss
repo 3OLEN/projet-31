@@ -7,6 +7,12 @@ ul li + li {
 }
 
 // ----- Elements
+// ---------- FIELDS
+.required::after {
+    content: "*";
+    color: $color-danger;
+}
+
 // ---------- FOOTER
 .footer-col {
   text-align: center;

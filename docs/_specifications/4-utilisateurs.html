@@ -1,0 +1,115 @@
+---
+layout: page
+title: Utilisateurs
+slug: utilisateurs
+
+user_fields:
+- name: Nom
+- name: Prénom
+- name: Identifiant
+  unique: true
+  description: "Identifiant de connexion sous forme d'adresse mail."
+- name: Mot de passe
+  note: "Devra être soumis à une politique de sécurité forte."
+- name: Rôle
+---
+
+<p>L'application est fermée au public et ne doit être accessible que par des personnes liées à l'établissement.</p>
+<p>
+  La gestion des utilisateurs est un aspect transverse qui doit être accessible seulement par les utilisateurs de type
+  "Gestionnaire", ce qui équivaut à un rôle "admin".
+</p>
+<p>On y retrouve toute la gestion de compte et l'ensemble des informations annexes des personnes.</p>
+
+<h2>Données</h2>
+{% include _templates/list/_data_fields.html fields=page.user_fields %}
+
+<h3>Rôle et permissions</h3>
+<p>Il est prévu de définir trois rôles afin de définir des permissions d'accès et de traitement.</p>
+<ul>
+  <li>
+    <strong>Gestionnaire</strong> : Équivalent au rôle "administrateur", un gestionnaire possède toutes les
+    permissions au sein de l'application, puisque cette personne a en charge la gestion de la bibliothèque.
+    <br>Bien évidemment, plusieurs personnes pourront avoir ce rôle (ex.: Agnès Malnuit et Magali Goudet).
+  </li>
+  <li>
+    <strong>Formateur</strong> : Désigne les intervenants pour les différents modules de formation OLEN.
+    <br>Un formateur a la possibilité de réserver plusieurs exemplaires d'un même livre.
+  </li>
+  <li>
+    <strong>Étudiant</strong> : Désigne le rôle par défaut d'un utilisateur et par définition l'ensemble des étudiants
+    des formations OLEN, qu'elles soient sur l'année courante ou une année précédente.
+  </li>
+</ul>
+
+<h3>Promotions et formations</h3>
+<p>
+  Afin d'améliorer la gestion des comptes utilisateurs, il est nécessaire de définir certaines informations
+  complémentaires, notamment auprès du centre de formation OLEN.
+</p>
+
+<h4>Étudiants</h4>
+<p>
+  Chaque étudiant appartient à une promotion qui est définie par son nom de formation (CSI) et sa période de formation
+  (2023-2024). Cela signifie aussi que chaque étudiant est, potentiellement, lié à des promotions d'années précédentes.
+  Il faut donc en garder aussi une trace.
+</p>
+
+<h4>Formateurs</h4>
+<p>
+  Chaque formateur est lié à un ou plusieurs modules de formation, qui sont définis par un nom de module et rattachés
+  à une promotion (nom de formation + période de formation).
+</p>
+<p>
+  Chaque année, un formateur peut reprendre son·ses module·s précédent·s, prendre la responsabilité de nouveaux modules,
+  en arrêter certains, ne plus intervenir du tout, revenir après une à plusieurs années d'arrêt, etc. Il faut
+  également en garder une trace.
+</p>
+
+<h3>Départ du centre de formation</h3>
+<p>
+  Dès lors qu'un étudiant ne suit plus de formation ou qu'un formateur n'intervient plus au sein du centre, leur comte
+  doit être en accès "lecture seule" seulement sur l'application. Ils peuvent toujours s'y connecter, à moins que le
+  compte ne soit archivé, mais ne peuvent plus effectuer d'actions.
+</p>
+
+<h2>Liste</h2>
+<p>
+  Les gestionnaires doivent pouvoir afficher la liste de tous les utilisateurs courants, passés ou archivés, selon les
+  exigences suivantes :
+</p>
+<ul>
+  <li>
+    Affichage des données de l'utilisateur : nom, prénom, rôle et sa promotion actuelle s'il est étudiant.
+  </li>
+  <li>Boutons d'action : créer un compte utilisateur, affichage des détails complets, accès à la modification.</li>
+  <li>Pagination, avec un nombre d'éléments affichés par page cohérent.</li>
+  <li>
+    Tri : nom (tri par défaut), prénom, promotion (tri composite sur l'année post-bac : BAC+1 / BAC+2 / BAC+3 / etc.,
+    et le nom de la formation).
+  </li>
+  <li>
+    Filtre :
+    <ul>
+      <li>Recherche partielle sur le nom et le prénom.</li>
+      <li>
+        Sélection de promotions courantes (devra retourner les formateurs intervenant pour ces promotions également).
+      </li>
+      <li>Récupération des comptes de formations passées, seulement.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2>Nouveau compte</h2>
+<p>
+  La création d'un nouveau compte (étudiant / formateur / gestionnaire) est accessible seulement par le gestionnaire et
+  doit répondre aux exigences des données.
+</p>
+
+<h3>Validation de compte</h3>
+<p>Une fois le compte utilisateur créé, il ne sera pas valide tant que la personne n'aura pas validé son compte.</p>
+<p>Lors de la validation, l'utilisateur est amené à saisir un mot de passe sécurisé.</p>
+
+<h2>Modification</h2>
+<p>Les données utilisateurs sont modifiables par le gestionnaire seulement.</p>
+<p>Un utilisateur peut modifier son mot de passe seulement.</p>

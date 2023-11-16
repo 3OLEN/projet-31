@@ -1,0 +1,163 @@
+---
+layout: page
+title: Réservations
+slug: reservations
+
+reservation_fields:
+- name: Gestionnaire
+  description: Utilisateur ayant pris en charge la réservation.
+- name: Réservataire
+  description: Utilisateur ayant fait la demande de réservation.
+- name: État
+  description: Demandée / Traitée / Terminée (livre·s rendu·s).
+- name: Livre·s
+  note: Seuls les formateurs pourraient éventuellement réserver plusieurs exemplaires d'un même livre.
+- name: Date de demande
+- name: Date de traitement
+  mandatory: false
+  note: À renseigner obligatoirement lorsque la réservation est traitée.
+- name: Date souhaitée de rendu
+  mandatory: false
+  note: À renseigner obligatoirement lorsque la réservation est traitée.
+- name: Date de rendu
+  mandatory: false
+  note: À renseigner obligatoirement lorsque les livres sont rendus.
+---
+
+<p>Le cœur de l'application est son système de réservations mis à disposition des étudiants et des formateurs.</p>
+<p>
+    Chacun peut donc faire une demande de réservation, en amont ou directement au moment de sa prise en charge, pour un
+    ou plusieurs livre·s.
+</p>
+<p>La personne s'engage ensuite à rendre l'ouvrage dans un délai convenable.</p>
+
+<h2>Données</h2>
+{% include _templates/list/_data_fields.html fields=page.reservation_fields %}
+
+<h3>Archivage</h3>
+<p>
+    À partir du moment où une réservation peut être clôturée (le·s livre·s est·sont rendu·s), le gestionnaire pourra
+    éventuellement effectuer un archivage afin de ne plus afficher ces réservations dans la liste, à moins d'une
+    demande explicite.
+</p>
+<p>
+    Cet archivage pourrait éventuellement se faire de manière automatique, notamment avant le début d'une nouvelle
+    année de formation.
+</p>
+
+<h2>Liste</h2>
+<p>Les gestionnaires doivent pouvoir afficher la liste de toutes les réservations récentes, passées ou archivées.</p>
+<p>Les autres utilisateurs, en revanche, ne doivent visionner que leurs propres réservations.</p>
+<p>La liste est également définie selon les exigences suivantes :</p>
+<ul>
+    <li>
+        Affichage des données de la réservation : date de demande, utilisateur concerné par la réservation, l'état, les
+        livres et/ou le nombre d'exemplaires, date de rendu souhaitée.
+        <br>Éventuellement, la date concernée par l'état courant (traitement ou rendu).
+    </li>
+    <li>
+        Boutons d'action, conditionnés sur les rôles : nouvelle demande de réservation, affichage des détails complets,
+        accès à la modification, accès à la restitution.
+    </li>
+    <li>Pagination, avec un nombre d'éléments affichés par page cohérent.</li>
+    <li>
+        Tri : date de demande (tri par défaut).
+        <br>Éventuellement, un tri sur la date concernée par l'état courant.
+    </li>
+    <li>
+        Filtres :
+        <ul>
+            <li>Recherche partielle sur le nom de la personne concernée par la réservation.</li>
+            <li>Sélection d'une période durant laquelle la demande a été effectuée.</li>
+            <li>Sélection d'une période durant laquelle la demande a été traitée.</li>
+            <li>Sélection d'une période durant laquelle la demande a été clôturée.</li>
+            <li>Sélection des états.</li>
+            <li>Seulement les réservations en retard ou prévues pour le jour courant.</li>
+            <li>Récupération des réservations archivées.</li>
+        </ul>
+        <br>L'utilisation de ces filtres est conditionnée par le rôle.
+    </li>
+</ul>
+
+<h2>Nouvelle demande</h2>
+<p>
+    Le formulaire de création d'une demande de réservation est accessible à tous les utilisateurs, mais est traité
+    différemment selon le rôle.
+</p>
+
+<h3>Utilisateur demandant la réservation</h3>
+<p>L'utilisateur concerné par la réservation ne peut qu'indiquer le·s livre·s qu'il souhaite réserver.</p>
+<p>En tant que formateur, il aura la possibilité d'indiquer un nombre d'exemplaires supérieur à 1.</p>
+
+<h3>Gestionnaire</h3>
+<p>
+    La demande de réservation peut se faire directement au moment de son traitement. Le gestionnaire en est alors en
+    charge et pourra indiquer les informations suivantes :
+</p>
+<ul>
+    <li>Utilisateur concerné par la réservation.</li>
+    <li>
+        Date de traitement (valorisée à la date du jour, mais pouvant être définie dans le passé si la réservation a
+        déjà été traitée sans avoir été gérée par l'application).
+    </li>
+    <li>Le·s livre·s réservé·s (avec leur nombre pour un formateur).</li>
+    <li>
+        Date de rendu souhaitée.
+        <br>Elle peut être définie à la date du jour si la réservation n'est effective que pendant une séance de
+        formation du jour même.
+    </li>
+</ul>
+
+<h3>Règles de gestion additionnelles</h3>
+<ul>
+    <li>
+        Un livre ne peut être réservé s'il n'existe plus d'exemplaire en inventaire.
+        <br>De même s'il a été supprimé logiquement.
+    </li>
+    <li>Un même livre ne peut être réservé plusieurs fois par le·a même étudiant·e.</li>
+</ul>
+
+<h2>Traitement d'une réservation</h2>
+<p>
+    Pour une demande de réservation créée au préalable, un gestionnaire peut alors la traiter. Cette fonctionnalité
+    est définie par les exigences suivantes :
+</p>
+<ul>
+    <li>
+        La date de traitement est valorisée à la date du jour. Si la réservation a déjà été traitée avant d'être gérée
+        par l'application, il est possible de définir une date de traitement antérieure à la date du jour.
+    </li>
+    <li>
+        La date de rendu souhaitée doit être définie après accord avec la personne souhaitant effectuer la réservation.
+    </li>
+</ul>
+
+<h3>Fluctuation de l'inventaire</h3>
+<p>Chaque livre réservé provoque une transaction de décrémentation d'exemplaires disponibles.</p>
+
+<h2>Modification d'une réservation</h2>
+<p>
+    Une réservation ne peut être modifiée que pour définir une nouvelle date de rendu souhaitée. Dans les autres cas,
+    une nouvelle demande doit être effectuée.
+</p>
+<p>Cette fonctionnalité n'est accessible qu'au gestionnaire.</p>
+
+<h3>État "Traitée"</h3>
+<p>Seules les réservations correspondant à cet état peuvent être modifiées.</p>
+
+<h2>Suppression d'une réservation</h2>
+<p>
+    Tant qu'une réservation n'a pas été traitée, elle peut être supprimée par son utilisateur demandeur ou par le
+    gestionnaire.
+</p>
+
+<h2>Rendu des livres</h2>
+<p>La clôture d'une réservation nécessite le rendu de tous les livres reliés à ladite réservation.</p>
+<p>Une fois le rendu du·des livre·s validé, la date de rendu est valorisée à la date du jour.</p>
+<p>Cette fonctionnalité n'est accessible qu'au gestionnaire.</p>
+
+<h3>État "Terminée"</h3>
+<p>Dès lors qu'une réservation est dans cet état, elle est en lecture-seule.</p>
+
+<h3>Fluctuation de l'inventaire</h3>
+<p>Chaque livre rendu provoque une transaction d'incrémentation d'exemplaires disponibles.</p>

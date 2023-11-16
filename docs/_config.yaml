@@ -2,6 +2,11 @@ theme: minima
 title: 3OLEN - Projet 31
 description: Informations et ressources sur le projet 31 de la promo 3OLEN de l'école ORT LYON.
 
+collections:
+  specifications:
+    output: true
+    permalink: /:collection/:slug
+
 ######### Configurations non-modifiables #########
 ##################################################
 #

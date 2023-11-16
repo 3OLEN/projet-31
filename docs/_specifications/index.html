@@ -1,0 +1,16 @@
+---
+layout: page
+title: Spécifications
+permalink: /specifications
+
+listed: false
+---
+
+<h2>Spécifications fonctionnelles</h2>
+<ul>
+    {% for specification in site.specifications %}
+        {% unless specification.listed == false %}
+    <li><a href="{{ specification.url | relative_url }}">{{ specification.title }}</a></li>
+        {% endunless %}
+    {% endfor %}
+</ul>

@@ -1,0 +1,26 @@
+<ul>
+    {% for field in include.fields %}
+    <li>
+        <strong
+                {% unless field.mandatory == false %}
+                class="required"
+                title="Champ obligatoire"
+                {% endunless %}
+        >
+            {{ field.name }}
+        </strong>
+
+        {% if field.unique %}
+        [<em class="color-primary" title="Contrainte d'unicité en base">Unique</em>]
+        {% endif %}
+
+        {% if field.description %}
+        <br>{{ field.description }}
+        {% endif %}
+
+        {% if field.note %}
+        <br><em>{{ field.note }}</em>
+        {% endif %}
+    </li>
+    {% endfor %}
+</ul>
