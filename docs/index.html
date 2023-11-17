@@ -13,6 +13,11 @@ library_main_elements:
     description: lister l'ensemble des réservations avec leur état (demandée, traitée, livre·s rendu·s) et l'historique.
   - label: Informations utilisateurs
     description: gérer les utilisateurs, leur rôle et leurs droits.
+
+summary:
+- contexte.html
+- planning.html
+- specifications.html
 ---
 
 <p>Projet permettant de gérer la bibliothèque OLEN, à savoir :</p>
@@ -32,3 +37,13 @@ library_main_elements:
     Par ailleurs, il est du devoir de chaque groupe de proposer une solution <strong>fonctionnelle</strong> et de
     soumettre des livrables d'une qualité <strong>professionnelle</strong>.
 </p>
+
+<h2>Sommaire</h2>
+<ol>
+    {% for file_path in page.summary %}
+        {% assign related_page = site.html_pages | where: "path", file_path | first %}
+    <li>
+        <a href="{{ related_page.url | relative_url }}">{{ related_page.title }}</a>
+    </li>
+    {% endfor %}
+</ol>
