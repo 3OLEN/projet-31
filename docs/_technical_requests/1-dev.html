@@ -1,0 +1,159 @@
+---
+layout: linked_pages/technical_request
+title: Contraintes - DEV
+slug: developpement
+
+dev_env:
+- name: Git
+  description: "Le projet en son entier doit être versionné sur le GitLab ORT."
+- name: PHP
+  version: "8.2"
+  sub_notes:
+  - "<strong>Composer</strong> est obligatoire pour gérer les dépendances."
+  - "Orienté objet <u>uniquement</u>."
+  - "Le choix des librairies est libre."
+  - "⛔️ Aucun framework n'est autorisé ; certains composants peuvent être autorisés."
+- name: JavaScript
+  sub_notes:
+  - "⛔️ <strong>jQuery</strong> est <strong>INTERDIT</strong>."
+  - "Le choix des librairies est libre."
+  - "Un framework (Angular / React / VueJS) peut être utilisé, à condition de le maîtriser."
+- name: PostgreSQL
+- name: IDE (Integrated Development Environment)
+  description: "Outil de développement essentiel pour travailler efficacement sur un projet.
+<br>La complexité de l'application ne permet pas de se contenter d'un simple outil de traitement de texte.
+<br>Il existe plusieurs IDE sur le marché :"
+  sub_notes:
+  - "<strong>PhpStorm</strong>, de la suite JetBrains (IntelliJ / PyCharm / WebStorm / ...), est une référence dans
+le monde de l'informatique. La license est gratuite pour les étudiants (@lyon.ort.asso.fr)."
+  - "<strong>Visual Studio Code</strong>, dérivé gratuit du célèbre Visual Studio de Microsoft, VSCode prend en charge
+un grand nombre de langages."
+
+dev_method:
+- name: Feature Branch Workflow
+  description: Ce workflow est simple et efficace et aide à s'organiser dans le travail à fournir.
+  elements:
+  - La branche principale est la branche <code>main</code> (pas de branche <code>master</code> !).
+  - "La branche <code>main</code> doit être protégée ; un seul membre de l'équipe en aura la responsabilité, et donc les
+droits de merge."
+  - "Les branches doivent être nommées selon le format <code>type-description_courte</code>.
+<br><em>Exemples</em> : <code>feature-ajout_livre</code>, <code>fix-droits_liste_livre</code>,
+<code>refacto-formulaire-inventaire</code>."
+  - "Les branches doivent être créées à partir de la branche <code>main</code>."
+  - "Chaque branche a une <u>responsabilité unique</u> et se doit d'être fonctionnelle dans sa responsabilité."
+  - "Les branches doivent être supprimées après la fusion."
+  - "La relecture de code est très fortement recommandée."
+- name: Historique et commits
+  description: L'historique doit être propre et compréhensible pour simplifier le travail d'équipe et son suivi.
+  elements:
+  - "<strong>Un seul commit par branche.</strong>
+<br>Le <code>git commit --amend</code> est un outil précieux."
+  - "Des règles sur le message de commit ont été indiquées dans le corrigé du TP Git. Ces règles doivent être
+respectées.
+<br>Et l'utilisation du gitmoji est conseillée."
+  - "Chaque commit est fonctionnel : l'application continue de tourner sans erreurs."
+  - "Les MR ne contiennent pas trop de changements afin d'être plus facilement relues et comprises."
+  - "Tous retours et résolutions de conflits sur une MR doivent être « amendés » dans le commit de la branche."
+- name: PHPUnit
+  elements:
+  - "Des tests codés (unitaires et <u>éventuellement</u> fonctionnels) doivent être réalisés."
+  - "Il n'y a aucune contre-indication pour le Test Driven Development."
+
+quality:
+- name: Jeu de données
+  description: "Les données de développement et de tests doivent être réelles et cohérentes afin de mieux appréhender
+l'application réalisée. Cela permet aussi de déceler certains bugs fonctionnels plus facilement."
+  advice: "On se sert généralement d'un fichier SQL d'import des données."
+- name: HTML sémantique
+  description: "Les balises HTML ont un sens et une utilisation plutôt précise. L'intérêt réside dans la compréhension
+du DOM de l'application et surtout pour l'accessibilité et le responsive design."
+  link:
+    href: https://fr.semrush.com/blog/balises-structurelles-html-semantique/
+    text: "Semrush Blog - HTML sémantique"
+- name: Aspect graphique
+  description: "Le design de l'application doit être pensé dès le départ et appliqué au plus tôt pour faciliter
+l'utilisation de l'application et la mise en place de nouvelles fonctionnalités.
+<br>Par ailleurs, les soucis graphiques sont ainsi détectés plus rapidement."
+- name: Responsive Design
+  description: "L'application doit être utilisable sur ordinateur, tablette et smartphone."
+- name: Tester
+  description: "Chaque travail effectué doit être testé afin de s'assurer de son bon fonctionnement et de sa
+compatibilité avec le reste de l'application.
+<br>Selon le temps à disposition, ces tests peuvent être automatisés (donc codés), mais ce n'est pas une obligation."
+- name: Code source
+  description: "Il existe divers outils pour vérifier le code source et aider à l'améliorer. Certains sont même
+intégrés dans les différents IDE. Il est très utile d'en utiliser au moins un."
+  advice: "SonarLint / PHP CodeSniffer / PHPStan / ..."
+---
+
+<p>
+    Les éléments indiqués dans chacune des parties suivantes sont des contraintes pour la réalisation de l'application
+    ; ces éléments <strong>doivent être respectés</strong>.
+</p>
+
+<h2>Architecture</h2>
+<p>/</p>
+
+<h2>Environnement de développement</h2>
+<ul>
+    {% for dev_item in page.dev_env %}
+    <li>
+        <strong>{{ dev_item.name }}</strong>
+
+        {% if dev_item.version %}
+        [<em class="color-primary">Version {{ dev_item. version }}</em>]
+        {% endif %}
+
+        {% if dev_item.description %}
+        : {{ dev_item.description }}
+        {% endif %}
+
+        {% assign sub_note_size = dev_item.sub_notes | size %}
+        {% if sub_note_size > 0 %}
+            <ul>
+            {% for sub_note in dev_item.sub_notes %}
+                <li>{{ sub_note }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    </li>
+    {% endfor %}
+</ul>
+
+<h2>Méthodologies de travail</h2>
+<ul>
+    {% for method_item in page.dev_method %}
+    <li>
+        <strong>{{ method_item.name }}</strong>
+
+        {% if method_item.description %}
+        : {{ method_item.description }}
+        {% endif %}
+
+        <ul>
+            {% for element in method_item.elements %}
+            <li>{{ element }}</li>
+            {% endfor %}
+        </ul>
+    </li>
+    {% endfor %}
+</ul>
+
+<h2>Qualité de l'application web</h2>
+<ul>
+    {% for quality_item in page.quality %}
+    <li>
+        <strong>{{ quality_item.name }}</strong>
+        <br>{{ quality_item.description }}
+
+        {% if quality_item.advice %}
+        <br>ℹ️ <em>{{ quality_item.advice }}</em>
+        {% endif %}
+
+        {% if quality_item.link %}
+        <br>🔗 Pour en savoir plus :
+        <a href="{{ quality_item.link.href }}" target="_blank">{{ quality_item.link.text }}</a>.
+        {% endif %}
+    </li>
+    {% endfor %}
+</ul>

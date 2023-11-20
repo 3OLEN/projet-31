@@ -5,8 +5,7 @@ permalink: /specifications
 ---
 
 <h2>Spécifications fonctionnelles</h2>
-<ul>
-    {% for specification in site.specifications %}
-    <li><a href="{{ specification.url | relative_url }}">{{ specification.title }}</a></li>
-    {% endfor %}
-</ul>
+{% include _templates/list/_pages.html pages=site.specifications %}
+
+<h2>Contraintes techniques</h2>
+{% include _templates/list/_pages.html pages=site.technical_requests %}

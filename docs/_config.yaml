@@ -6,6 +6,9 @@ collections:
   specifications:
     output: true
     permalink: /:collection/:slug
+  technical_requests:
+    output: true
+    permalink: /:collection/:slug
 
 ######### Configurations non-modifiables #########
 ##################################################
