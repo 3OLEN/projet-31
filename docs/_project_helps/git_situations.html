@@ -1,0 +1,32 @@
+---
+layout: project_help
+title: "Aide - Situations Git"
+slug: "situations_git"
+category: Git
+
+heading: "Cette page recense diverses situations possibles sur Git et les commandes et instructions qu'il faut suivre
+pour arriver jusqu'au bout."
+elements:
+- title: "<span class=\"text-danger\">‼</span> MR et conflits"
+  text: "À la création d'une MR ou pendant qu'elle est active, des conflits peuvent subvenir et il est donc nécessaire
+de les résoudre. C'est là que le <code>rebase</code> prend tout son sens."
+  code_block:
+    type: bash
+    situation: "La branche <code>feat-ajout_livre</code> a été créée à partir de la branche <code>main</code>."
+    code: |
+      # 1) Mettre à jour le repository local selon les modifications distantes
+      git switch main
+      git pull
+
+      # 2) Retour sur la branche de travail et incorporation des modifications de la branche cible de la fusion (main)
+      git switch feat-ajout_livre
+      git rebase main
+
+      # 3) Le rebase va parcourir tous les commits et les appliquer un à un.
+      #    En cas de conflit, il s'interrompt et il faut alors résoudre les conflits.
+      git add <fichiers_résolus>
+      git rebase --continue
+
+      # 4) Une fois le rebase terminé, il faut pousser le nouvel historique sur la branche distante
+      git push --force-with-lease
+---

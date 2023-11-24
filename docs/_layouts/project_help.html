@@ -22,9 +22,15 @@ layout: base
             {% if page_element.list %}
                 {% include _layout/project_help/_page_list.html list=page_element.list %}
             {% endif %}
+
+            {% if page_element.code_block %}
+                {% include _layout/project_help/_page_code_block.html code_block=page_element.code_block %}
+            {% endif %}
         {% endfor %}
 
         {{ content }}
+
+        {% include _layout/project_help/_category_pages.html category=page.category %}
     </div>
 </article>
 

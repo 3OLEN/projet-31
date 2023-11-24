@@ -1,0 +1,30 @@
+{% assign category_pages = "" %}
+{% if include.category %}
+    {% for collection_page in site.project_helps %}
+        {% if collection_page.category != include.category or collection_page.url == page.url %}
+            {% continue %}
+        {% endif %}
+
+        {% assign category_pages = category_pages
+                | append: collection_page.title
+                | append: ";"
+                | append: collection_page.url
+                | append: "\n"
+        %}
+    {% endfor %}
+{% endif %}
+{% assign category_pages = category_pages | split: "\n" %}
+
+{% if category_pages.size > 0 %}
+    <h1>Autres pages</h1>
+    <ul class="post-list">
+        {% for category_page in category_pages %}
+            {% assign category_page_data = category_page | split: ";" %}
+            {% assign category_page_title = category_page_data[0] %}
+            {% assign category_page_url = category_page_data[1] %}
+            <li>
+                <a href="{{ category_page_url | relative_url }}">{{ category_page_title | escape }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}

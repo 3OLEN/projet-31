@@ -1,0 +1,18 @@
+{% if include.code_block.situation %}
+    <blockquote>{{ include.code_block.situation }}</blockquote>
+{% endif %}
+
+{% case include.code_block.type %}
+    {% when "bash" %}
+        {%- highlight bash -%}
+            {{ include.code_block.code }}
+        {%- endhighlight -%}
+    {% when "php" %}
+        {% highlight php linenos -%}
+            {{ include.code_block.code }}
+        {%- endhighlight -%}
+    {% else %}
+        {% highlight text linenos -%}
+            {{ include.code_block.code }}
+        {%- endhighlight -%}
+{% endcase %}
