@@ -1,0 +1,121 @@
+---
+layout: project_help
+title: "Aide - Repository Git"
+slug: "git_repository"
+
+heading: "Cette page contient diverses informations ainsi que des conseils à propos de Git et plus particulièrement
+l'utilisation d'un <u>repository</u> à travers des suggestions de (bonnes) pratiques. Il n'y a aucune obligation, mais
+adopter ces conseils ne peut qu'être bénéfique."
+elements:
+- title: Rappels
+  list:
+  - name: Repository
+    content: "[🇫🇷 Dépôt] Espace contenant l'ensemble du projet et de ses informations de versionning.
+<br>Il se présente sous la forme d'un répertoire nommé, reprenant l'exacte arborescence du projet.
+<br>Il contient tout ce qui a trait à l'utilisation de Git : historique (et donc commits), branches, tags, etc."
+  - name: Manuel de référence Git
+    external_link:
+      href: https://git-scm.com/docs
+      label: Lien de la documentation
+
+- title: "🎋 Branches"
+  text: "Les branches doivent répondre à des règles : nommage, droits, but, etc. De cette manière, chacun aura une
+meilleure vision du repository ce qui l'aidera dans son travail."
+  list:
+  - name: Branche principale
+    content: "Généralement <code>main</code> ou <code>master</code>, cette branche contient le contenu \"réel\" du
+repository, c'est-à-dire ce qui est utilisable dans un usage réel / de production : scripts, application·s."
+    sub_elements:
+    - name: "🔒️ Branche protégée"
+      content: "Aucun commit, push, rebase ne doit y être possible, hormis de la part du \"responsable\" (ou
+<em>maintener</em>). Cette protection permet de garantir la stabilité et l'intégralité de cette branche et d'éviter
+de détruire l'historique par une manipulation malencontreuse."
+    - name: "🛂 Responsabilité"
+      content: "Un membre de l'équipe doit posséder les droits de merge sur cette branche protégée afin de valider les
+MR et permettre au projet d'avancer. Cette personne est généralement la plus compétente sur l'utilisation de Git.
+<br>Deux-Trois personnes en tout peuvent posséder ces droits afin d'avoir toujours une personne disponible pour réaliser
+les merges. Cependant, il n'y aurait aucun intérêt à ce qu'une trop grande proportion de l'équipe possède ces droits."
+  - name: Création d'une branche
+    content: "Chaque branche est généralement créée à partir de la branche principale (ou de la branche de développement
+comme c'est le cas dans le <u>GitFlow</u>). De cette manière, elle est la plus à jour possible."
+    sub_elements:
+    - name: "🏷️ Nommage"
+      content: "Les règles de nommage permettent d'identifier l'objectif de la branche : nouvelle feature, correctif,
+refactorisation, etc. et son contexte d'application : authentification, suppression d'un livre, backup BDD, etc.
+<br><em>Exemples</em> : <code>feat-authentification-page</code> / <code>fix-suppression_livre-avec_reservation</code>
+/ <code>refacto-scripts-python</code> / ..."
+    - name: "🔀 Merge"
+      content: "Une fois que le travail est terminé sur une branche, elle doit être mergée sur la branche à partir de
+laquelle elle a été créée, afin de limiter les conflits d'historique."
+  - name: "Responsabilité unique"
+    content: "Une branche est une ligne de travail qui se doit d'être définie pour une tâche (ou sous-tâche) très précise
+et la plus unitaire possible. Cela permet d'améliorer grandement la collaboration au sein d'une équipe."
+    sub_elements:
+    - name: "🔣 Éléments annexes"
+      content: "Il n'est pas rare de repérer des choses à changer, à améliorer ou à corriger pendant qu'on travaille sur
+autre chose. Ces changements doivent être entrepris dans une autre branche pour les traiter à part et permettre à
+l'équipe de prendre en compte ces changements le plus tôt possible."
+    - name: "🗃️ Commits de branche"
+      content: "Il n'est jamais nécessaire d'avoir plus de deux commits dans une branche. Si elle a bien été définie
+concernant son objectif, il n'y a aucune raison d'inclure plus qu'un commit. Si tel est le cas, il faudra peut-être
+revoir le découpage de la branche et de la tâche associée.
+<br>Le <code>git commit --amend</code> se révèle alors un outil précieux."
+
+- title: "📄 Commits"
+  text: "Chaque commit est un ensemble de changements terminés et fonctionnels : on ne commit jamais quelque chose qui
+ne fonctionne pas, à part pour permettre à une autre personne de le récupérer et de le traiter de son côté."
+  list:
+  - name: "Documentation"
+    content: "Chaque commit agit comme une documentation des changements portés par ledit commit. Plus un commit est
+propre, cohérent et simple, plus il est compréhensible, notamment sur le travail réalisé, en cours et à faire."
+    sub_elements:
+    - name: "📑 Structuré"
+      content: "Un commit ne doit inclure que les éléments qui sont propres à son contexte. De cette façon, il est plus
+simple de retrouver certains changements et de les comprendre."
+    - name: "📝 Message"
+      content: "Le message se compose d'un résumé (50 caractères), sous la forme d'un titre, et d'un contenu apportant
+des détails supplémentaires et nécessaires.
+<br>Ces informations aident à documenter le commit afin d'indiquer son objectif et de donner des explications sur les
+divers changements. Il faut donc trouver un équilibre sur le fait d'être assez suggestif tout en restant concis.
+<br><em>Des règles sur le message de commit ont été indiquées dans le corrigé du TP Git du module « Archi web ».</em>"
+    - name: "gitm😍ji"
+      content: "L'utilisation d'emojis est de plus en plus fréquente, car ils apportent une identification visuelle très
+rapide et compréhensible de tou·te·s."
+      external_link:
+        href: https://gitmoji.dev/
+        label: Lien du guide
+  - name: "Contenu"
+    content: "Il est rare qu'un commit contienne plusieurs dizaines de changements, car plus il est conséquent, plus il est
+complexe à expliciter, à comprendre et à intégrer. Par ailleurs, il augmente les risques de bugs."
+
+- title: "🔀 Merge requests (MR)"
+  text: "Dès lors que le travail sur une branche est terminée, une demande de merge doit être créée sur GitLab. Une MR
+est donc une action permettant d'indiquer qu'une tâche précise est traitée. La MR est aussi une explication du travail
+réalisé afin d'informer les autres membres de l'équipe."
+  list:
+  - name: "📝 Message"
+    content: "Le message d'une MR reprend le message du commit de la branche à merger, puisqu'il indique les changements
+qui vont s'opérer à la suite de cette fusion.
+<br>Des informations complémentaires peuvent être adjointes à la MR, notamment des preuves du bon fonctionnement
+(captures d'écran, captures vidéo, logs d'exécution d'une commande ou d'un script, etc.)."
+  - name: "🗃️ Contenu"
+    content: "Moins une MR contient de changements, plus elle est facilement relue, compréhensible et explicite sur le
+travail réalisé et restant."
+  - name: "📖 Revue"
+    content: "Tout travail doit être relu par une autre personne. Cela permet d'avoir une autre vision de ce qui a été
+fait, de valider le travail réalisé (notamment s'il correspond bien à la demande) et d'aider à déceler les potentiels
+problèmes et bugs. Cela contribue aussi énormément à la communication interne."
+  - name: "💬 Retours"
+    content: "Tout travail peut être améliorable et tout doit être ouvert à la discussion pour s'assurer que le travail
+réalisé a été bien fait et qu'il est compris par tout le monde.
+<br>Ainsi, il ne faut pas hésiter à faire des retours dans une MR pour faire des suggestions, comprendre ce qui a été
+fait ou encore réorienter la conception entreprise.
+<br>⚠️ Les retours ne sont pas un moyen de défouloir et les échanges doivent être <strong>respectueux</strong>, les
+critiques <strong>constructives</strong> et <strong>bienveillantes</strong>."
+  - name: "☑️ Traitements"
+    content: "Tous retours et résolutions de conflits doivent être « amendés » dans le commit de la branche. Cela
+permet d'avoir un historique propre et cohérent."
+  - name: "🗑️ Suppression de branche"
+    content: "Dès lors qu'une branche a été mergée, elle a rempli son office et n'est donc plus nécessaire au
+repository. Elle doit donc être supprimée."
+---

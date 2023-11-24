@@ -1,0 +1,30 @@
+---
+layout: base
+---
+
+<article class="post">
+    <header class="post-header">
+        <h1 class="post-title">{{ page.title | escape }}</h1>
+    </header>
+
+    <div class="post-content">
+        {% if page.heading %}
+            <blockquote>{{ page.heading }}</blockquote>
+        {% endif %}
+
+        {% for page_element in page.elements %}
+            <h2>{{ page_element.title }}</h2>
+
+            {% if page_element.text %}
+                <p>{{ page_element.text }}</p>
+            {% endif %}
+
+            {% if page_element.list %}
+                {% include _layout/project_help/_page_list.html list=page_element.list %}
+            {% endif %}
+        {% endfor %}
+
+        {{ content }}
+    </div>
+</article>
+

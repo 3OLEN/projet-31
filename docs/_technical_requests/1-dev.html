@@ -17,7 +17,6 @@ dev_env:
   sub_notes:
   - "⛔️ <strong>jQuery</strong> est <strong>INTERDIT</strong>."
   - "Le choix des librairies est libre."
-  - "Un framework (Angular / React / VueJS) peut être utilisé, à condition de le maîtriser."
 - name: PostgreSQL
 - name: IDE (Integrated Development Environment)
   description: "Outil de développement essentiel pour travailler efficacement sur un projet.
@@ -30,30 +29,11 @@ le monde de l'informatique. La license est gratuite pour les étudiants (@lyon.o
 un grand nombre de langages."
 
 dev_method:
-- name: Feature Branch Workflow
-  description: Ce workflow est simple et efficace et aide à s'organiser dans le travail à fournir.
-  elements:
-  - La branche principale est la branche <code>main</code> (pas de branche <code>master</code> !).
-  - "La branche <code>main</code> doit être protégée ; un seul membre de l'équipe en aura la responsabilité, et donc les
-droits de merge."
-  - "Les branches doivent être nommées selon le format <code>type-description_courte</code>.
-<br><em>Exemples</em> : <code>feature-ajout_livre</code>, <code>fix-droits_liste_livre</code>,
-<code>refacto-formulaire-inventaire</code>."
-  - "Les branches doivent être créées à partir de la branche <code>main</code>."
-  - "Chaque branche a une <u>responsabilité unique</u> et se doit d'être fonctionnelle dans sa responsabilité."
-  - "Les branches doivent être supprimées après la fusion."
-  - "La relecture de code est très fortement recommandée."
-- name: Historique et commits
-  description: L'historique doit être propre et compréhensible pour simplifier le travail d'équipe et son suivi.
-  elements:
-  - "<strong>Un seul commit par branche.</strong>
-<br>Le <code>git commit --amend</code> est un outil précieux."
-  - "Des règles sur le message de commit ont été indiquées dans le corrigé du TP Git. Ces règles doivent être
-respectées.
-<br>Et l'utilisation du gitmoji est conseillée."
-  - "Chaque commit est fonctionnel : l'application continue de tourner sans erreurs."
-  - "Les MR ne contiennent pas trop de changements afin d'être plus facilement relues et comprises."
-  - "Tous retours et résolutions de conflits sur une MR doivent être « amendés » dans le commit de la branche."
+- name: Workflow Git
+  description: "Le fait d'ériger des règles sur l'utilisation de Git permet de simplifier le travail d'équipe, la
+coordination et la compréhension des tâches de chacun."
+  advice_link:
+    slug: git_repository
 - name: PHPUnit
   elements:
   - "Des tests codés (unitaires et <u>éventuellement</u> fonctionnels) doivent être réalisés."
@@ -128,6 +108,22 @@ intégrés dans les différents IDE. Il est très utile d'en utiliser au moins u
 
         {% if method_item.description %}
         : {{ method_item.description }}
+        {% endif %}
+
+        {% if method_item.advice_link %}
+            <br>ℹ️ Pour aller plus loin :
+            {% for collection_page in site.project_helps %}
+                {% unless collection_page.slug == method_item.advice_link.slug %}
+                    {% continue %}
+                {% endunless %}
+
+                {% assign related_page = collection_page %}
+                {% break %}
+            {% endfor %}
+
+            {% if related_page %}
+                <a href="{{ related_page.url | relative_url }}" target="_blank">{{ related_page.title }}</a>.
+            {% endif %}
         {% endif %}
 
         <ul>

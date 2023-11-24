@@ -1,0 +1,22 @@
+<ul>
+    {% for list_element in include.list %}
+        <li>
+            <strong>{{ list_element.name }}</strong>
+
+            {% if list_element.content %}
+                <br>{{ list_element.content }}
+            {% endif %}
+
+            {% if list_element.external_link %}
+                {% if list_element.content %}<br>{% else %}: {% endif %}
+                <a href="{{ list_element.external_link.href }}" target="_blank">
+                    🔗 {{ list_element.external_link.label }}
+                </a>.
+            {% endif %}
+
+            {% if list_element.sub_elements %}
+                {% include _layout/project_help/_page_list.html list=list_element.sub_elements %}
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>

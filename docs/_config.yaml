@@ -9,6 +9,9 @@ collections:
   technical_requests:
     output: true
     permalink: /contraintes_techniques/:slug
+  project_helps:
+    output: true
+    permalink: /aides-projet/:slug
 
 ######### Configurations non-modifiables #########
 ##################################################
