@@ -148,6 +148,17 @@ project_dates:
                 {% assign begin_week_day = this_week_day | plus: 1 %}
                 {% for following_week_day in (begin_week_day..5) %}
                     {% assign following_day = this_day | minus: this_week_day | plus: following_week_day %}
+
+                    {% comment %}Ne pas prendre en compte les dates n'existant pas{% endcomment %}
+                    {% if following_day > 31 %}
+                        {% break %}
+                    {% endif %}
+                    {% assign following_day_date_str = year_dates.year | append: "/" | append: this_month | append: "/" | append: following_day %}
+                    {% assign following_day_date_month = following_day_date_str | date: "%m" | plus: 0 %}
+                    {% if following_day_date_month > this_month %}
+                        {% break %}
+                    {% endif %}
+
                     {% if next_defined_date_day != nil and following_day >= next_defined_date_day %}
                         {% break %}
                     {% endif %}
