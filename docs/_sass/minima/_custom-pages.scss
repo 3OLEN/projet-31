@@ -1,0 +1,38 @@
+/* Planning
+   ========
+ */
+table {
+  &.planning {
+    caption {
+      font-size: 1.25em;
+      font-weight: bold;
+      letter-spacing: 0.15em;
+      padding: 0.5em 0;
+    }
+    thead {
+      th {
+        text-align: center;
+      }
+    }
+    tbody {
+      th {
+        width: 40px;
+      }
+
+      td {
+        vertical-align: top;
+        width: ($content-width - 40px) / 5;
+
+        .day {
+          font-size: 1.2em;
+          text-align: center;
+        }
+        .component {
+          column-gap: 0.5em;
+          display: flex;
+          margin-top: 0.5em;
+        }
+      }
+    }
+  }
+}

@@ -6,6 +6,9 @@ permalink: /planning
 
 {% comment %}----- Merge all dates as yaml can't do it -----{% endcomment %}
 {% assign all_dates = site.data.dates.project_sessions %}
+{% for assessment_date in site.data.dates.project_assessments %}
+    {% assign all_dates = all_dates | push: assessment_date %}
+{% endfor %}
 
 
 {% comment %}Build calendar{% endcomment %}
@@ -17,8 +20,8 @@ permalink: /planning
     {% assign dates_per_month = year_grouped_dates.items | group_by: "date.month" %}
     {% for month_grouped_dates in dates_per_month %}
         {% assign loop_month = month_grouped_dates.name %}
-        {% assign month_dates = month_grouped_dates.items %}
-    <table>
+        {% assign month_dates = month_grouped_dates.items | sort: "date.value" %}
+    <table class="planning">
         <caption>{{ loop_month }}</caption>
         <thead>
         <tr>
@@ -62,7 +65,11 @@ permalink: /planning
                     {% endif %}
                     {% assign first_treated_day = this_month_date %}
                 {% endif %}
-            <td>{{ this_month_date }}</td>
+            <td>
+                <div class="day">
+                    {{ this_month_date }}
+                </div>
+            </td>
 
                 {% if working_date_week_day == 5 %}
         </tr>
@@ -76,6 +83,17 @@ permalink: /planning
         {% assign last_day = nil %}
         {% for project_date in month_dates %}
             {% assign loop_date = project_date.date.value %}
+            {% comment %} <!-- Gérer les multi-données d'une même date --> {% endcomment %}
+            {% assign multi_dates = month_dates | where: "date.value", loop_date %}
+            {% if multi_dates.size > 1 %}
+                {% comment %}Cette séquence a déjà été traitée, on passe à la suite{% endcomment %}
+                {% if multi_date_value == loop_date %}
+                    {% continue %}
+                {% endif %}
+
+                {% assign multi_date_value = loop_date %}
+            {% endif %}
+
             {% assign this_month = loop_date | date: "%m" | plus: 0 %}
             {% assign this_week = loop_date | date: "%V" | plus: 0 %}
             {% assign this_week_day = loop_date | date: "%u" | plus: 0 %}
@@ -90,7 +108,11 @@ permalink: /planning
                 {% assign limit_week_day = this_week_day | minus: 1 %}
                 {% assign looping_week_days = (1..limit_week_day) | reverse %}
                 {% for i in looping_week_days %}
-            <td>{{ this_day | minus: i }}</td>
+            <td>
+                <div class="day">
+                    {{ this_day | minus: i }}
+                </div>
+            </td>
                 {% endfor %}
             {% endif %}
 
@@ -103,17 +125,29 @@ permalink: /planning
                     {% else %}
                 {% endcase %}
             >
-                <strong
-                    {% case project_date.type %}
-                        {% when "session" %}
-                    class="text-primary"
-                        {% when "final" %}
-                    class="text-secondary"
-                        {% else %}
-                    {% endcase %}
-                >
-                    {{ loop_date | date: "%e" }}
-                </strong>
+                <div class="day">
+                    <strong
+                            {% case project_date.type %}
+                                {% when "session" %}
+                                    class="text-primary"
+                                {% when "final" %}
+                                    class="text-secondary"
+                                {% else %}
+                            {% endcase %}
+                    >
+                        {{ loop_date | date: "%e" }}
+                    </strong>
+                </div>
+
+                {% comment %} <!-- Prise en charge des données multiples d'une même date --> {% endcomment %}
+                {% for project_date_data in multi_dates %}
+                    {% if project_date_data.type == "assessment" %}
+                        <div class="component">
+                            <span title="Livrable du projet transverse.">☑️</span>
+                            <span>{{ project_date_data.name }}</span>
+                        </div>
+                    {% endif %}
+                {% endfor %}
             </td>
 
             {% if this_week_day == 5 %}
@@ -122,7 +156,11 @@ permalink: /planning
                 {% comment %} <!-- Remplissage des jours qui suivent --> {% endcomment %}
                 {% assign next_defined_date_day = nil %}
                 {% if forloop.last == false %}
-                    {% assign next_defined_date_index = forloop.index0 | plus: 1 %}
+                    {% comment %}
+                    ⚠️ Du fait des données multiples pour une même date,
+                       il faut récupérer la date suivante et non pas l'élément suivant.
+                    {% endcomment %}
+                    {% assign next_defined_date_index = forloop.index0 | plus: multi_dates.size %}
                     {% assign next_defined_date = month_dates[next_defined_date_index].date.value %}
                     {% assign next_defined_date_day = next_defined_date | date: "%e" | plus: 0 %}
                 {% endif %}
@@ -141,10 +179,14 @@ permalink: /planning
                         {% break %}
                     {% endif %}
 
-                    {% if next_defined_date_day != nil and following_day >= next_defined_date_day %}
+                    {% if next_defined_date != nil and following_day >= next_defined_date_day %}
                         {% break %}
                     {% endif %}
-            <td>{{ following_day }}</td>
+            <td>
+                <div class="day">
+                    {{ following_day }}
+                </div>
+            </td>
 
                     {% if following_week_day == 5 %}
         </tr>
@@ -178,7 +220,11 @@ permalink: /planning
                     {% assign has_closed = false %}
                 {% endif %}
 
-            <td>{{ this_month_date }}</td>
+            <td>
+                <div class="day">
+                    {{ this_month_date }}
+                </div>
+            </td>
 
                 {% if working_date_week_day == 5 %}
         </tr>
