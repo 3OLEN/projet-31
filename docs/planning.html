@@ -13,6 +13,7 @@ permalink: /planning
 
 {% comment %}Build calendar{% endcomment %}
 {% assign dates_per_year = all_dates | group_by_exp: "item", "item.date.value | truncate: 4, ''" %}
+{% assign session_no = 0 %}
 {% for year_grouped_dates in dates_per_year %}
     {% assign loop_year = year_grouped_dates.name %}
     <h2>{{ loop_year }}</h2>
@@ -116,27 +117,42 @@ permalink: /planning
                 {% endfor %}
             {% endif %}
 
+            {% comment %}Données d'affichage liées au type{% endcomment %}
+            {% assign cell_title = nil %}
+            {% assign day_class = nil %}
+            {% assign roadmap_index = nil %}
+            {% case project_date.type %}
+                {% when "session" %}
+                    {% assign cell_title = "Séance de projet transverse." %}
+                    {% assign day_class = "text-primary" %}
+                    {% assign session_no = session_no | plus: 1 %}
+                    {% assign roadmap_index = session_no | minus: 1 %}
+                {% when "final" %}
+                    {% assign cell_title = "Soutenance du projet transverse." %}
+                    {% assign day_class = "text-secondary" %}
+                    {% assign session_no = session_no |plus: 1 %}
+                    {% assign roadmap_index = session_no | minus: 1 %}
+                {% else %}
+            {% endcase %}
+
+            {% assign roadmap_page = nil %}
+            {% if roadmap_index %}
+                {% assign roadmap_page = site.roadmap[roadmap_index] %}
+            {% endif %}
+
             <td
-                {% case project_date.type %}
-                    {% when "session" %}
-                title="Séance de projet transverse."
-                    {% when "final" %}
-                title="Soutenance du projet transverse."
-                    {% else %}
-                {% endcase %}
+                {% if cell_title %}title="{{ cell_title }}"{% endif %}
             >
                 <div class="day">
-                    <strong
-                            {% case project_date.type %}
-                                {% when "session" %}
-                                    class="text-primary"
-                                {% when "final" %}
-                                    class="text-secondary"
-                                {% else %}
-                            {% endcase %}
-                    >
-                        {{ loop_date | date: "%e" }}
-                    </strong>
+                    {% if roadmap_page %}
+                        <a class="day-roadmap {{ project_date.type }}" href="{{ roadmap_page.url | relative_url }}">
+                            {{ loop_date | date: "%e" }}
+                        </a>
+                    {% else %}
+                        <strong {% if day_class %}class="{{ day_class }}"{% endif %}>
+                            {{ loop_date | date: "%e" }}
+                        </strong>
+                    {% endif %}
                 </div>
 
                 {% comment %} <!-- Prise en charge des données multiples d'une même date --> {% endcomment %}

@@ -25,6 +25,29 @@ table {
         .day {
           font-size: 1.2em;
           text-align: center;
+
+          &-roadmap {
+            background-color: var(--roadmap-color);
+            border: 1px solid $border-color-01;
+            border-radius: 0.75em;
+            color: $background-color;
+            font-weight: bold;
+            padding: 0.25em 0.5em;
+            text-decoration: none;
+
+            &:hover {
+              background-color: $background-color;
+              border-color: var(--roadmap-color);
+              color: var(--roadmap-color);
+            }
+
+            &.session {
+              --roadmap-color: #{$color-primary};
+            }
+            &.final {
+              --roadmap-color: #{$color-secondary};
+            }
+          }
         }
         .component {
           column-gap: 0.5em;
