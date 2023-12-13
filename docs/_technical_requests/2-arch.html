@@ -1,0 +1,57 @@
+---
+layout: linked_pages/technical_request
+title: Contraintes - INFRA
+slug: infrastructure
+
+arch_env:
+- name: Gitlab CI/CD
+  description: "Le projet devra utiliser Gitlab afin d'implémenter des pipelines CI/CD"
+- name: Intégration continue
+  sub_notes:
+  - "La pipeline d'intégration continue devra contenir à minima un job de build, et un job d'exécution de tests unitaires."
+- name: Déploiement continue
+  sub_notes:
+  - "La pipeline de déploiement continue devra contenir à minima le job de génération de l'image docker de l'application, 
+  de sa sauvegarde dans la registry harbor ainsi que le déploiement dans un environnement."
+  - "Les jobs de déploiement ne doivent être disponibles que pour la branche principale avec un déclenchement manuel."
+- name: Docker
+  sub_notes:
+  - "Toutes les briques applicatives devront être dockerisées."
+  - "Les images de base devront être choisit depuis le docker hub"
+  - "Un point supplémentaire sera accordé aux groupes ayant installé un docker en mode rootless."
+- name: VHost
+  sub_notes:
+  - "Dans la machine contenant les environnements recette et prod, vous devrez installer un reverse proxy permettant 
+  d'accéder à l'application avec un filtrage d'IP et une redirection http vers https."
+- name: Certificats
+  sub_notes:
+  - "Une autorité de certification devra être créée."
+  - "Vous devez faire en sorte que l'application soit accessible en https et que le certificat public soit validé par votre client."
+---
+
+<p>
+    Les éléments indiqués dans chacune des parties suivantes sont des contraintes pour la réalisation de l'application
+    ; ces éléments <strong>doivent être respectés</strong>.
+</p>
+
+<h2>Infrastructure</h2>
+<ul>
+    {% for arch_item in page.arch_env %}
+    <li>
+        <strong>{{ arch_item.name }}</strong>
+
+        {% if arch_item.description %}
+        : {{ arch_item.description }}
+        {% endif %}
+
+        {% assign sub_note_size = arch_item.sub_notes | size %}
+        {% if sub_note_size > 0 %}
+            <ul>
+            {% for sub_note in arch_item.sub_notes %}
+                <li>{{ sub_note }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    </li>
+    {% endfor %}
+</ul>
