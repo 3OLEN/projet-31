@@ -1,6 +1,5 @@
-/* Planning
-   ========
- */
+// Planning
+// ========
 table {
   &.planning {
     caption {
@@ -33,6 +32,146 @@ table {
           margin-top: 0.5em;
         }
       }
+    }
+  }
+}
+
+// Collections
+// ===========
+// Roadmap
+// -------
+.roadmap {
+  counter-reset: schedule;
+  .post-header {
+    border-bottom: 2px solid $border-color-01;
+    margin-bottom: 0.5em;
+    padding-bottom: 0.5em;
+
+    .post-title {
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+
+      @media (min-width: $on-large) {
+        align-items: baseline;
+        column-gap: 0.5em;
+        flex-direction: row;
+
+        .session-date {
+          border: 1px solid $brand-color;
+          border-radius: 0.5em;
+          padding: 0.25em 0.5em;
+        }
+      }
+    }
+  }
+  .post-sub-header {
+    font-size: 0.8em;
+    font-style: italic;
+    text-align: right;
+  }
+
+  .summary {
+    counter-reset: summary;
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    margin: unset;
+    row-gap: 0.5em;
+
+    > li {
+      > a {
+        border: 1px solid $border-color-01;
+        border-radius: 0.25em;
+        color: $brand-color;
+        counter-increment: summary;
+        display: block;
+        padding: 0.5em 1em;
+        text-decoration: none;
+
+        &:hover {
+          border-color: $link-base-color;
+          color: $link-base-color;
+        }
+        &::before {
+          content: counter(summary)".";
+          margin-right: 0.5em;
+        }
+      }
+
+      @media (min-width: $on-medium) {
+        width: 75%;
+      }
+      @media (min-width: $on-large) {
+        width: 50%;
+      }
+    }
+
+    @media (min-width: $on-medium) {
+      align-items: center;
+    }
+  }
+
+  h2 {
+    &:not(:first-child) {
+      counter-increment: schedule;
+
+      &::before {
+        content: counter(schedule)".";
+        margin-right: 0.5em;
+      }
+    }
+  }
+
+  .related-page {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    margin: 1em 0 0;
+    row-gap: 1em;
+
+    > li {
+      > a {
+        color: $brand-color;
+        text-decoration: none;
+
+        &:hover {
+          border-color: $link-base-color;
+          color: $link-base-color;
+
+          .related-page-badge {
+            border-color: $link-base-color;
+          }
+        }
+      }
+      .related-page-item {
+        align-items: stretch;
+        border: 2px solid $border-color-01;
+        border-radius: 0.5em;
+        display: flex;
+        font-size: 1.25em;
+
+        .related-page- {
+          &badge {
+            align-items: center;
+            border-right: 2px solid $border-color-01;
+            display: flex;
+            font-size: 1.5em;
+            padding: 0.25em 0.5em;
+          }
+          &title {
+            padding: 0.25em 0.5em 0.25em 1em;
+          }
+        }
+      }
+
+      @media (min-width: $on-large) {
+        width: 80%;
+      }
+    }
+
+    @media (min-width: $on-large) {
+      align-items: center;
     }
   }
 }

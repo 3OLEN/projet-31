@@ -1,0 +1,109 @@
+---
+layout: base
+---
+
+{% assign session_index = page.session | minus: 1 %}
+{% assign project_session = site.data.dates.project_sessions[session_index] %}
+{% assign session_date = project_session.date %}
+
+<article class="post roadmap">
+    <header class="post-header">
+        <h1 class="post-title">
+            <span class="session-date">
+                {{- session_date.day }} {{ session_date.value | date: "%d" }} {{ session_date.month | downcase -}}
+            </span>
+            {{ page.title }}
+        </h1>
+    </header>
+    {% if page.last_updated %}
+        <div class="post-sub-header">
+            Dernière modification le {{ page.last_updated | date: "%d/%m/%Y" }}.
+        </div>
+    {% endif %}
+
+    <div class="post-content">
+        <h2>Programme</h2>
+        <ol class="summary">
+            {% for schedule_item in page.schedule %}
+                <li><a href="#{{ schedule_item.name | slugify }}">{{ schedule_item.name }}</a></li>
+            {% endfor %}
+        </ol>
+
+        {% for schedule_item in page.schedule %}
+            <h2 id="{{ schedule_item.name | slugify }}">{{ schedule_item.name }}</h2>
+
+            {% for content_item in schedule_item.content %}
+                {% if content_item.text %}
+                    {{ content_item.text | markdownify }}
+                    {% continue %}
+                {% endif %}
+
+                {% if content_item.list %}
+                    <ul>
+                        {% for list_item in content_item.list %}
+                            <li>{{ list_item | markdownify | replace: "<p>", "" | replace: "</p>", "" }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% continue %}
+                {% endif %}
+                
+                {% comment %} <!-- Liens vers d'autres pages --> {% endcomment %}
+                {% if content_item.related_pages %}
+                    <ul class="related-page">
+                        {% for page_data in content_item.related_pages %}
+                            {% assign related_page = nil %}
+                            {% assign collection_pages = nil %}
+                            {% assign badge = "ℹ️" %}
+                            {% assign badge_title = "" %}
+                            {% case page_data.type %}
+                                {% when "assessment" %}
+                                    {% assign collection_pages = site.assessments %}
+                                    {% assign badge = "📝" %}
+                                    {% assign badge_title = "Livrable en relation." %}
+                                {% when "project_help" %}
+                                    {% assign collection_pages = site.project_helps %}
+                                    {% assign badge = "📚" %}
+                                    {% assign badge_title = "Page d'aide." %}
+                            {% endcase %}
+                            {% if collection_pages %}
+                                {% assign related_page = collection_pages | where: "slug", page_data.identifier | first %}
+                            {% endif %}
+
+                            <li>
+                                {% if related_page and related_page != empty %}
+                                    <a
+                                        class="related-page-item"
+                                        href="{{ related_page.url | relative_url }}"
+                                        {% if page_data.blank %}target="_blank"{% endif %}
+                                    >
+                                        <span
+                                            class="related-page-badge"
+                                            {% if badge_title != empty %}title="{{ badge_title }}"{% endif %}
+                                        >
+                                            {{ badge }}
+                                        </span>
+                                        <strong class="related-page-title">{{ page_data.title }}</strong>
+                                    </a>
+                                {% else %}
+                                    <div class="related-page-item">
+                                        <div
+                                            class="related-page-badge"
+                                            {% if badge_title != empty %}title="{{ badge_title }}"{% endif %}
+                                        >
+                                            {{ badge }}
+                                        </div>
+                                        <div class="related-page-title">
+                                            {{ page_data.title }}
+                                            <br><em>🚧 La page n'est pas terminée...</em>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                    {% continue %}
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+    </div>
+</article>
