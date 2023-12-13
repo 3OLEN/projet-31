@@ -2,43 +2,24 @@
 layout: page
 title: Planning des séances
 permalink: /planning
-
-project_dates:
-- year: 2023
-  months:
-  - month: Décembre
-    dates:
-    - date: 2023-12-18
-      type: session
-- year: 2024
-  months:
-  - month: Janvier
-    dates:
-    - date: 2024-01-08
-      type: session
-    - date: 2024-01-15
-      type: session
-    - date: 2024-01-23
-      type: session
-    - date: 2024-01-29
-      type: session
-  - month: Février
-    dates:
-    - date: 2024-02-05
-      type: session
-    - date: 2024-02-09
-      type: session
-  - month: Mars
-    dates:
-    - date: 2024-03-26
-      type: final
 ---
 
-{% for year_dates in page.project_dates %}
-    <h2>{{ year_dates.year }}</h2>
-    {% for month_dates in year_dates.months %}
+{% comment %}----- Merge all dates as yaml can't do it -----{% endcomment %}
+{% assign all_dates = site.data.dates.project_sessions %}
+
+
+{% comment %}Build calendar{% endcomment %}
+{% assign dates_per_year = all_dates | group_by_exp: "item", "item.date.value | truncate: 4, ''" %}
+{% for year_grouped_dates in dates_per_year %}
+    {% assign loop_year = year_grouped_dates.name %}
+    <h2>{{ loop_year }}</h2>
+
+    {% assign dates_per_month = year_grouped_dates.items | group_by: "date.month" %}
+    {% for month_grouped_dates in dates_per_month %}
+        {% assign loop_month = month_grouped_dates.name %}
+        {% assign month_dates = month_grouped_dates.items %}
     <table>
-        <caption>{{ month_dates.month }}</caption>
+        <caption>{{ loop_month }}</caption>
         <thead>
         <tr>
             <th scope="col"></th>
@@ -50,7 +31,7 @@ project_dates:
         </tr>
         </thead>
         <tbody>
-        {% assign first_date_str = month_dates.dates[0].date %}
+        {% assign first_date_str = month_dates[0].date.value %}
         {% assign this_month = first_date_str | date: "%m" | plus: 0 %}
         {% assign first_date_week = first_date_str | date: "%V" | plus: 0 %}
         {% assign first_date_week_day = first_date_str | date: "%u" | plus: 0 %}
@@ -61,7 +42,7 @@ project_dates:
         {% assign first_treated_day = nil %}
         {% assign limit_date_day = first_date_day | minus: 1 %}
         {% for this_month_date in (1..limit_date_day) %}
-            {% assign working_date_str = year_dates.year | append: "/" | append: this_month | append: "/" | append: this_month_date %}
+            {% assign working_date_str = loop_year | append: "/" | append: this_month | append: "/" | append: this_month_date %}
             {% assign working_date_week = working_date_str | date: "%V" | plus: 0 %}
             {% assign working_date_week_day = working_date_str | date: "%u" | plus: 0 %}
 
@@ -93,11 +74,12 @@ project_dates:
         {% comment %} <!-- Remplissage avec les dates prévues --> {% endcomment %}
         {% assign last_week = nil %}
         {% assign last_day = nil %}
-        {% for project_date in month_dates.dates %}
-            {% assign this_month = project_date.date | date: "%m" | plus: 0 %}
-            {% assign this_week = project_date.date | date: "%V" | plus: 0 %}
-            {% assign this_week_day = project_date.date | date: "%u" | plus: 0 %}
-            {% assign this_day = project_date.date | date: "%e" | plus: 0 %}
+        {% for project_date in month_dates %}
+            {% assign loop_date = project_date.date.value %}
+            {% assign this_month = loop_date | date: "%m" | plus: 0 %}
+            {% assign this_week = loop_date | date: "%V" | plus: 0 %}
+            {% assign this_week_day = loop_date | date: "%u" | plus: 0 %}
+            {% assign this_day = loop_date | date: "%e" | plus: 0 %}
 
             {% if this_week != last_week %}
         <tr>
@@ -130,7 +112,7 @@ project_dates:
                         {% else %}
                     {% endcase %}
                 >
-                    {{ project_date.date | date: "%e" }}
+                    {{ loop_date | date: "%e" }}
                 </strong>
             </td>
 
@@ -141,7 +123,7 @@ project_dates:
                 {% assign next_defined_date_day = nil %}
                 {% if forloop.last == false %}
                     {% assign next_defined_date_index = forloop.index0 | plus: 1 %}
-                    {% assign next_defined_date = month_dates.dates[next_defined_date_index].date %}
+                    {% assign next_defined_date = month_dates[next_defined_date_index].date.value %}
                     {% assign next_defined_date_day = next_defined_date | date: "%e" | plus: 0 %}
                 {% endif %}
 
@@ -153,7 +135,7 @@ project_dates:
                     {% if following_day > 31 %}
                         {% break %}
                     {% endif %}
-                    {% assign following_day_date_str = year_dates.year | append: "/" | append: this_month | append: "/" | append: following_day %}
+                    {% assign following_day_date_str = loop_year | append: "/" | append: this_month | append: "/" | append: following_day %}
                     {% assign following_day_date_month = following_day_date_str | date: "%m" | plus: 0 %}
                     {% if following_day_date_month > this_month %}
                         {% break %}
@@ -173,7 +155,7 @@ project_dates:
 
 
         {% comment %} <!-- Gérer les dates jusqu'à la fin du mois --> {% endcomment %}
-        {% assign last_date_str = month_dates.dates[-1].date %}
+        {% assign last_date_str = month_dates[-1].date.value %}
         {% assign last_date_week = last_date_str | date: "%V" | plus: 0 %}
         {% assign last_date_week_day = last_date_str | date: "%u" | plus: 0 %}
         {% assign last_date_day = last_date_str | date: "%e" | plus: 0 %}
@@ -183,7 +165,7 @@ project_dates:
         {% assign has_closed = nil %}
         {% assign begin_date_day = last_date_day | plus: 1 %}
         {% for this_month_date in (begin_date_day..31) %}
-            {% assign working_date_str = year_dates.year | append: "/" | append: this_month | append: "/" | append: this_month_date %}
+            {% assign working_date_str = loop_year | append: "/" | append: this_month | append: "/" | append: this_month_date %}
             {% assign working_date_month = working_date_str | date: "%m" | plus: 0 %}
             {% assign working_date_week = working_date_str | date: "%V" | plus: 0 %}
             {% assign working_date_week_day = working_date_str | date: "%u" | plus: 0 %}

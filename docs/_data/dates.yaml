@@ -1,0 +1,89 @@
+_templates:
+  _project:
+    _types:
+      - &_type_session "session"
+      - &_type_final "final"
+      - &_type_assessment "assessment"
+  _date:
+    _months:
+      - &_month_01 "Janvier"
+      - &_month_02 "Février"
+      - &_month_03 "Mars"
+      - &_month_04 "Avril"
+      - &_month_05 "Mai"
+      - &_month_06 "Juin"
+      - &_month_07 "Juillet"
+      - &_month_08 "Août"
+      - &_month_09 "Septembre"
+      - &_month_10 "Octobre"
+      - &_month_11 "Novembre"
+      - &_month_12 "Décembre"
+    _days:
+      - &_day_01 "Lundi"
+      - &_day_02 "Mardi"
+      - &_day_03 "Mercredi"
+      - &_day_04 "Jeudi"
+      - &_day_05 "Vendredi"
+
+project_sessions:
+  - date:
+      value: 2023-12-18
+      month: *_month_12
+      day: *_day_01
+    type: *_type_session
+  - date:
+      value: 2024-01-08
+      month: *_month_01
+      day: *_day_01
+    type: *_type_session
+  - date:
+      value: 2024-01-15
+      month: *_month_01
+      day: *_day_01
+    type: *_type_session
+  - date:
+      value: 2024-01-23
+      month: *_month_01
+      day: *_day_02
+    type: *_type_session
+  - date:
+      value: 2024-01-29
+      month: *_month_01
+      day: *_day_01
+    type: *_type_session
+  - date:
+      value: 2024-02-05
+      month: *_month_02
+      day: *_day_01
+    type: *_type_session
+  - date:
+      value: 2024-02-09
+      month: *_month_02
+      day: *_day_05
+    type: *_type_session
+  - date:
+      value: 2024-03-26
+      month: *_month_03
+      day: *_day_02
+    type: *_type_final
+
+project_assessments:
+  - date:
+      value: 2024-01-08
+      month: *_month_01
+      day: *_day_01
+    type: *_type_assessment
+    name: "Dossier de conception"
+  - date:
+      value: 2024-02-05
+      month: *_month_02
+      day: *_day_01
+    type: *_type_assessment
+    name: "Livrable applicatif version 1"
+  - date:
+      value: 2024-03-26
+      month: *_month_03
+      day: *_day_02
+    type: *_type_assessment
+    name: "Livrable applicatif final"
+
