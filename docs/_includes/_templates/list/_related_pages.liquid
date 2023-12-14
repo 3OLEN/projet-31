@@ -1,0 +1,51 @@
+{% comment %}
+parameters:
+- pages: list of pages to display
+    - type: type of page (collection name or something else)
+    - identifier: identifier of the page (slug for internal pages)
+    - title: title for link
+    - blank: true if the page should be opened in a new tab
+{% endcomment %}
+
+<ul class="related-pages">
+    {% for page_data in include.pages %}
+        {% assign related_page = nil %}
+        {% assign collection_pages = nil %}
+        {% case page_data.type %}
+            {% when "assessment" %}
+                {% assign collection_pages = site.assessments %}
+            {% when "external_link" %}
+                {% assign related_page = page_data.identifier %}
+            {% when "project_help" %}
+                {% assign collection_pages = site.project_helps %}
+        {% endcase %}
+        {% if collection_pages %}
+            {% assign related_page = collection_pages | where: "slug", page_data.identifier | first %}
+        {% endif %}
+
+        <li>
+            {% if related_page and related_page != empty %}
+                <a
+                    class="related-page-item"
+                    {% if related_page.url %}
+                        href="{{ related_page.url | relative_url }}"
+                    {% else %}
+                        href="{{ related_page }}"
+                    {% endif %}
+                    {% if page_data.blank %}target="_blank"{% endif %}
+                >
+                    <span class="related-page-badge {{ page_data.type }}"></span>
+                    <strong class="related-page-title">{{ page_data.title }}</strong>
+                </a>
+            {% else %}
+                <div class="related-page-item">
+                    <div class="related-page-badge {{ page_data.type }}"></div>
+                    <div class="related-page-title">
+                        {{ page_data.title }}
+                        <br><em>🚧 La page n'est pas terminée...</em>
+                    </div>
+                </div>
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>

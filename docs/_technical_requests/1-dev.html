@@ -32,8 +32,11 @@ dev_method:
 - name: Workflow Git
   description: "Le fait d'ériger des règles sur l'utilisation de Git permet de simplifier le travail d'équipe, la
 coordination et la compréhension des tâches de chacun."
-  advice_link:
-    slug: git_repository
+  related_pages:
+  - type: project_help
+    identifier: git-repository
+    title: "Aide et suggestions sur l'utilisation de Git"
+    blank: true
 - name: PHPUnit
   elements:
   - "Des tests codés (unitaires et <u>éventuellement</u> fonctionnels) doivent être réalisés."
@@ -47,9 +50,11 @@ l'application réalisée. Cela permet aussi de déceler certains bugs fonctionne
 - name: HTML sémantique
   description: "Les balises HTML ont un sens et une utilisation plutôt précise. L'intérêt réside dans la compréhension
 du DOM de l'application et surtout pour l'accessibilité et le responsive design."
-  link:
-    href: https://fr.semrush.com/blog/balises-structurelles-html-semantique/
-    text: "Semrush Blog - HTML sémantique"
+  related_pages:
+  - type: external_link
+    identifier: https://fr.semrush.com/blog/balises-structurelles-html-semantique/
+    title: "Semrush Blog - HTML sémantique"
+    blank: true
 - name: Aspect graphique
   description: "Le design de l'application doit être pensé dès le départ et appliqué au plus tôt pour faciliter
 l'utilisation de l'application et la mise en place de nouvelles fonctionnalités.
@@ -113,27 +118,17 @@ intégrés dans les différents IDE. Il est très utile d'en utiliser au moins u
         : {{ method_item.description }}
         {% endif %}
 
-        {% if method_item.advice_link %}
-            <br>ℹ️ Pour aller plus loin :
-            {% for collection_page in site.project_helps %}
-                {% unless collection_page.slug == method_item.advice_link.slug %}
-                    {% continue %}
-                {% endunless %}
-
-                {% assign related_page = collection_page %}
-                {% break %}
-            {% endfor %}
-
-            {% if related_page %}
-                <a href="{{ related_page.url | relative_url }}" target="_blank">{{ related_page.title }}</a>.
-            {% endif %}
+        {% if method_item.related_pages %}
+            {% include _templates/list/_related_pages.liquid pages=method_item.related_pages %}
         {% endif %}
 
-        <ul>
-            {% for element in method_item.elements %}
-            <li>{{ element }}</li>
-            {% endfor %}
-        </ul>
+        {% if method_item.elements %}
+            <ul>
+                {% for element in method_item.elements %}
+                    <li>{{ element }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
     </li>
     {% endfor %}
 </ul>
@@ -149,9 +144,8 @@ intégrés dans les différents IDE. Il est très utile d'en utiliser au moins u
         <br>ℹ️ <em>{{ quality_item.advice }}</em>
         {% endif %}
 
-        {% if quality_item.link %}
-        <br>🔗 Pour en savoir plus :
-        <a href="{{ quality_item.link.href }}" target="_blank">{{ quality_item.link.text }}</a>.
+        {% if quality_item.related_pages %}
+            {% include _templates/list/_related_pages.liquid pages=quality_item.related_pages %}
         {% endif %}
     </li>
     {% endfor %}

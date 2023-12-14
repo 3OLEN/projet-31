@@ -1,5 +1,82 @@
 // List
 // ====
+// Related pages
+// -------------
+.related-pages {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  margin: 1em 0 0;
+  row-gap: 1em;
+
+  > li {
+    > a {
+      color: $brand-color;
+      text-decoration: none;
+
+      &:hover {
+        border-color: $link-base-color;
+        color: $link-base-color;
+
+        .related-page-badge {
+          border-color: $link-base-color;
+        }
+      }
+    }
+    .related-page-item {
+      border: 2px solid $border-color-01;
+      border-radius: 0.5em;
+      display: flex;
+      font-size: 1.25em;
+
+      .related-page- {
+        &badge {
+          align-items: center;
+          align-self: stretch;
+          border-right: 2px solid $border-color-01;
+          display: flex;
+          font-size: 1.5em;
+          padding: 0.25em 0.5em;
+
+          &.assessment {
+            &::before {
+              content: "📝";
+            }
+          }
+          &.external_link {
+            &::before {
+              content: "🔗";
+            }
+          }
+          &.project_help {
+            &::before {
+              content: "📚️";
+            }
+          }
+        }
+        &title {
+          align-self: center;
+          padding: 0.25em 0.5em 0.25em 1em;
+        }
+      }
+    }
+
+    @media (min-width: $on-large) {
+      width: 80%;
+    }
+  }
+
+  @media (min-width: $on-large) {
+    align-items: center;
+  }
+}
+li {
+  > .related-pages {
+    &:last-child {
+      margin-bottom: 1em;
+    }
+  }
+}
 // Student teams
 // -------------
 .student-teams {

@@ -49,58 +49,7 @@ layout: base
                 
                 {% comment %} <!-- Liens vers d'autres pages --> {% endcomment %}
                 {% if content_item.related_pages %}
-                    <ul class="related-page">
-                        {% for page_data in content_item.related_pages %}
-                            {% assign related_page = nil %}
-                            {% assign collection_pages = nil %}
-                            {% assign badge = "ℹ️" %}
-                            {% assign badge_title = "" %}
-                            {% case page_data.type %}
-                                {% when "assessment" %}
-                                    {% assign collection_pages = site.assessments %}
-                                    {% assign badge = "📝" %}
-                                    {% assign badge_title = "Livrable en relation." %}
-                                {% when "project_help" %}
-                                    {% assign collection_pages = site.project_helps %}
-                                    {% assign badge = "📚" %}
-                                    {% assign badge_title = "Page d'aide." %}
-                            {% endcase %}
-                            {% if collection_pages %}
-                                {% assign related_page = collection_pages | where: "slug", page_data.identifier | first %}
-                            {% endif %}
-
-                            <li>
-                                {% if related_page and related_page != empty %}
-                                    <a
-                                        class="related-page-item"
-                                        href="{{ related_page.url | relative_url }}"
-                                        {% if page_data.blank %}target="_blank"{% endif %}
-                                    >
-                                        <span
-                                            class="related-page-badge"
-                                            {% if badge_title != empty %}title="{{ badge_title }}"{% endif %}
-                                        >
-                                            {{ badge }}
-                                        </span>
-                                        <strong class="related-page-title">{{ page_data.title }}</strong>
-                                    </a>
-                                {% else %}
-                                    <div class="related-page-item">
-                                        <div
-                                            class="related-page-badge"
-                                            {% if badge_title != empty %}title="{{ badge_title }}"{% endif %}
-                                        >
-                                            {{ badge }}
-                                        </div>
-                                        <div class="related-page-title">
-                                            {{ page_data.title }}
-                                            <br><em>🚧 La page n'est pas terminée...</em>
-                                        </div>
-                                    </div>
-                                {% endif %}
-                            </li>
-                        {% endfor %}
-                    </ul>
+                    {% include _templates/list/_related_pages.liquid pages=content_item.related_pages %}
                     {% continue %}
                 {% endif %}
             {% endfor %}
