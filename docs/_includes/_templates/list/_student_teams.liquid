@@ -1,0 +1,60 @@
+{% assign listed_teams = site.data.students.teams %}
+
+<ul class="student-teams">
+    {% for team in listed_teams %}
+        <li>
+            <header class="team-heading">
+                <strong class="team-name">{{ team.name }}</strong>
+            </header>
+
+            <ul class="team-members">
+                {% assign team_members = team.members | where_exp: "item", "item.name != empty" | sort: "name" %}
+                {% for member in team_members %}
+                    {% assign related_student = site.data.students.roster | where: "name", member.name | first %}
+                    {% unless related_student %}
+                        {% continue %}
+                    {% endunless %}
+
+                    <li class="team-member">
+                        <span class="badge {{ related_student.group | downcase }}">
+                            {{ related_student.group | upcase }}
+                        </span>
+
+                        <a
+                            href="{{ related_student.github_account | prepend: "https://github.com/" }}"
+                            class="team-link"
+                            target="_blank"
+                            title="Accéder au compte utilisateur GitHub"
+                        >
+                            <svg class="svg-icon text-white">
+                                <use xlink:href="{{ '/assets/minima-social-icons.svg#github' | relative_url }}"></use>
+                            </svg>
+                        </a>
+
+                        <strong
+                            {% if member.lead %}
+                                class="text-secondary"
+                                title="Rôle de responsable"
+                            {% endif %}
+                        >
+                            {{ related_student.name }}
+                        </strong>
+                    </li>
+                {% endfor %}
+            </ul>
+
+            <footer class="team-footer">
+                <a
+                    href="{{ team.github | prepend: "https://github.com/" }}"
+                    class="team-link"
+                    target="_blank"
+                    title="Accéder au groupe sur GitHub"
+                >
+                    <svg class="svg-icon text-white">
+                        <use xlink:href="{{ '/assets/minima-social-icons.svg#github' | relative_url }}"></use>
+                    </svg>
+                </a>
+            </footer>
+        </li>
+    {% endfor %}
+</ul>

@@ -38,4 +38,18 @@ ol li + li {
   color: $color-danger;
 }
 
+@mixin text-black {
+  color: #000;
+}
+@mixin text-white {
+  color: #FFF;
+}
+.text-black {
+  @include text-black;
+}
+.text-white {
+  @include text-white;
+}
+
 @import "custom-pages";
+@import "custom-templates";

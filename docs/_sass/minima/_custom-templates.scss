@@ -1,0 +1,73 @@
+// List
+// ====
+// Student teams
+// -------------
+.student-teams {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 0.5em 1.25em;
+  list-style: none;
+  margin: 1em 0;
+
+  > li {
+    border: 1px solid $border-color-01;
+    border-radius: 1em;
+    display: flex;
+    flex-direction: column;
+
+    .team-heading {
+      border-bottom: 1px solid $border-color-01;
+      font-size: 1.5em;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.5em;
+      padding: 0.25em 0;
+      text-align: center;
+    }
+
+    .team-members {
+      counter-reset: student-team-members;
+      flex-grow: 1;
+      list-style: none;
+      margin: 0 0.75em;
+
+      .team-member {
+        column-gap: 0.5em;
+        counter-increment: student-team-members;
+        display: flex;
+
+        .badge {
+          @include text-black;
+          border-radius: 1em;
+          text-align: center;
+          width: 4em;
+
+          &.dev {
+            background-color: $color-dev;
+          }
+          &.infra {
+            background-color: $color-infra;
+          }
+        }
+        .svg-icon {
+          vertical-align: text-top;
+        }
+      }
+    }
+
+    .team-footer {
+      border-top: 1px solid $border-color-01;
+      column-gap: 0.75em;
+      display: flex;
+      justify-content: center;
+      margin-top: 0.5em;
+      padding: 0.25em;
+    }
+  }
+
+  .svg-icon {
+    height: 1em;
+    vertical-align: baseline;
+    width: 1em;
+  }
+}
