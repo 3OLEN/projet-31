@@ -1,0 +1,167 @@
+_templating:
+  _groups:
+    _dev: &dev_group
+      group: Dev
+    _ops: &ops_group
+      group: Infra
+
+roster:
+  - name: &student_bondoux "BONDOUX Lenny"
+    github_account: ""
+    <<: *dev_group
+  - name: &student_boubaker "BOUBAKER Nelys"
+    github_account: ""
+    <<: *ops_group
+  - name: &student_bougadoum "BOUGADOUM Chakib"
+    github_account: ""
+    <<: *ops_group
+  - name: &student_boumallassa "BOUMALLASSA Ayoub"
+    github_account: ""
+    <<: *dev_group
+  - name: &student_broyer "BROYER Mathys"
+    github_account: ""
+    <<: *dev_group
+  - name: &student_brugere "BRUGERE Augustin"
+    github_account: ""
+    <<: *ops_group
+  - name: &student_brun "BRUN Amélie"
+    github_account: ""
+    <<: *dev_group
+  - name: &student_campo "CAMPO William"
+    github_account: ""
+    <<: *dev_group
+  - name: &student_collomb "COLLOMB Vincent"
+    github_account: "Zertlou"
+    <<: *ops_group
+  - name: &student_de_ascencao "DE ASCENCAO PEREIRA Damien"
+    github_account: ""
+    <<: *dev_group
+  - name: &student_delmotte "DELMOTTE Simon"
+    github_account: ""
+    <<: *ops_group
+  - name: &student_demarbaix "DEMARBAIX Maxime"
+    github_account: "MaxImeKurumi"
+    <<: *ops_group
+  - name: &student_faidhi "FAIDHI Aymane"
+    github_account: "yazexo"
+    <<: *dev_group
+  - name: &student_garcia "GARCIA DE LA PINERA Victorio"
+    github_account: ""
+    <<: *dev_group
+  - name: &student_gonzalez "GONZALEZ Anthony"
+    github_account: ""
+    <<: *dev_group
+  - name: &student_gourlez "GOURLEZ Benjamin"
+    github_account: ""
+    <<: *ops_group
+  - name: &student_jeannin "JEANNIN Eliott"
+    github_account: ""
+    <<: *dev_group
+  - name: &student_khelouf "KHELOUF Ahmed"
+    github_account: "ahmed-khelouf"
+    <<: *ops_group
+  - name: &student_krembel "KREMBEL Adrian"
+    github_account: ""
+    <<: *ops_group
+  - name: &student_lavazais "LAVAZAIS Esteban"
+    github_account: ""
+    <<: *ops_group
+  - name: &student_leconte "LECONTE Benjamin"
+    github_account: ""
+    <<: *ops_group
+  - name: &student_marzeridoux "MARZERIDOUX Hugo"
+    github_account: "Tenshikii"
+    <<: *ops_group
+  - name: &student_meunier "MEUNIER Alexandre"
+    github_account: ""
+    <<: *dev_group
+  - name: &student_mismili "MISMILI Enes"
+    github_account: "enesmislimi"
+    <<: *ops_group
+  - name: &student_montoya "MONTOYA Anthony"
+    github_account: "raelilmonty"
+    <<: *dev_group
+  - name: &student_mougou "MOUGOU Marwan"
+    github_account: "marmoug"
+    <<: *ops_group
+  - name: &student_neema "NEEMA Florian"
+    github_account: "floneema69"
+    <<: *dev_group
+  - name: &student_presle "PRESLE Luca"
+    github_account: "Redens284"
+    <<: *dev_group
+  - name: &student_reboul "REBOUL Scott"
+    github_account: ""
+    <<: *ops_group
+  - name: &student_rispoli "RISPOLI Mattéo"
+    github_account: "Tohakuu"
+    <<: *ops_group
+  - name: &student_santykham "SANTYKHAM Célia"
+    github_account: ""
+    <<: *ops_group
+  - name: &student_sapet "SAPET Arnaud"
+    github_account: ""
+    <<: *dev_group
+  - name: &student_savary "SAVARY Augustine"
+    github_account: ""
+    <<: *dev_group
+  - name: &student_treboz "TREBOZ Cyprien"
+    github_account: ""
+    <<: *ops_group
+
+teams:
+  - name: ""
+    github: ""
+    members:
+      - name: ""
+      - name: ""
+      - name: ""
+      - name: ""
+      - name: ""
+      - name: ""
+      - name: ""
+      - name: ""
+  - name: ""
+    github: ""
+    members:
+      - name: ""
+      - name: ""
+      - name: ""
+      - name: ""
+      - name: ""
+      - name: ""
+      - name: ""
+      - name: ""
+  - name: ""
+    github: ""
+    members:
+      - name: ""
+      - name: ""
+      - name: ""
+      - name: ""
+      - name: ""
+      - name: ""
+      - name: ""
+      - name: ""
+  - name: ""
+    github: ""
+    members:
+      - name: ""
+      - name: ""
+      - name: ""
+      - name: ""
+      - name: ""
+      - name: ""
+      - name: ""
+      - name: ""
+  - name: ""
+    github: ""
+    members:
+      - name: ""
+      - name: ""
+      - name: ""
+      - name: ""
+      - name: ""
+      - name: ""
+      - name: ""
+      - name: ""
