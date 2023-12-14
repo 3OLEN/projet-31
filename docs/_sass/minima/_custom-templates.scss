@@ -89,6 +89,7 @@ li {
   flex-direction: row;
   flex-wrap: wrap;
   gap: 0.5em 1.25em;
+justify-content: center;
   list-style: none;
   margin: 1em 0;
 
@@ -131,9 +132,6 @@ li {
             background-color: $color-infra;
           }
         }
-        .svg-icon {
-          vertical-align: text-top;
-        }
       }
     }
 
@@ -145,11 +143,5 @@ li {
       margin-top: 0.5em;
       padding: 0.25em;
     }
-  }
-
-  .svg-icon {
-    height: 1em;
-    vertical-align: baseline;
-    width: 1em;
   }
 }

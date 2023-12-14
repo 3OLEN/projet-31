@@ -7,161 +7,180 @@ _templating:
 
 roster:
   - name: &student_bondoux "BONDOUX Lenny"
-    github_account: ""
+    gitlab: ""
     <<: *dev_group
   - name: &student_boubaker "BOUBAKER Nelys"
-    github_account: ""
+    gitlab: ""
     <<: *ops_group
   - name: &student_bougadoum "BOUGADOUM Chakib"
-    github_account: ""
+    gitlab: ""
     <<: *ops_group
   - name: &student_boumallassa "BOUMALLASSA Ayoub"
-    github_account: ""
+    gitlab: ""
     <<: *dev_group
   - name: &student_broyer "BROYER Mathys"
-    github_account: ""
+    gitlab: ""
     <<: *dev_group
   - name: &student_brugere "BRUGERE Augustin"
-    github_account: ""
+    gitlab: ""
     <<: *ops_group
   - name: &student_brun "BRUN Amélie"
-    github_account: ""
+    gitlab: ""
     <<: *dev_group
   - name: &student_campo "CAMPO William"
-    github_account: ""
+    gitlab: ""
     <<: *dev_group
   - name: &student_collomb "COLLOMB Vincent"
-    github_account: "Zertlou"
+    gitlab: ""
     <<: *ops_group
   - name: &student_de_ascencao "DE ASCENCAO PEREIRA Damien"
-    github_account: ""
+    gitlab: ""
     <<: *dev_group
   - name: &student_delmotte "DELMOTTE Simon"
-    github_account: ""
+    gitlab: ""
     <<: *ops_group
   - name: &student_demarbaix "DEMARBAIX Maxime"
-    github_account: "MaxImeKurumi"
+    gitlab: ""
     <<: *ops_group
   - name: &student_faidhi "FAIDHI Aymane"
-    github_account: "yazexo"
+    gitlab: ""
     <<: *dev_group
   - name: &student_garcia "GARCIA DE LA PINERA Victorio"
-    github_account: ""
+    gitlab: ""
     <<: *dev_group
   - name: &student_gonzalez "GONZALEZ Anthony"
-    github_account: ""
+    gitlab: ""
     <<: *dev_group
   - name: &student_gourlez "GOURLEZ Benjamin"
-    github_account: ""
+    gitlab: ""
     <<: *ops_group
   - name: &student_jeannin "JEANNIN Eliott"
-    github_account: ""
+    gitlab: ""
     <<: *dev_group
   - name: &student_khelouf "KHELOUF Ahmed"
-    github_account: "ahmed-khelouf"
-    <<: *ops_group
+    gitlab: ""
+    <<: *dev_group
   - name: &student_krembel "KREMBEL Adrian"
-    github_account: ""
+    gitlab: ""
     <<: *ops_group
   - name: &student_lavazais "LAVAZAIS Esteban"
-    github_account: ""
+    gitlab: ""
     <<: *ops_group
   - name: &student_leconte "LECONTE Benjamin"
-    github_account: ""
+    gitlab: ""
     <<: *ops_group
   - name: &student_marzeridoux "MARZERIDOUX Hugo"
-    github_account: "Tenshikii"
+    gitlab: ""
     <<: *ops_group
   - name: &student_meunier "MEUNIER Alexandre"
-    github_account: ""
+    gitlab: ""
     <<: *dev_group
   - name: &student_mismili "MISMILI Enes"
-    github_account: "enesmislimi"
-    <<: *ops_group
+    gitlab: ""
+    <<: *dev_group
   - name: &student_montoya "MONTOYA Anthony"
-    github_account: "raelilmonty"
+    gitlab: ""
     <<: *dev_group
   - name: &student_mougou "MOUGOU Marwan"
-    github_account: "marmoug"
+    gitlab: ""
     <<: *ops_group
   - name: &student_neema "NEEMA Florian"
-    github_account: "floneema69"
+    gitlab: ""
     <<: *dev_group
   - name: &student_presle "PRESLE Luca"
-    github_account: "Redens284"
+    gitlab: ""
     <<: *dev_group
   - name: &student_reboul "REBOUL Scott"
-    github_account: ""
+    gitlab: ""
     <<: *ops_group
   - name: &student_rispoli "RISPOLI Mattéo"
-    github_account: "Tohakuu"
+    gitlab: ""
     <<: *ops_group
   - name: &student_santykham "SANTYKHAM Célia"
-    github_account: ""
+    gitlab: ""
     <<: *ops_group
   - name: &student_sapet "SAPET Arnaud"
-    github_account: ""
+    gitlab: ""
     <<: *dev_group
   - name: &student_savary "SAVARY Augustine"
-    github_account: ""
+    gitlab: ""
     <<: *dev_group
   - name: &student_treboz "TREBOZ Cyprien"
-    github_account: ""
+    gitlab: ""
     <<: *ops_group
 
 teams:
-  - name: ""
-    github: ""
+  - name: "Groupe 1"
+    gitlab: ""
     members:
-      - name: ""
-      - name: ""
-      - name: ""
-      - name: ""
-      - name: ""
-      - name: ""
-      - name: ""
-      - name: ""
-  - name: ""
-    github: ""
+      - name: *student_jeannin
+        lead: true
+      - name: *student_gonzalez
+      - name: *student_gourlez
+        lead: true
+      - name: *student_lavazais
+  - name: "Groupe 2"
+    gitlab: ""
     members:
-      - name: ""
-      - name: ""
-      - name: ""
-      - name: ""
-      - name: ""
-      - name: ""
-      - name: ""
-      - name: ""
-  - name: ""
-    github: ""
+      - name: *student_brun
+        lead: true
+      - name: *student_garcia
+      - name: *student_santykham
+        lead: true
+      - name: *student_treboz
+  - name: "Groupe 3"
+    gitlab: ""
     members:
-      - name: ""
-      - name: ""
-      - name: ""
-      - name: ""
-      - name: ""
-      - name: ""
-      - name: ""
-      - name: ""
-  - name: ""
-    github: ""
+      - name: *student_bondoux
+        lead: true
+      - name: *student_sapet
+      - name: *student_brugere
+        lead: true
+      - name: *student_demarbaix
+  - name: "Groupe 4"
+    gitlab: ""
     members:
-      - name: ""
-      - name: ""
-      - name: ""
-      - name: ""
-      - name: ""
-      - name: ""
-      - name: ""
-      - name: ""
-  - name: ""
-    github: ""
+      - name: *student_campo
+      - name: *student_faidhi
+      - name: *student_khelouf
+        lead: true
+      - name: *student_krembel
+        lead: true
+      - name: *student_mougou
+  - name: "Groupe 5"
+    gitlab: ""
     members:
-      - name: ""
-      - name: ""
-      - name: ""
-      - name: ""
-      - name: ""
-      - name: ""
-      - name: ""
-      - name: ""
+      - name: *student_meunier
+      - name: *student_savary
+        lead: true
+      - name: *student_boubaker
+      - name: *student_bougadoum
+        lead: true
+  - name: "Groupe 6"
+    gitlab: ""
+    members:
+      - name: *student_montoya
+        lead: true
+      - name: *student_broyer
+      - name: *student_presle
+      - name: *student_marzeridoux
+        lead: true
+      - name: *student_rispoli
+  - name: "Groupe 7"
+    gitlab: ""
+    members:
+      - name: *student_boumallassa
+        lead: true
+      - name: *student_mismili
+      - name: *student_collomb
+      - name: *student_delmotte
+        lead: true
+  - name: "Groupe 8"
+    gitlab: ""
+    members:
+      - name: *student_de_ascencao
+        lead: true
+      - name: *student_neema
+      - name: *student_leconte
+        lead: true
+      - name: *student_reboul

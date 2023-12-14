@@ -52,6 +52,16 @@ layout: base
                     {% include _templates/list/_related_pages.liquid pages=content_item.related_pages %}
                     {% continue %}
                 {% endif %}
+
+                {% comment %} <!-- Inclure des tempaltes spécifiques --> {% endcomment %}
+                {% if content_item.include %}
+                    {% case content_item.include.name %}
+                        {% when "student_teams" %}
+                            {% include _templates/list/_student_teams.liquid %}
+                    {% endcase %}
+
+                    {% continue %}
+                {% endif %}
             {% endfor %}
         {% endfor %}
     </div>
