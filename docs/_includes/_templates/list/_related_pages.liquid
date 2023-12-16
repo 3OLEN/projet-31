@@ -13,7 +13,7 @@ parameters:
         {% assign collection_pages = nil %}
         {% case page_data.type %}
             {% when "assessment" %}
-                {% assign collection_pages = site.assessments %}
+                {% assign collection_pages = site.intermediary_deliverables %}
             {% when "external_link" %}
                 {% assign related_page = page_data.identifier %}
             {% when "project_help" %}

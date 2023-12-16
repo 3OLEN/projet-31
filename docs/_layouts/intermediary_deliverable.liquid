@@ -1,0 +1,115 @@
+---
+layout: base
+---
+{% assign assessment = nil %}
+{% assign is_from_composite = false %}
+{% for assessment_data in site.data.assessments.values %}
+    {% if assessment_data.identifier == page.assessment %}
+        {% assign assessment = assessment_data %}
+        {% break %}
+    {% endif %}
+
+    {% if assessment_data.composite == empty %}
+        {% continue %}
+    {% endif %}
+
+    {% for sub_assessment in assessment_data.composite %}
+        {% if sub_assessment.identifier != page.assessment %}
+            {% continue %}
+        {% endif %}
+
+        {% assign is_from_composite = true %}
+        {% assign assessment = sub_assessment %}
+        {% break %}
+    {% endfor %}
+{% endfor %}
+
+{% assign dated_assessment = site.data.dates.project_assessments
+        | where: "identifier", page.assessment
+        | first
+%}
+
+<article class="post deliverable">
+    <header class="post-header">
+        <h1 class="post-title">
+            <span class="deliverable-type">Livrable</span>
+            {{ assessment.label }}
+        </h1>
+    </header>
+    <div class="post-sub-header">
+        {% assign date_class = "date" %}
+        {% assign current_timestamp = "today" | date: "%s" %}
+        {% assign assessment_timestamp = dated_assessment.date.value | date: "%s" %}
+        {% assign timestamp_diff = assessment_timestamp | minus: current_timestamp %}
+        {% assign timestamp_day_diff = timestamp_diff | divided_by: "86400" %}
+        {% if timestamp_day_diff < -1 %}
+            {% assign date_class = date_class | append: " " | append: "expired" %}
+        {% elsif timestamp_day_diff <= 1 %}
+            {% assign date_class = date_class | append: " " | append: "urgent" %}
+        {% endif %}
+        {% if dated_assessment %}
+            <div class="{{ date_class }}">
+                <span>{{ dated_assessment.date.value | date: "%d" }} {{ dated_assessment.date.month | downcase }}</span>
+            </div>
+        {% endif %}
+
+        {% if assessment.module %}
+            <div class="module">{{ assessment.module }}</div>
+        {% endif %}
+
+        {% if page.last_updated %}
+            <div class="last-update">Dernière modification le {{ page.last_updated | date: "%d/%m/%Y" }}.</div>
+        {% endif %}
+    </div>
+
+    <div class="post-content">
+        {% comment %} <!-- Livrable provenant d'un composite --> {% endcomment %}
+        {% if is_from_composite %}
+            <h2>Livrable·s parent·s</h2>
+            {% assign parent_assessments = "" | split: "" %}
+            {% assign composite_assessments = site.data.assessments.values | where_exp: "item", "item.composite != empty" %}
+            {% for composite_assessment in composite_assessments %}
+                {% for sub_assessment in composite_assessment.composite %}
+                    {% unless sub_assessment.identifier == assessment.identifier %}
+                        {% continue %}
+                    {% endunless %}
+
+                    {% assign parent_assessments = parent_assessments | push: composite_assessment %}
+                    {% break %}
+                {% endfor %}
+            {% endfor %}
+
+            <ul class="related-pages">
+                {% for parent_assessment in parent_assessments %}
+                    {% if parent_assessment.page %}
+                        {% assign parent_page = site.pages
+                            | where: "slug", parent_assessment.page
+                            | first
+                        %}
+                    {% else %}
+                        {% assign parent_page = site.intermediary_deliverables
+                                | where: "assessment", parent_assessment.identifier
+                                | first
+                        %}
+                    {% endif %}
+
+                    <li>
+                        {% if parent_page and parent_page != empty %}
+                            <a class="related-page-item" href="{{ parent_page.url | relative_url }}">
+                                <span class="related-page-badge parent-assessment"></span>
+                                <strong class="related-page-title">{{ parent_assessment.label }}</strong>
+                            </a>
+                        {% else %}
+                            <div class="related-page-item">
+                                <div class="related-page-badge parent-assessment"></div>
+                                <div class="related-page-title">{{ parent_assessment.label }}</div>
+                            </div>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        {{ content }}
+    </div>
+</article>

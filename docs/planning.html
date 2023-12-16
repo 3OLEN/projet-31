@@ -162,10 +162,28 @@ permalink: /planning
                                 | where: "identifier", project_date_data.identifier
                                 | first
                         %}
-                        <div class="component">
-                            <span title="Livrable du projet transverse.">☑️</span>
-                            <span>{{ related_assessment.label }}</span>
-                        </div>
+                        {% if related_assessment.page %}
+                            {% assign assessment_page = site.pages
+                                    | where: "slug", related_assessment.page
+                                    | first
+                            %}
+                        {% else %}
+                            {% assign assessment_page = site.intermediary_deliverables
+                                    | where: "assessment", related_assessment.identifier
+                                    | first
+                            %}
+                        {% endif %}
+                        {% if assessment_page %}
+                            <a class="component" href="{{ assessment_page.url | relative_url }}">
+                                <span title="Livrable du projet transverse.">☑️</span>
+                                <span>{{ related_assessment.label }}</span>
+                            </a>
+                        {% else %}
+                            <div class="component">
+                                <span title="Livrable du projet transverse.">☑️</span>
+                                <span>{{ related_assessment.label }}</span>
+                            </div>
+                        {% endif %}
                     {% endif %}
                 {% endfor %}
             </td>
