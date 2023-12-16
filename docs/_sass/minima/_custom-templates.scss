@@ -48,6 +48,11 @@
               content: "🔗";
             }
           }
+          &.parent-assessment {
+            &::before {
+              content: "📂";
+            }
+          }
           &.project_help {
             &::before {
               content: "📚️";
