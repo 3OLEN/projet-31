@@ -1,0 +1,73 @@
+{% assign current_timestamp = "today" | date: "%s" %}
+
+{% assign intermediary_deliverables = site.data.assessments.values | where: "type", "intermediary_deliverable" %}
+<ol class="deliverable_list">
+    {% comment %} <!-- On met les expirés à la fin --> {% endcomment %}
+    {% assign project_assessments = site.data.dates.project_assessments | sort: "date.value" %}
+    {% assign dated_assessments = project_assessments | where: "", true %}
+    {% assign expired_assessments = dated_assessments %}
+    {% for project_assessment in project_assessments %}
+        {% assign assessment_timestamp = project_assessment.date.value | date: "%s" %}
+        {% assign timestamp_diff = assessment_timestamp | minus: current_timestamp %}
+        {% assign timestamp_day_diff = timestamp_diff | divided_by: "86400" %}
+        {% if timestamp_day_diff < -1 %}
+            {% assign expired_assessments = expired_assessments | push: project_assessment %}
+            {% continue %}
+        {% endif %}
+
+        {% assign dated_assessments = dated_assessments | push: project_assessment %}
+    {% endfor %}
+    {% assign expired_assessments = expired_assessments | reverse %}
+    {% for expired_assessment in expired_assessments %}
+        {% assign dated_assessments = dated_assessments | push: expired_assessment %}
+    {% endfor %}
+
+    {% for dated_assessment in dated_assessments %}
+        {% assign related_assessment = intermediary_deliverables
+                | where_exp: "item", "item.identifier == dated_assessment.identifier"
+                | first
+        %}
+        {% unless related_assessment %}
+            {% continue %}
+        {% endunless %}
+
+        {% assign deliverable_item_class = "deliverable-item" %}
+        {% assign assessment_timestamp = dated_assessment.date.value | date: "%s" %}
+        {% assign timestamp_diff = assessment_timestamp | minus: current_timestamp %}
+        {% assign timestamp_day_diff = timestamp_diff | divided_by: "86400" %}
+        {% if timestamp_day_diff > 7 %}
+            {% assign assessment_delay = "future" %}
+        {% elsif timestamp_day_diff < -1 %}
+            {% assign assessment_delay = "past" %}
+            {% assign deliverable_item_class = deliverable_item_class | append: " " | append: "expired" %}
+        {% elsif timestamp_day_diff > 1 %}
+            {% assign assessment_delay = "soon" %}
+        {% else %}
+            {% assign assessment_delay = "now" %}
+            {% assign deliverable_item_class = deliverable_item_class | append: " " | append: "urgent" %}
+        {% endif %}
+        <li class="{{ deliverable_item_class }}">
+            {% assign assessment_page = site.intermediary_deliverables
+                    | where: "assessment", related_assessment.identifier
+                    | first
+            %}
+            {% if assessment_page %}
+                <a href="{{ assessement_page.url | relative_url }}">
+                    {% include _pages/assessments/_intermediary_deliverable_content.liquid
+                            assessment_data=related_assessment
+                            assessment_delay=assessment_delay
+                            dated_assessment=dated_assessment
+                    %}
+                </a>
+            {% else %}
+                <div>
+                    {% include _pages/assessments/_intermediary_deliverable_content.liquid
+                            assessment_data=related_assessment
+                            assessment_delay=assessment_delay
+                            dated_assessment=dated_assessment
+                    %}
+                </div>
+            {% endif %}
+        </li>
+    {% endfor %}
+</ol>

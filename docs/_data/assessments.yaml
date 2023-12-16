@@ -1,0 +1,60 @@
+_parameters:
+  _types:
+    - &_type_intermediary_deliverable "intermediary_deliverable"
+  _modules:
+  - &_module_archi_web "Architecture web"
+  - &_module_bdd "Base de données"
+  - &_module_communication "Communication"
+  - &_module_conduite_projet "Conduite de projet"
+  - &_module_devops "DevOps"
+  - &_module_qa "Qualité applicative"
+  - &_module_uml "UML"
+
+values:
+- label: Dossier de conception
+  identifier: design-document
+  type: *_type_intermediary_deliverable
+  composite:
+  - label: Diagrammes UML
+    identifier: uml
+    module: *_module_uml
+  - label: MCD
+    identifier: mcd
+    module: *_module_bdd
+  - label: Description infrastructure
+    identifier: infrastructure
+    module: *_module_devops
+  - label: Étude architecture web
+    identifier: archi-web
+    module: *_module_archi_web
+  - label: Charte graphique
+    identifier: graphical-charter
+    module: *_module_qa
+  - label: Planification
+    identifier: planning
+    module: *_module_conduite_projet
+
+- label: Mise en place de l'environnement
+  identifier: env-setup
+  type: *_type_intermediary_deliverable
+
+- label: Livraison version 1
+  identifier: version-1
+  type: *_type_intermediary_deliverable
+  composite:
+  - label: Cahier de recette
+    identifier: acceptance-testing
+    module: *_module_qa
+
+- label: Soutenance - entraînement
+  identifier: training-defense
+  module: *_module_communication
+  page: soutenance
+
+- label: Livraison version finale
+  identifier: version-final
+  page: livraison-finale
+  composite:
+    - label: Cahier de recette
+      identifier: acceptance-testing
+      module: *_module_qa

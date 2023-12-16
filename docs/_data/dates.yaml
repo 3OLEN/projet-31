@@ -73,17 +73,22 @@ project_assessments:
       month: *_month_01
       day: *_day_01
     type: *_type_assessment
-    name: "Dossier de conception"
+    identifier: design-document
+  - date:
+      value: 2024-01-15
+      month: *_month_01
+      day: *_day_01
+    type: *_type_assessment
+    identifier: env-setup
   - date:
       value: 2024-02-05
       month: *_month_02
       day: *_day_01
     type: *_type_assessment
-    name: "Livrable applicatif version 1"
+    identifier: version-1
   - date:
-      value: 2024-03-26
+      value: 2024-03-25
       month: *_month_03
-      day: *_day_02
+      day: *_day_01
     type: *_type_assessment
-    name: "Livrable applicatif final"
-
+    identifier: training-defense
