@@ -1,3 +1,131 @@
+// Évaluations
+// ===========
+.deliverable_list {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  margin: unset;
+  row-gap: 1.25em;
+
+  .deliverable {
+    &-item {
+      margin: unset;
+
+      &.urgent {
+        .date {
+          color: $color-danger;
+        }
+        .deliverable-name {
+          &::before {
+            color: $color-danger;
+            content: "‼️";
+            margin-right: 0.5em;
+          }
+        }
+      }
+      &.expired {
+        .date {
+          text-decoration: line-through;
+        }
+        .deliverable {
+          &-name {
+            text-decoration: line-through;
+          }
+          &-composite {
+            display: none;
+          }
+        }
+      }
+      &-body {
+        border-color: $border-color-01;
+        border-style: solid;
+        border-radius: 0 1.25em 1.25em 0;
+        border-width: 1px;
+        border-left-width: 0;
+        display: flex;
+        flex-direction: column;
+        padding: 0.25em 0.5em;
+        row-gap: 0.5em;
+        width: 100%;
+      }
+      > a, div {
+        display: flex;
+
+        .outer-pill {
+          background-color: var(--deliverable-pill-color);
+          border-color: $border-color-01;
+          border-style: solid;
+          border-radius: 1.25em 0 0 1.25em;
+          border-width: 1px;
+          border-right-width: 0;
+          width: 2em;
+
+          &.future {
+            --deliverable-pill-color: #{$color-primary};
+          }
+          &.soon {
+            --deliverable-pill-color: #{$color-warning};
+          }
+          &.now {
+            --deliverable-pill-color: #{$color-danger};
+          }
+          &.past {
+            --deliverable-pill-color: #6c757d;
+          }
+        }
+        .badge {
+          align-items: center;
+          border-color: $border-color-01;
+          border-style: solid;
+          border-width: 1px;
+          border-left-width: 0;
+          display: flex;
+          flex-direction: column;
+          padding: 0.25em 0.5em;
+          row-gap: 0.25em;
+          text-align: center;
+          width: 5em;
+
+          .icon {
+            font-size: 1.5em;
+          }
+          .date {
+            font-weight: bold;
+          }
+        }
+      }
+    }
+    &-composite {
+      column-gap: 0.5em;
+      display: flex;
+    }
+  }
+
+  @media (min-width: $on-large) {
+    .deliverable {
+      &-item {
+        > a, div {
+          margin: auto;
+          width: 80%;
+
+          .badge {
+            width: 10em;
+
+            .icon {
+              font-size: 2em;
+            }
+            .date {
+              font-size: 1.25em;
+            }
+          }
+        }
+      }
+      &-name {
+        font-size: 1.5em;
+      }
+    }
+  }
+}
 // Planning
 // ========
 table {

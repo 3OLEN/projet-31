@@ -1,0 +1,24 @@
+{% assign pill_class = "outer-pill" %}
+{% if include.assessment_delay %}
+    {% assign pill_class = pill_class | append: " " | append: include.assessment_delay %}
+{% endif %}
+<span class="{{ pill_class }}"></span>
+
+<span class="badge">
+    <span class="icon">📅</span>
+    <span class="date">
+        {{ include.dated_assessment.date.value | date: "%d" }}
+        {{ include.dated_assessment.date.month }}
+    </span>
+</span>
+
+<span class="deliverable-item-body">
+    <strong class="deliverable-name">{{ include.assessment_data.label }}</strong>
+
+    {% if include.assessment_data.composite %}
+        <span class="deliverable-composite">
+            <span>🗂️</span>
+            <span>{{ include.assessment_data.composite | map: "label" | join: " ; " }}</span>
+        </span>
+    {% endif %}
+</span>

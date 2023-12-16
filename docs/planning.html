@@ -158,9 +158,13 @@ permalink: /planning
                 {% comment %} <!-- Prise en charge des données multiples d'une même date --> {% endcomment %}
                 {% for project_date_data in multi_dates %}
                     {% if project_date_data.type == "assessment" %}
+                        {% assign related_assessment = site.data.assessments.values
+                                | where: "identifier", project_date_data.identifier
+                                | first
+                        %}
                         <div class="component">
                             <span title="Livrable du projet transverse.">☑️</span>
-                            <span>{{ project_date_data.name }}</span>
+                            <span>{{ related_assessment.label }}</span>
                         </div>
                     {% endif %}
                 {% endfor %}
