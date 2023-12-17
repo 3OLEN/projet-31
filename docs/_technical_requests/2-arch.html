@@ -4,39 +4,44 @@ title: Contraintes - INFRA
 slug: infrastructure
 
 arch_env:
+- name: Gitlab
+  sub_notes:
+  - "Tout élement utilisé/développé par l'équipe infra devra être mis sur Gitlab et versionné."
 - name: Gitlab CI/CD
   description: "Le projet devra utiliser Gitlab afin d'implémenter des pipelines CI/CD."
 - name: Intégration continue
   sub_notes:
-  - "La pipeline d'intégration continue devra contenir à minima un job de build, et un job d'exécution de tests unitaires."
-- name: Déploiement continue
+  - "La pipeline d'intégration continue devra contenir a minima un job de build, et un job d'exécution de
+tests unitaires."
+- name: Déploiement continu
   sub_notes:
-  - "La pipeline de déploiement continue devra contenir à minima le job de génération de l'image docker de l'application, 
-  de sa sauvegarde dans la registry harbor ainsi que le déploiement dans un environnement."
+  - "La pipeline de déploiement continue devra contenir a minima le job de génération de l'image docker de
+l'application, de sa sauvegarde dans la registry harbor ainsi que le déploiement dans un environnement."
   - "Les jobs de déploiement ne doivent être disponibles que pour la branche principale avec un déclenchement manuel."
 - name: Docker
   sub_notes:
   - "Toutes les briques applicatives devront être dockerisées."
-  - "Tous les secrets que vous utiliserez devront être en accord avec la politique de sécurité forte (que vous aurez à définir commune à dev et infra)."
-  - "Les images de base devront être choisit depuis le docker hub."
-  - "Pour les groupes ayant 5 infra, l'installation du daemon docker en mode rootless est obligatoire."
+  - "Tous les secrets que vous utiliserez devront être en accord avec la politique de sécurité forte
+(que vous aurez à définir commune à dev et infra)."
+  - "Les images de base devront être choisies depuis le docker hub."
+  - "Un point supplémentaire sera accordé aux groupes ayant installé un docker en mode <code>rootless</code>."
 - name: VHost
   sub_notes:
-  - "Dans la machine contenant les environnements d'intégration, recette et production, vous devrez installer un reverse proxy permettant 
-  d'accéder à l'application avec un filtrage d'IP et une redirection http vers https."
+  - "Dans la machine contenant les environnements d'<strong>intégration</strong>, de <strong>recette</strong> et
+de <strong>production</strong>, vous devrez installer un reverse proxy permettant d'accéder à l'application avec un
+filtrage d'IP et une redirection http vers https."
   - "Vous devez obligatoirement garder le firewall actif et bien le configurer."
 - name: Certificats
   sub_notes:
   - "Une autorité de certification devra être créée."
-  - "Vous devez faire en sorte que l'application soit accessible en https et que le certificat public soit validé par votre client."
+  - "Vous devez faire en sorte que l'application soit accessible en https et que le certificat public soit validé
+par votre client."
 - name: Supervision et backup
   sub_notes:
-  - "Vous devez mettre en place une solution de supervision des metrics de l'application ainsi que la BDD."
-  - "Vous devez mettre en place une solution de backup journalière pour la base de données et tout fichier/dossier data (photos etc.) utilisé par l'application."
+  - "Vous devez mettre en place une solution de supervision des <em>metrics</em> de l'application ainsi que de la BDD."
+  - "Vous devez mettre en place une solution de <em>backup</em> journalière pour la BDD et tous fichiers/dossiers data
+(photos etc.) utilisés par l'application."
   - "En cas d'anomalie, une alerte devra être envoyée dans le serveur Discord de votre groupe."
-- name: Repo Gitlab
-  sub_notes:
-  - "Tout élement utilisé/développé par l'équipe infra devra être mis sur Gitlab et versionné."
 ---
 
 <p>
