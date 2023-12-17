@@ -1,0 +1,43 @@
+{% comment %}-- Paragraphe --{% endcomment %}
+{% if include.content.description %}
+    {{ include.content.description | markdownify  }}
+{% endif %}
+
+{% comment %}-- Liste --{% endcomment %}
+{% if include.content.list %}
+    <ul>
+        {% for item in include.content.list %}
+            <li>{{ item }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+{% comment %}-- Sous-parties --{% endcomment %}
+{% if include.content.sections %}
+    {% assign used_title_level = include.section_title_level | default: 4 %}
+    {% assign used_sub_title_level = used_title_level | plus: 1 %}
+
+    {% for section in include.content.sections %}
+        <h{{ used_title_level }}>{{ section.title }}</h{{ used_title_level }}>
+        <div class="section-content">
+            {% include _pages/assessments/content/_document_model_content.liquid
+                    content=section
+                    section_title_level=used_sub_title_level
+            %}
+        </div>
+
+        {% comment %}⚠️ RESETTING THOSE VARIABLES BECAUSE OF GLOBAL SCOPE ⚠️{% endcomment %}
+        {% assign used_title_level = include.section_title_level | default: 4 %}
+        {% assign used_sub_title_level = used_title_level | plus: 1 %}
+    {% endfor %}
+{% endif %}
+
+{% comment %}-- Pages/Liens en relation --{% endcomment %}
+{% if include.content.related_pages %}
+    {% include _templates/list/_related_pages.liquid pages=include.content.related_pages %}
+{% endif %}
+
+{% comment %}-- Remarque --{% endcomment %}
+{% if include.content.comment %}
+    {% include _templates/panel/_comment.liquid text=include.content.comment %}
+{% endif %}

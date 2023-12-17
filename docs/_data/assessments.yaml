@@ -33,6 +33,9 @@ values:
   - label: Planification
     identifier: planning
     module: *_module_conduite_projet
+  - label: Notes de réunion
+    identifier: meeting-notes
+    module: *_module_qa
 
 - label: Mise en place de l'environnement
   identifier: env-setup

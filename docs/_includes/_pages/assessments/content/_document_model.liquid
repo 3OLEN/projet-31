@@ -1,0 +1,11 @@
+<div class="document-model">
+    {% for content_element in include.model_content %}
+        <div class="element">
+            <h3>{{ content_element.title }}</h3>
+
+            <div class="element-content">
+                {% include _pages/assessments/content/_document_model_content.liquid content=content_element %}
+            </div>
+        </div>
+    {% endfor %}
+</div>

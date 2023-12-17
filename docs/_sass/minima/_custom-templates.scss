@@ -145,3 +145,20 @@ justify-content: center;
     }
   }
 }
+
+// Panel
+// =====
+.panel {
+  border-left-style: solid;
+  border-left-width: 5px;
+  border-radius: 0 0.5em 0.5em 0;
+  column-gap: 1em;
+  display: flex;
+  margin: 1rem;
+  padding: 1rem;
+
+  &.comment {
+    border-left-color: $color-info;
+    background-color: #{$color-info}33;
+  }
+}
