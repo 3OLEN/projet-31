@@ -29,7 +29,7 @@ Rappelez-vous que ce dossier est un livrable que vous pouvez être amenés à pr
 attentes sur l'aspect graphique que vous prévoyez mettre en place et voudront avoir ces informations à disposition.
 
 Le fait de ne pas donner suffisamment d'informations sur l'aspect graphique est un énorme risque pour un projet ; vous
-n'êtes pas à l'abri que le client vous demande de revoir complète cet aspect, à vos frais...
+n'êtes pas à l'abri que le client vous demande de revoir complètement cet aspect, à vos frais...
 
 ### Charte graphique
 
