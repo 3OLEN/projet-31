@@ -110,7 +110,7 @@ roster:
     <<: *ops_group
 
 teams:
-  - name: "Mille Et Une Librairie"
+  - name: "Mille Et Une Librairies"
     gitlab: ""
     members:
       - name: *student_jeannin
