@@ -75,7 +75,7 @@ roster:
   - name: &student_meunier "MEUNIER Alexandre"
     gitlab: ""
     <<: *dev_group
-  - name: &student_mismili "MISMILI Enes"
+  - name: &student_mismili "MISLIMI Enes"
     gitlab: ""
     <<: *dev_group
   - name: &student_montoya "MONTOYA Anthony"
@@ -110,7 +110,7 @@ roster:
     <<: *ops_group
 
 teams:
-  - name: "Groupe 1"
+  - name: "Mille Et Une Librairie"
     gitlab: ""
     members:
       - name: *student_jeannin
@@ -119,7 +119,7 @@ teams:
       - name: *student_gourlez
         lead: true
       - name: *student_lavazais
-  - name: "Groupe 2"
+  - name: "Les 4 Fantastiques"
     gitlab: ""
     members:
       - name: *student_brun
@@ -128,7 +128,7 @@ teams:
       - name: *student_santykham
         lead: true
       - name: *student_treboz
-  - name: "Groupe 3"
+  - name: "Lénine"
     gitlab: ""
     members:
       - name: *student_bondoux
@@ -137,7 +137,7 @@ teams:
       - name: *student_brugere
         lead: true
       - name: *student_demarbaix
-  - name: "Groupe 4"
+  - name: "AMAWA"
     gitlab: ""
     members:
       - name: *student_campo
@@ -147,7 +147,7 @@ teams:
       - name: *student_krembel
         lead: true
       - name: *student_mougou
-  - name: "Groupe 5"
+  - name: "CodeFusion"
     gitlab: ""
     members:
       - name: *student_meunier
@@ -156,7 +156,7 @@ teams:
       - name: *student_boubaker
       - name: *student_bougadoum
         lead: true
-  - name: "Groupe 6"
+  - name: "Les Apprenants Lents"
     gitlab: ""
     members:
       - name: *student_montoya
@@ -166,7 +166,7 @@ teams:
       - name: *student_marzeridoux
         lead: true
       - name: *student_rispoli
-  - name: "Groupe 7"
+  - name: "Save"
     gitlab: ""
     members:
       - name: *student_boumallassa
@@ -175,7 +175,7 @@ teams:
       - name: *student_collomb
       - name: *student_delmotte
         lead: true
-  - name: "Groupe 8"
+  - name: "VirgilCorp"
     gitlab: ""
     members:
       - name: *student_de_ascencao
