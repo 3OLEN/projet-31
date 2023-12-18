@@ -40,7 +40,7 @@ contexte. Vous présenterez également votre groupe."
         des décisions.
       related_pages:
       - type: "assessment"
-        identifier: "meeting-notes"
+        identifier: "notes-reunion"
         title: "Aide à la prise de notes"
         blank: true
   - title: Étude

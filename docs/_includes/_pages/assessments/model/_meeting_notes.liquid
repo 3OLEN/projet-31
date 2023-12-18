@@ -1,0 +1,86 @@
+<div class="meeting-notes">
+    <header>
+        <h1 class="title" title="Titre de la réunion">API et pagination</h1>
+        <div class="subtitle">
+            <div class="datetime" title="Date/Heure de la réunion">2022/11/18 10:00</div>
+            <div class="duration" title="Durée de la réunion">1h30</div>
+            <div class="location" title="Présentiel / Distanciel / Hybride">Distanciel</div>
+        </div>
+    </header>
+
+    <div class="meeting-notes-content">
+        <div class="participants">
+            <h2>Participants</h2>
+            <ul>
+                <li>
+                    <span class="attendance present" title="Indique la présence à la réunion (Présent·e)"></span>
+                    <span class="participant-name" title="Nom Prénom, Rôle au sein du projet, Entreprise représentée">
+                        Régis Ferrant, Référent technique, SARL WeDev.
+                    </span>
+                </li>
+                <li>
+                    <span class="attendance present" title="Indique la présence à la réunion (Présent·e)"></span>
+                    <span class="participant-name" title="Nom Prénom, Rôle au sein du projet, Entreprise représentée">
+                        Billy VILLENA, Lead-dev, SARL WeDev.
+                    </span>
+                </li>
+                <li>
+                    <span class="attendance present" title="Indique la présence à la réunion (Présent·e)"></span>
+                    <span class="participant-name" title="Nom Prénom, Rôle au sein du projet, Entreprise représentée">
+                        Patrice Rauduk, Product owner, ZeKliant.
+                    </span>
+                </li>
+                <li>
+                    <span class="attendance off" title="Indique la présence à la réunion (Absent·e)"></span>
+                    <span class="participant-name" title="Nom Prénom, Rôle au sein du projet, Entreprise représentée">
+                        Dorinne Siemly, DSI, ZeKliant.
+                    </span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="subject">
+            <h2>Sujet</h2>
+            <div title="Informations générales sur le sujet de la réunion.">
+                Échanges sur la conception de l'API et la mise en place de la pagination.
+            </div>
+        </div>
+
+        <div class="notes">
+            <h2>Notes</h2>
+            <div title="Informations exhaustives sur le contenu de la réunion">
+                <ul>
+                    <li>
+                        Problématique : dans la conception initiale de l'API, la pagination n'avait pas été prévue.
+                        Or la quantité de données à traiter demande la mise en place de la pagination pour des questions
+                        de performance.
+                    </li>
+                    <li>
+                        SARL WeDev propose une solution de pagination décrite dans la nouvelle version des SFD API et le
+                        devis associé.
+                    </li>
+                    <li>
+                        Comme convenu pendant la réunion, Patrice Rauduk communique cette proposition en interne
+                        pour validation. La proposition et le devis seront considérés comme validés au 5 décembre 2022
+                        (deux semaines après) si aucun retour n'est fait de la part de ZeKliant.
+                    </li>
+                    <li>
+                        Authentification : un point rapide a été fait ; SARL WeDev est en attente de l'implémentation du
+                        serveur SSO par ZeKliant. Un ticket va être fait pour la DSI afin de connaître l'avancement de
+                        ce point.
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="documents">
+            <h2>Documents</h2>
+            <div title="Liste des documents à partager, éventuellement">
+                <ul>
+                    <li><code>SFD-API-v1.1.pdf</code> en PJ.</li>
+                    <li><code>Devis-API-Pagination.pdf</code> en PJ.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
