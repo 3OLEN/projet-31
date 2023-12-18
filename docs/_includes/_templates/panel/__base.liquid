@@ -1,0 +1,4 @@
+<div class="panel {{ include.type }}">
+    <div class="badge">{{ include.icon }}</div>
+    <div class="panel-content">{{ include.text | markdownify | replace: "<p>", "" | replace: "</p>", "" }}</div>
+</div>

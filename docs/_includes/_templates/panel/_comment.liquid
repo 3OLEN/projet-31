@@ -1,4 +1,1 @@
-<div class="panel comment">
-    <div class="badge">ℹ️</div>
-    <div class="panel-content">{{ include.text | markdownify | replace: "<p>", "" | replace: "</p>", "" }}</div>
-</div>
+{% include _templates/panel/__base.liquid type="comment" icon="ℹ️" text=include.text %}

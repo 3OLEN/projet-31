@@ -161,4 +161,8 @@ justify-content: center;
     border-left-color: $color-info;
     background-color: #{$color-info}33;
   }
+  &.danger {
+    border-left-color: $color-danger;
+    background-color: #{$color-danger}33;
+  }
 }

@@ -113,7 +113,7 @@ contexte. Vous présenterez également votre groupe."
           blank: true
   - title: Planification
     description: |
-      Vous n'aurez pas à réaliser de la gestion de projet dans le cadre de projet transverse. Néanmoins,
+      Vous n'aurez pas à réaliser de la gestion de projet dans le cadre de ce projet transverse. Néanmoins,
       certains éléments de base sont à prendre en compte et à définir afin de conduire au mieux le projet.
 
       Vous pouvez prendre en charge la gestion de projet, mais ce ne sera pas du tout un critère d'évaluation.
@@ -130,7 +130,7 @@ contexte. Vous présenterez également votre groupe."
       le travail à réaliser."
     related_pages:
     - type: "assessment"
-      identifier: "planning"
+      identifier: "planification"
       title: "Détail et informations sur la planification"
       blank: true
 ---
