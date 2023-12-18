@@ -86,9 +86,3 @@ project_assessments:
       day: *_day_01
     type: *_type_assessment
     identifier: version-1
-  - date:
-      value: 2024-03-25
-      month: *_month_03
-      day: *_day_01
-    type: *_type_assessment
-    identifier: training-defense

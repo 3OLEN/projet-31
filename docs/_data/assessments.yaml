@@ -4,7 +4,6 @@ _parameters:
   _modules:
   - &_module_archi_web "Architecture web"
   - &_module_bdd "Base de données"
-  - &_module_communication "Communication"
   - &_module_conduite_projet "Conduite de projet"
   - &_module_devops "DevOps"
   - &_module_qa "Qualité applicative"
@@ -48,11 +47,6 @@ values:
   - label: Cahier de recette
     identifier: acceptance-testing
     module: *_module_qa
-
-- label: Soutenance - entraînement
-  identifier: training-defense
-  module: *_module_communication
-  page: soutenance
 
 - label: Livraison version finale
   identifier: version-final
