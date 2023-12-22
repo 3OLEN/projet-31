@@ -163,6 +163,6 @@ justify-content: center;
   }
   &.danger {
     border-left-color: $color-danger;
-    background-color: #{$color-danger}33;
+    background-color: rgba($color-danger, .2);
   }
 }
