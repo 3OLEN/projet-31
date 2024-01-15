@@ -1,4 +1,5 @@
 {% assign listed_teams = site.data.students.teams %}
+{% assign base_gitlab = "https://gitlab.com/ort.lyon.enseignement.numerique/3olen/2023.2024-lumos-camminus/projet-31/" %}
 
 <ul class="student-teams">
     {% for team in listed_teams %}
@@ -21,14 +22,12 @@
                         </span>
 
                         <a
-                            href="{{ related_student.github_account | prepend: "https://github.com/" }}"
+                            href="{{ related_student.gitlab | prepend: "https://gitlab.com/" }}"
                             class="team-link"
                             target="_blank"
                             title="Accéder au compte utilisateur GitHub"
                         >
-                            <svg class="svg-icon text-white">
-                                <use xlink:href="{{ '/assets/minima-social-icons.svg#github' | relative_url }}"></use>
-                            </svg>
+                            <img class="svg-icon" src="{{ '/assets/images/gitlab.svg' | relative_url }}" alt="GitLab">
                         </a>
 
                         <strong
@@ -45,14 +44,12 @@
 
             <footer class="team-footer">
                 <a
-                    href="{{ team.github | prepend: "https://github.com/" }}"
+                    href="{{ team.gitlab | prepend: base_gitlab }}"
                     class="team-link"
                     target="_blank"
                     title="Accéder au groupe sur GitHub"
                 >
-                    <svg class="svg-icon text-white">
-                        <use xlink:href="{{ '/assets/minima-social-icons.svg#github' | relative_url }}"></use>
-                    </svg>
+                    <img class="svg-icon" src="{{ '/assets/images/gitlab.svg' | relative_url }}" alt="GitLab">
                 </a>
             </footer>
         </li>
