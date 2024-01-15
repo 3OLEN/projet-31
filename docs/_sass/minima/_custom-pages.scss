@@ -366,6 +366,33 @@ table {
       }
     }
   }
+
+  footer {
+    nav {
+      display: flex;
+      justify-content: space-between;
+
+      > div {
+        > a {
+          border: 2px solid $border-color-01;
+          border-radius: 1em;
+          color: inherit;
+          display: block;
+          padding: 0.5rem 1rem;
+
+          &:hover {
+            border-color: $link-base-color;
+            color: $link-base-color;
+            text-decoration: none;
+          }
+        }
+      }
+
+      @media screen and (min-width: $on-large) {
+        margin: 0 2rem;
+      }
+    }
+  }
 }
 
 // Transverse

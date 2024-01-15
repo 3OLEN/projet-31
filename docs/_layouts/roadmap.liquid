@@ -46,7 +46,7 @@ layout: base
                     </ul>
                     {% continue %}
                 {% endif %}
-                
+
                 {% comment %} <!-- Liens vers d'autres pages --> {% endcomment %}
                 {% if content_item.related_pages %}
                     {% include _templates/list/_related_pages.liquid pages=content_item.related_pages %}
@@ -65,4 +65,31 @@ layout: base
             {% endfor %}
         {% endfor %}
     </div>
+
+    <footer>
+        <nav>
+            <div>
+                {% if page.previous %}
+                    {% assign previous_session_index = page.previous.session |  minus: 1 %}
+                    {% assign previous_session = site.data.dates.project_sessions[previous_session_index] %}
+
+                    <a href="{{ page.previous.url | relative_url }}">
+                        [{{ page.previous.title }}]
+                        {{ previous_session.date.value | date: "%d" }} {{ previous_session.date.month | downcase -}}
+                    </a>
+                {% endif %}
+            </div>
+            <div>
+                {% if page.next %}
+                    {% assign next_session_index = page.next.session | minus: 1 %}
+                    {% assign next_session = site.data.dates.project_sessions[next_session_index] %}
+
+                    <a href="{{ page.next.url | relative_url }}">
+                        [{{ page.next.title }}]
+                        {{ next_session.date.value | date: "%d" }} {{ next_session.date.month | downcase -}}
+                    </a>
+                {% endif %}
+            </div>
+        </nav>
+    </footer>
 </article>
