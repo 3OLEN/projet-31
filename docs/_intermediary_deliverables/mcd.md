@@ -3,10 +3,17 @@ layout: intermediary_deliverable
 title: "Livrable intermédiaire - MCD"
 slug: mcd
 
+last_updated: "2024-01-16"
 assessment: mcd
 
 deliverable_comment: "Seul le MCD est attendu dans ce dossier de conception. Le reste est à faire de votre côté pour
 votre propre production."
+
+proposal_related_pages:
+- type: project_help
+  identifier: modelisation-bdd
+  title: "Proposition de la modélisation BDD"
+  blank: true
 ---
 
 Pour pouvoir monter une base de données, il faut définir les tables qui la composent (avec leurs champs) et les
@@ -52,3 +59,9 @@ l'insertion des données initiales.
 
 Un corrigé sera mis à disposition. Libre à vous de l'utiliser entièrement ou de vous en inspirer pour améliorer votre
 propre MCD.
+
+## 📜 Proposition
+
+**✨ Nouveau contenu**
+
+{% include _templates/list/_related_pages.liquid pages=page.proposal_related_pages %}
