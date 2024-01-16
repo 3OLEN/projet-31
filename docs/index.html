@@ -48,3 +48,20 @@ summary:
     </li>
     {% endfor %}
 </ol>
+
+<h2>Pages d'aide</h2>
+{% assign project_help_pages = site.project_helps | sort_by: "item", "item.category" %}
+
+<ul class="related-pages">
+    {% for project_help in project_help_pages %}
+        <li>
+            <a href="{{ project_help.url | relative_url }}" class="related-page-item">
+                <span class="related-page-badge project_help"></span>
+                <strong class="related-page-title">
+                    [{{ project_help.category }}]
+                    {{ project_help.title }}
+                </strong>
+            </a>
+        </li>
+    {% endfor %}
+</ul>
