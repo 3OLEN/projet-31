@@ -42,7 +42,7 @@ project_sessions:
       day: *_day_01
     type: *_type_session
   - date:
-      value: 2024-01-23
+      value: 2024-01-16
       month: *_month_01
       day: *_day_02
     type: *_type_session
