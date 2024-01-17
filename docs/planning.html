@@ -188,21 +188,24 @@ permalink: /planning
                 {% endfor %}
             </td>
 
+            {% comment %} <!-- Il faudra peut-être remplir des semaines entre deux dates projet --> {% endcomment %}
+            {% assign next_defined_date = nil %}
+            {% assign next_defined_date_day = nil %}
+            {% if forloop.last == false %}
+                {% comment %}
+                ⚠️ Du fait des données multiples pour une même date,
+                   il faut récupérer la date suivante et non pas l'élément suivant.
+                {% endcomment %}
+                {% assign next_defined_date_index = forloop.index0 | plus: multi_dates.size %}
+                {% assign next_defined_date = month_dates[next_defined_date_index].date.value %}
+                {% assign next_defined_date_day = next_defined_date | date: "%e" | plus: 0 %}
+                {% assign next_defined_date_week = next_defined_date | date: "%V" | plus: 0 %}
+            {% endif %}
+
             {% if this_week_day == 5 %}
         </tr>
             {% else %}
                 {% comment %} <!-- Remplissage des jours qui suivent --> {% endcomment %}
-                {% assign next_defined_date_day = nil %}
-                {% if forloop.last == false %}
-                    {% comment %}
-                    ⚠️ Du fait des données multiples pour une même date,
-                       il faut récupérer la date suivante et non pas l'élément suivant.
-                    {% endcomment %}
-                    {% assign next_defined_date_index = forloop.index0 | plus: multi_dates.size %}
-                    {% assign next_defined_date = month_dates[next_defined_date_index].date.value %}
-                    {% assign next_defined_date_day = next_defined_date | date: "%e" | plus: 0 %}
-                {% endif %}
-
                 {% assign begin_week_day = this_week_day | plus: 1 %}
                 {% for following_week_day in (begin_week_day..5) %}
                     {% assign following_day = this_day | minus: this_week_day | plus: following_week_day %}
@@ -229,6 +232,38 @@ permalink: /planning
                     {% if following_week_day == 5 %}
         </tr>
                     {% endif %}
+                {% endfor %}
+            {% endif %}
+
+            {% comment %} <!-- Remplissage des semaines entre deux dates --> {% endcomment %}
+            {% if next_defined_date != nil %}
+                {% assign next_defined_date_week = next_defined_date | date: "%V" | plus: 0 %}
+                {% assign current_next_week_diff = next_defined_date_week | minus: this_week %}
+                {% if current_next_week_diff <= 1 %}
+                    {% continue %}
+                {% endif %}
+
+                {% comment %} <!-- Au moins 1 semaine sans date projet entre 2 dates du même mois --> {% endcomment %}
+                {% assign first_orphan_week = this_week | plus: 1 %}
+                {% assign last_orphan_week = next_defined_date_week | minus: 1 %}
+                {% for orphan_week in (first_orphan_week..last_orphan_week) %}
+                    {% assign treated_orphan_week_days = 7 | times: forloop.index0 %}
+
+                    {% assign orphan_week_monday_date = this_day | plus: 7 | minus: this_week_day
+                            | plus: 1
+                            | plus: treated_orphan_week_days
+                    %}
+                    {% assign orphan_week_friday_date = orphan_week_monday_date | plus: 4 %}
+                    <tr>
+                        <th scope="row">{{ orphan_week }}</th>
+                        {% for orphan_week_date in (orphan_week_monday_date..orphan_week_friday_date) %}
+                            <td>
+                                <div class="day">
+                                    {{ orphan_week_date }}
+                                </div>
+                            </td>
+                        {% endfor %}
+                    </tr>
                 {% endfor %}
             {% endif %}
         {% endfor %}
