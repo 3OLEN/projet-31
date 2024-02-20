@@ -120,24 +120,21 @@ permalink: /planning
             {% comment %}Données d'affichage liées au type{% endcomment %}
             {% assign cell_title = nil %}
             {% assign day_class = nil %}
-            {% assign roadmap_index = nil %}
             {% case project_date.type %}
                 {% when "session" %}
                     {% assign cell_title = "Séance de projet transverse." %}
                     {% assign day_class = "text-primary" %}
                     {% assign session_no = session_no | plus: 1 %}
-                    {% assign roadmap_index = session_no | minus: 1 %}
                 {% when "final" %}
                     {% assign cell_title = "Soutenance du projet transverse." %}
                     {% assign day_class = "text-secondary" %}
-                    {% assign session_no = session_no |plus: 1 %}
-                    {% assign roadmap_index = session_no | minus: 1 %}
+                    {% assign session_no = session_no | plus: 1 %}
                 {% else %}
             {% endcase %}
 
             {% assign roadmap_page = nil %}
-            {% if roadmap_index %}
-                {% assign roadmap_page = site.roadmap[roadmap_index] %}
+            {% if cell_title %}
+                {% assign roadmap_page = site.roadmap | where_exp: "page", "page.session == session_no" | first %}
             {% endif %}
 
             <td
