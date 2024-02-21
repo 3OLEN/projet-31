@@ -1,0 +1,6 @@
+{% for final_page in include.final_pages %}
+    <a class="final-content" href="{{ final_page.url | relative_url }}">
+        <strong class="title">{{ final_page.title }}</strong>
+        <span class="description">{{ final_page.description }}</span>
+    </a>
+{% endfor %}

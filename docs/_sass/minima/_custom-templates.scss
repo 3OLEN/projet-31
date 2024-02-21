@@ -1,5 +1,91 @@
 // List
 // ====
+// Final pages
+// -----------
+.final-content-list {
+  display: flex;
+  gap: $spacing-unit * 0.5;
+
+  &.simple-list {
+    justify-content: center;
+
+    .final-content {
+      width: 250px;
+
+      > .title {
+        text-align: center;
+      }
+    }
+  }
+  &:not(.simple-list) {
+    column-gap: $spacing-unit;
+  }
+
+  %flex-list {
+    display: flex;
+    flex-direction: column;
+    row-gap: $spacing-unit * 0.25;
+  }
+
+  .final-content {
+    @extend %flex-list;
+    border: 1px solid $border-color-01;
+    border-radius: 1em;
+    color: $text-color;
+    padding: 0.5em 0.75em;
+    text-decoration: none;
+
+    &:hover {
+      border-color: $link-base-color;
+      color: $link-base-color;
+    }
+
+    > .title {
+      font-size: 1.15em;
+    }
+  }
+  .main-page {
+    width: 250px;
+
+    .final-content {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      padding: unset;
+
+      > .title {
+        padding-top: 0.5em;
+        text-align: center;
+      }
+      > .description {
+        height: 100%;
+        padding: 0 0.75em;
+      }
+      > .badge {
+        border-top-width: 1px;
+        border-top-style: solid;
+        border-top-color: inherit;
+        display: flex;
+        flex-direction: column;
+        justify-self: end;
+        padding-top: 0.5em;
+        row-gap: 0.25em;
+        text-align: center;
+
+        .icon {
+          font-size: 1.75em;
+        }
+        .date {
+          font-size: 1.15em;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+  .content-pages {
+    @extend %flex-list;
+  }
+}
 // Related pages
 // -------------
 .related-pages {
@@ -43,14 +129,14 @@
               content: "📝";
             }
           }
-          &.assessment-final {
-            &::before {
-              content: "🖊️";
-            }
-          }
           &.external_link {
             &::before {
               content: "🔗";
+            }
+          }
+          &.final {
+            &::before {
+              content: "🎖️";
             }
           }
           &.html_page {

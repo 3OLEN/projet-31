@@ -20,4 +20,28 @@ permalink: /travail-evaluation
 {% include _pages/assessments/_intermediary_deliverables_list.liquid %}
 
 <h2>Évaluation finale</h2>
-<em>À venir...</em>
+<div class="final-content-list">
+    {% assign final_index = site.final | where_exp: "page", "page.slug == 'index'" | first %}
+    <div class="main-page">
+        <a class="final-content" href="{{ final_index.url | relative_url }}">
+            <strong class="title">Index</strong>
+            <span class="description">{{ final_index.description }}</span>
+            <span class="badge">
+                <span class="icon">📅</span>
+                <span class="date">
+                    {% assign final_assessment_date = site.data.dates.project_sessions
+                        | where_exp: "session", "session.type == 'final'"
+                        | first
+                    %}
+                    {{ final_assessment_date.date.value | date: "%d" }}
+                    {{ final_assessment_date.date.month }}
+                </span>
+            </span>
+        </a>
+    </div>
+
+    {% assign final_pages = site.final | where_exp: "page", "page.slug != 'index'" %}
+    <div class="content-pages">
+        {% include _templates/list/_final_pages.liquid final_pages=final_pages %}
+    </div>
+</div>

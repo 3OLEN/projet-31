@@ -17,6 +17,8 @@ parameters:
                 {% assign collection_pages = site.intermediary_deliverables %}
             {% when "external_link" %}
                 {% assign related_page = page_data.identifier %}
+            {% when "final" %}
+                {% assign collection_pages = site.final %}
             {% when "project_help" %}
                 {% assign collection_pages = site.project_helps %}
             {% when "html_page" %}

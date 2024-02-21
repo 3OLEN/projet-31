@@ -3,6 +3,9 @@ title: 3OLEN - Projet 31
 description: Informations et ressources sur le projet 31 de la promo 3OLEN de l'école ORT LYON.
 
 collections:
+  final:
+    output: true
+    permalink: /final/:slug
   intermediary_deliverables:
     output: true
     permalink: /livrables-intermediaires/:slug
