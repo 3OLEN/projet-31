@@ -279,4 +279,8 @@ li {
     border-left-color: $color-danger;
     background-color: rgba($color-danger, .2);
   }
+  &.warning {
+    border-left-color: $color-warning;
+    background-color: rgba($color-warning, .2);
+  }
 }
