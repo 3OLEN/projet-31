@@ -5,12 +5,13 @@
 .final-content-list {
   display: flex;
   gap: $spacing-unit * 0.5;
+  flex-wrap: wrap;
 
   &.simple-list {
     justify-content: center;
 
     .final-content {
-      width: 250px;
+      width: 100%;
 
       > .title {
         text-align: center;
@@ -45,7 +46,7 @@
     }
   }
   .main-page {
-    width: 250px;
+    width: 100%;
 
     .final-content {
       display: flex;
@@ -84,6 +85,23 @@
   }
   .content-pages {
     @extend %flex-list;
+    margin: auto;
+    width: 90%;
+  }
+
+  @media (min-width: $on-laptop) {
+    &.simple-list {
+      .final-content {
+        width: 250px;
+      }
+    }
+
+    .main-page {
+      width: 250px;
+    }
+    .content-pages {
+      width: calc(100% - 250px - #{$spacing-unit});
+    }
   }
 }
 // Related pages
