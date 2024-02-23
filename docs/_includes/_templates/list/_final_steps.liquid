@@ -1,0 +1,35 @@
+<section class="final-steps">
+    {% for step in include.steps %}
+        <article>
+            <header>
+                <div class="name">{{ step.name }}</div>
+            </header>
+            <main>
+                <div class="sub-header">{{ step.duration | date: "%M min" }}</div>
+
+                {{ step.description | markdownify }}
+
+                {% if step.warning %}
+                    {% include _templates/panel/_warning.liquid text=step.warning %}
+                {% endif %}
+
+                {% if step.content %}
+                    <ol class="step-content">
+                        {% for content_element in step.content %}
+                            <li>
+                                <div class="name">{{ content_element.name }}</div>
+                                <div class="description">{{ content_element.description | markdownify }}</div>
+                                {% if content_element.advice %}
+                                    {% include _templates/panel/_comment.liquid text=content_element.advice %}
+                                {% endif %}
+                                {% if content_element.danger %}
+                                    {% include _templates/panel/_danger.liquid text=content_element.danger %}
+                                {% endif %}
+                            </li>
+                        {% endfor %}
+                    </ol>
+                {% endif %}
+            </main>
+        </article>
+    {% endfor %}
+</section>

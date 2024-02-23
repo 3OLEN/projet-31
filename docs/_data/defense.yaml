@@ -1,0 +1,232 @@
+_parameters:
+  _durations:
+    _5mn: &duration_5mn
+      duration: "00:05"
+    _10mn: &duration_10mn
+      duration: "00:10"
+    _15mn: &duration_15mn
+      duration: "00:15"
+    _20mn: &duration_20mn
+      duration: "00:20"
+  _groups:
+    _dev: &dev_group
+      group: Dev
+    _ops: &ops_group
+      group: Infra
+  _scopes:
+    _student: &scope_student
+      scope: Student
+    _jury: &scope_jury
+      scope: Jury
+  _steps:
+    _installation: &step_installation
+      name: Installation
+      description: Le groupe ou l'étudiant·e installe le matériel requis pour faire la présentation et la démonstration.
+      warning: "On ne modifie pas le matériel en cours de présentation : on ne fait aucun changement de PC."
+      <<: *duration_5mn
+    _remarques_jury: &step_remarques_jury
+      name: Remarques du Jury
+      description: |
+        Le jury fait part de ses points d'attention et conseils concernant la présentation et l'aspect professionnel de
+        la soutenance orale et de·s étudiant·e·s concerné·e·s.
+      <<: *duration_5mn
+    _harmonisation_jury: &step_harmonisation_jury
+      name: Harmonisation du Jury
+      description: | 
+        Le jury délibère sur la soutenance afin de se mettre d'accord sur l'évaluation et d'être cohérent vis-à-vis des
+        autres étudiants.
+      <<: *duration_5mn
+  _time_values:
+    - &day_begin_at "08:10"
+    - &jury_begin_at "08:30"
+    - &defense_begin_at "09:00"
+    - &lunch_end_at "14:10"
+
+jury_members:
+  - name: &jury_palluin Philippe ALLUIN
+    <<: *dev_group
+  - name: &jury_aaubert Alexis AUBERT
+    <<: *ops_group
+  - name: &jury_kbourki Karim BOURKI
+    <<: *ops_group
+  - name: &jury_ddeyrieux Daniel DEYRIEUX
+    <<: *ops_group
+  - name: &jury_shuguet Sébastien HUGUET
+    <<: *dev_group
+  - name: &jury_lgilot Luc GILOT
+    <<: *dev_group
+  - name: &jury_glegendre Guillaume LEGENDRE
+    <<: *ops_group
+  - name: &jury_pmalinge Philippe MALINGE
+    <<: *ops_group
+  - name: &jury_trobert Thery ROBERT
+    <<: *dev_group
+  - name: &jury_bvillena Billy VILLENA
+    <<: *dev_group
+
+jury_list:
+  - name: Jury 1
+    lead_dev: *jury_bvillena
+    lead_ops: *jury_kbourki
+    passages:
+      - roaster:
+          - À définir
+      - roaster:
+          - À définir
+      - roaster:
+          - À définir
+  - name: Jury 2
+    lead_dev: *jury_lgilot
+    lead_ops: *jury_pmalinge
+    passages:
+      - roaster:
+          - À définir
+      - roaster:
+          - À définir
+      - roaster:
+          - À définir
+  - name: Jury 3
+    lead_dev: *jury_palluin
+    lead_ops: *jury_glegendre
+    passages:
+      - roaster:
+          - À définir
+      - roaster:
+          - À définir
+
+group_steps:
+  - <<: *step_installation
+  - name: Oral groupe
+    <<: *duration_20mn
+    content:
+      - name: Présentation du groupe
+        description: |
+          Chaque membre est présenté succinctement en précisant son rôle dans le projet et, éventuellement, sa tâche
+          principale.
+        advice: |
+          Adjoindre une photo pour chaque membre permet au jury de mieux représenter les candidats, notamment lors de
+          l'analyse du support après coup.
+      - name: Présentation du projet
+        description: |
+          Vous rappellerez le contexte et les besoins du projet (merci de reformuler les éléments du sujet) et vous
+          aborderez les objectifs de ce projet pour le client, afin de prouver votre bonne compréhension de la demande
+          du client.
+          
+          Vous indiquerez, bien sûr, les principales exigences fonctionnelles.
+      - name: Présentation de la solution
+        description: |
+          Vous décrirez tout d'abord l'**application web** et les technologies employées.
+          
+          Puis, vous présenterez l'**infrastructure** mise en place et son exploitation.
+        advice: Pensez à des schémas. Et faites en sorte qu'ils soient lisibles surtout !
+      - name: Démonstration
+        description: |
+          Vous ferez une démonstration complète et globale (trouvez le bon équilibre) de l'application et de ses
+          fonctionnalités afin de prouver au client que le produit proposé est cohérent et adapté à son besoin et ses
+          demandes.
+        advice: |
+          Une démonstration **se prépare** : tout le déroulé de votre démonstration est pré-établi, notamment par le
+          biais d'une feuille, afin de pouvoir dépiler tous les éléments dans l'ordre et sans les oublier.
+          <br><br>De même, les éléments de saisie sont notées sur votre feuille afin de ne pas perdre de temps à vous
+          rappeler des identifiants de connexion, par exemple.
+        danger: |
+          Vous faites une démonstration au client de l'application qu'il a demandée. C'est pourquoi toutes les données
+          présentées (à l'écran et lors de la saisie des formulaires) doivent être adaptées à son contexte.
+          <br>Pas de "Lorem ipsum", pas de "test demo", pas de données hors-sujet (livres / utilisateurs / etc.).
+      - name: Conclusion
+        description: |
+          Une conclusion globale du projet et son état des lieux. Vous pouvez aborder les points d'amélioration.
+  - <<: *step_remarques_jury
+
+student_steps:
+  - <<: *step_installation
+  - name: Oral individuel
+    <<: *duration_15mn
+    content:
+      - name: Contexte projet
+        description: Rappelez votre rôle au sein du projet et les objectifs couverts par votre contribution.
+      - name: Tâches réalisées
+        description: Nom, description, durée, difficultés, collaboration.
+      - name: Bilan
+        description: Votre propre bilan du projet, de votre contribution et du groupe.
+      - name: Démonstration
+        description: |
+          Si vous avez besoin de faire une démonstration plus poussée de vos contributions.
+          
+          Pour les INFRA, c'est le moment de montrer exactement ce que vous avez fait pour l'infrastructure et son
+          exploitation.
+        advice: |
+          Tout comme la démonstration de groupe, votre démonstration **se prépare** de la même manière. C'est d'autant
+          plus essentiel, car vous montrez des éléments spécifiques du produit et des aspects plus techniques.
+        danger: |
+          Pareillement à la présentation de groupe, vous faites une démonstration au client, bien que vos interlocuteurs
+          soient ses référents techniques. Votre démonstration doit toujours être adaptée à son contexte.
+          <br><br>Par ailleurs, vous n'avez pas à lui montrer du code !
+  - name: Entretien
+    description: |
+      Le jury vous posera des questions sur le projet, sur votre contribution, sur vos connaissances techniques et sur
+      votre approche face à des problématiques auxquelles vous n'avez peut-être pas pensé.
+    <<: *duration_10mn
+  - <<: *step_remarques_jury
+
+time_slots:
+  - name: Accueil
+    begin_at: *day_begin_at
+    end_at: *jury_begin_at
+    <<: *scope_jury
+  - name: Point Jury
+    begin_at: *jury_begin_at
+    end_at: *defense_begin_at
+    <<: *scope_jury
+  - name: Appel et émargement
+    begin_at: *day_begin_at
+    end_at: *defense_begin_at
+    <<: *scope_student
+
+  - name: 1ers passages
+    begin_at: *defense_begin_at
+    steps:
+      - name: Groupe
+        internal_ref: group_steps
+      - name: Étudiants
+        internal_ref: student_steps
+      - <<: *step_harmonisation_jury
+    groups:
+      - name: Les Apprenants Lents
+      - name: SAVE
+      - name: CodeFusion
+
+  - name: Pause
+    <<: *duration_15mn
+
+  - name: 2nds passages
+    steps:
+      - name: Groupe
+        internal_ref: group_steps
+      - name: Étudiants
+        internal_ref: student_steps
+      - <<: *step_harmonisation_jury
+    groups:
+      - name: Les 4 Fantastiques
+      - name: Lénine
+      - name: 1001 Librairies
+
+  - name: Repas midi
+    end_at: *lunch_end_at
+
+  - name: 3èmes passages
+    begin_at: *lunch_end_at
+    steps:
+      - name: Groupe
+        internal_ref: group_steps
+      - name: Étudiants
+        internal_ref: student_steps
+      - <<: *step_harmonisation_jury
+    groups:
+      - name: VirgilCorp
+      - name: AMAWA
+
+  - name: Émargement manuel
+    <<: *scope_student
+  - name: Harmonisation globale
+    <<: *scope_jury
