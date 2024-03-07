@@ -9,6 +9,9 @@ collections:
   intermediary_deliverables:
     output: true
     permalink: /livrables-intermediaires/:slug
+  jury:
+    output: true
+    permalink: /interne/jury/:slug
   roadmap:
     output: true
     permalink: /:collection/:slug
