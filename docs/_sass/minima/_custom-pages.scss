@@ -157,7 +157,7 @@
     background-color: rgba($brand-color-dark, .8);
     border-top: 0.75em solid var(--defense-grid-color-primary);
     border-radius: 0 0 1em 1em;
-    padding: 0.5em $spacing-unit;
+    padding: 0.25em $spacing-unit * 0.5;
 
     &.malus {
       --defense-grid-color-primary: #{$color-danger};
@@ -194,7 +194,6 @@
       }
     }
     .defense-details {
-      padding: 0 $spacing-unit * 0.5;
       margin-bottom: $spacing-unit * 0.5;
 
       .grid-detail {
@@ -204,7 +203,7 @@
           flex-shrink: 0;
           font-size: larger;
           font-weight: bold;
-          padding: 0.25em 1em 0;
+          padding-top: 0.25em;
           text-align: center;
           width: 3em;
         }
@@ -238,22 +237,45 @@
             }
           }
           .description {
-            padding: 0.25em $spacing-unit * 0.75 0;
+            padding: 0.25em $spacing-unit * 0.25 0;
           }
         }
         .listing {
           border-top: 1px solid var(--defense-grid-color-secondary);
           list-style: none;
           margin-left: 0;
-          padding: 0.75em $spacing-unit 0;
+          padding: 0.75em $spacing-unit * 0.5 0;
 
           &:not(ul) {
-            > div {
+            padding-top: 0.25em;
+
+            .heading {
+              column-gap: 0.5em;
+              display: flex;
+              margin-bottom: 0.75em;
+
+              &.warning {
+                &:before {
+                  content: "⚠️";
+                  user-select: none;
+                }
+              }
+
+              .heading-content {
+                flex-grow: 1;
+                font-style: italic;
+                text-align: center;
+              }
+            }
+            .listing-detail {
+              &:first-child {
+                margin-top: 0.75em;
+              }
+
               border: 1px solid var(--defense-grid-color-secondary);
               column-gap: 0.5em;
               display: flex;
               margin: 0.25em auto 0.75em;
-              width: 75%;
 
               .prefix {
                 @extend %grid-detail-content-prefix;
@@ -266,8 +288,11 @@
           }
 
           > li {
+            column-gap: 0.5em;
+            display: flex;
+
             &:before {
-              content: '- ';
+              content: '-';
             }
             & + li {
               margin-top: 0.5em;
@@ -278,11 +303,50 @@
     }
   }
 
+  @media (min-width: $on-medium) {
+    > article {
+      padding: 0.5em $spacing-unit;
+
+      .defense-details {
+        padding: 0 $spacing-unit * 0.5;
+
+        .listing {
+          padding: 0.75em $spacing-unit * 0.5 0;
+        }
+        .detail-content {
+          .prefix {
+            padding: 0.25em 1em 0;
+          }
+          .description {
+            padding: 0.25em $spacing-unit * 0.75 0;
+          }
+        }
+      }
+    }
+  }
   @media (min-width: $on-large) {
     > article {
       > header {
         h3 {
           width: 75%;
+        }
+      }
+      .defense-details {
+        .grid-detail {
+          .listing {
+            &:not(ul) {
+              .heading {
+                justify-content: center;
+
+                .heading-content {
+                  flex-grow: unset;
+                }
+              }
+              .listing-detail {
+                width: 75%;
+              }
+            }
+          }
         }
       }
     }

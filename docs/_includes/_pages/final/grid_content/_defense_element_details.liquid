@@ -8,10 +8,6 @@
                 <div class="prefix">{{ detail_coefficient }}</div>
             {% endif %}
 
-            {% if detail_element.cumulative %}
-                <div class="prefix badge" title="Ces éléments peuvent se cumuler ensemble !">⚠️</div>
-            {% endif %}
-
             <div class="description">{{ detail_element.description | markdownify }}</div>
         </div>
 
@@ -25,8 +21,14 @@
 
         {% if detail_element.detail %}
             <div class="listing">
+                {% if detail_element.cumulative %}
+                    <div class="heading warning">
+                        <div class="heading-content">Ces éléments sont cumulatifs !</div>
+                    </div>
+                {% endif %}
+
                 {% for detail_item in detail_element.detail %}
-                    <div>
+                    <div class="listing-detail">
                         <div class="prefix">{{ detail_item.value }}</div>
                         <div class="description">
                             {{ detail_item.description | markdownify | replace: "<p>", "" | replace: "</p>", "" }}
