@@ -1,0 +1,39 @@
+{% for detail_element in include.details %}
+    <div class="grid-detail{% if detail_element.malus %} malus{% endif %}">
+        <h4>{{ detail_element.name }}</h4>
+
+        <div class="detail-content">
+            {% assign detail_coefficient = detail_element.coefficient | default: detail_element.max %}
+            {% if detail_coefficient %}
+                <div class="prefix">{{ detail_coefficient }}</div>
+            {% endif %}
+
+            {% if detail_element.cumulative %}
+                <div class="prefix badge" title="Ces éléments peuvent se cumuler ensemble !">⚠️</div>
+            {% endif %}
+
+            <div class="description">{{ detail_element.description | markdownify }}</div>
+        </div>
+
+        {% if detail_element.listing %}
+            <ul class="listing">
+                {% for detail_list_element in detail_element.listing %}
+                    <li>{{ detail_list_element }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        {% if detail_element.detail %}
+            <div class="listing">
+                {% for detail_item in detail_element.detail %}
+                    <div>
+                        <div class="prefix">{{ detail_item.value }}</div>
+                        <div class="description">
+                            {{ detail_item.description | markdownify | replace: "<p>", "" | replace: "</p>", "" }}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+{% endfor %}

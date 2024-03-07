@@ -17,6 +17,8 @@ L'épreuve finale se compose, pour chacun, de deux soutenances orales :
 
 {% include _templates/list/_final_steps.liquid steps=site.data.defense.group_steps %}
 
+-----
+
 ## Passage individuel
 
 {% include _templates/list/_final_steps.liquid steps=site.data.defense.student_steps %}

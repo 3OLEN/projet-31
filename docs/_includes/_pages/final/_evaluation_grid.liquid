@@ -1,0 +1,31 @@
+<div class="defense-grid">
+    {% for defense_element in include.grid %}
+        <article {% if defense_element.malus %}class="malus"{% endif %}>
+            <header>
+                <h3>{{ defense_element.name }}</h3>
+
+                {% assign defense_coefficient = defense_element.coefficient | default: defense_element.max %}
+                {% if defense_coefficient %}
+                    <div class="coefficient">{{ defense_coefficient }}</div>
+                {% endif %}
+            </header>
+            <main>
+                <div class="defense-content">
+                    {% include
+                        _pages/final/grid_content/_defense_element_content.liquid
+                        content=defense_element.content
+                    %}
+                </div>
+
+                {% if include.jury_view or defense_element.malus %}
+                    <div class="defense-details">
+                        {% include
+                                _pages/final/grid_content/_defense_element_details.liquid
+                                details=defense_element.elements
+                        %}
+                    </div>
+                {% endif %}
+            </main>
+        </article>
+    {% endfor %}
+</div>

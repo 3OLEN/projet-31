@@ -1,0 +1,11 @@
+{% for content_element in include.content %}
+    {% if content_element.text %}
+        {{ content_element.text | markdownify }}
+    {% elsif content_element.comment %}
+        {% include _templates/panel/_comment.liquid text=content_element.comment %}
+    {% elsif content_element.danger %}
+        {% include _templates/panel/_danger.liquid text=content_element.danger %}
+    {% elsif content_element.warning %}
+        {% include _templates/panel/_warning.liquid text=content_element.warning %}
+    {% endif %}
+{% endfor %}
