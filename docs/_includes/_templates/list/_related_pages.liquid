@@ -2,6 +2,7 @@
 parameters:
 - pages: list of pages to display
     - type: type of page (collection name or something else)
+    - collection: using all collection pages
     - identifier: identifier of the page (slug for internal pages)
     - title: title for link
     - badge [optional]: a specific badge to display
@@ -21,38 +22,29 @@ parameters:
                 {% assign collection_pages = site.final %}
             {% when "project_help" %}
                 {% assign collection_pages = site.project_helps %}
+            {% when "specifications" %}
+                {% assign collection_pages = site.specifications %}
+            {% when "technical_requests" %}
+                {% assign collection_pages = site.technical_requests %}
             {% when "html_page" %}
                 {% assign page_name = page_date.identifier | append: ".html" %}
                 {% assign related_page = site.html_pages | where: "name", page_name | first %}
         {% endcase %}
-        {% if collection_pages %}
+        {% assign all_collection = page_data.collection | default: false %}
+        {% if collection_pages and all_collection == false %}
             {% assign related_page = collection_pages | where: "slug", page_data.identifier | first %}
         {% endif %}
 
-        <li>
-            {% assign page_badge = page_data.badge | default: page_data.type %}
-            {% if related_page and related_page != empty %}
-                <a
-                    class="related-page-item"
-                    {% if related_page.url %}
-                        href="{{ related_page.url | relative_url }}"
-                    {% else %}
-                        href="{{ related_page }}"
-                    {% endif %}
-                    {% if page_data.blank %}target="_blank"{% endif %}
-                >
-                    <span class="related-page-badge {{ page_badge }}"></span>
-                    <strong class="related-page-title">{{ page_data.title }}</strong>
-                </a>
-            {% else %}
-                <div class="related-page-item">
-                    <div class="related-page-badge {{ page_badge }}"></div>
-                    <div class="related-page-title">
-                        {{ page_data.title }}
-                        <br><em>🚧 La page n'est pas terminée...</em>
-                    </div>
-                </div>
-            {% endif %}
-        </li>
+        {% if all_collection %}
+            {% for collection_page in collection_pages %}
+                {% include
+                    _templates/list/element/_related_page.liquid
+                    page_data=page_date
+                    related_page=collection_page
+                %}
+            {% endfor %}
+        {% else %}
+            {% include _templates/list/element/_related_page.liquid page_data=page_date related_page=related_page %}
+        {% endif %}
     {% endfor %}
 </ul>

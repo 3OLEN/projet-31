@@ -1,0 +1,28 @@
+{% assign page_data = include.page_data %}
+{% assign related_page = include.related_page %}
+
+<li>
+    {% assign page_badge = page_data.badge | default: page_data.type %}
+    {% if related_page and related_page != empty %}
+        <a
+                class="related-page-item"
+                {% if related_page.url %}
+                    href="{{ related_page.url | relative_url }}"
+                {% else %}
+                    href="{{ related_page }}"
+                {% endif %}
+            {% if page_data.blank %}target="_blank"{% endif %}
+        >
+            <span class="related-page-badge {{ page_badge }}"></span>
+            <strong class="related-page-title">{{ page_data.title | default: related_page.title }}</strong>
+        </a>
+    {% else %}
+        <div class="related-page-item">
+            <div class="related-page-badge {{ page_badge }}"></div>
+            <div class="related-page-title">
+                {{ page_data.title }}
+                <br><em>🚧 La page n'est pas terminée...</em>
+            </div>
+        </div>
+    {% endif %}
+</li>

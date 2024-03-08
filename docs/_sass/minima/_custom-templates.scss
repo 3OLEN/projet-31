@@ -252,6 +252,16 @@
               content: "📚️";
             }
           }
+          &.specifications {
+            &::before {
+              content: "📑";
+            }
+          }
+          &.technical_requests {
+            &::before {
+              content: "📋️";
+            }
+          }
         }
         &title {
           align-self: center;
