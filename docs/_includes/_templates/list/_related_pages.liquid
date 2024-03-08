@@ -18,6 +18,8 @@ parameters:
                 {% assign collection_pages = site.intermediary_deliverables %}
             {% when "external_link" %}
                 {% assign related_page = page_data.identifier %}
+            {% when "jury" %}
+                {% assign collection_pages = site.jury %}
             {% when "final" %}
                 {% assign collection_pages = site.final %}
             {% when "project_help" %}

@@ -227,6 +227,16 @@
               content: "📝";
             }
           }
+          &.calendar {
+            &::before {
+              content: "📆";
+            }
+          }
+          &.evaluation {
+            &::before {
+              content: "📊";
+            }
+          }
           &.external_link {
             &::before {
               content: "🔗";

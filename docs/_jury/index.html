@@ -1,0 +1,98 @@
+---
+layout: page
+title: Évaluation finale
+permalink: /interne/jury
+
+specification_comment: Prenez connaissance des trois types (DEV / INFRA / Projet) afin d'avoir ces éléments en tête.
+complementary_comment: Si vous vous ennuyez, vous pouvez prendre connaissance de ces éléments.
+
+planning_pages:
+- type: jury
+  identifier: planning
+  title: Planification de la journée d'examen et ordres de passage.
+  badge: calendar
+- type: jury
+  identifier: organisation
+  title: Ordonnancement de la soutenance de projet.
+  badge: calendar
+evaluation_pages:
+- type: jury
+  identifier: evaluation
+  title: Grille de notation complète.
+  badge: evaluation
+technical_request_pages:
+- type: technical_requests
+  collection: true
+complementary_pages:
+- type: final
+  identifier: index
+  title: Page d'évaluation pour les étudiants.
+- type: specifications
+  collection: true
+---
+
+<div class="introduce">
+    <p>
+        Bienvenue aux soutenances du Projet-31 « Bibli'OLEN » des 3OLEN 2023-2024, surnommés les « Lumos Camminus » (le
+        chemin éclairé).
+    </p>
+    <p>
+        Cette année, nous avons décidé avec Magali de mettre l'accent sur un aspect très "professionnel" concernant le
+        déroulé et la notation des projets transverses. Nous voulons que nos futur·e·s (peut-être) titulaires de bachelor
+        valident une attitude digne d'un·e professionnel·le, autant dans la tenue, dans l'expression que dans la qualité des
+        livrables.
+    </p>
+    <p>
+        Ayant toujours en tête que vous êtes en train de réaliser l'évaluation de professionnel·le·s ; la note attribuée
+        conviendrait-elle à l'un·e de vos collègues/prestataires de votre quotidien ?
+    </p>
+    <p>
+        N'ayez pas peur d'être ferme et d'attribuer aussi bien des cartons abominables (0) que des notes "top level" (20).
+        L'objectif est de pouvoir leur faire des retours pour éliminer les aspects indésirables, éliminatoires,
+        anti-professionnels et les aider à s'améliorer au maximum, notamment pour sublimer leur oral professionnel de fin
+        d'études.
+    </p>
+    <p>
+        Vous avez accès à toutes les ressources du Projet-31, accessibles sur cet hébergement "GitHub pages". Cette page est
+        votre point d'entrée en tant que jury, donc conservez bien l'URL pour accéder aux éléments spécifiques aux jurys.
+    </p>
+    <p>
+        C'est beaucoup de lecture, j'en suis conscient, profitez d'un moment aux toilettes ou dans les transports en commun
+        😆 ou lisez les informations principales en diagonale (comme on le fait toutes et tous pour les mémoires 5OLEN 😜).
+    </p>
+    <p>
+        Vous trouverez sur cette page les liens vers les pages importantes, mais libre à vous d'en lire davantage si le 💙
+        vous en dit !
+    </p>
+    <p>Merci et j'espère que vous apprécierez cette expérience !</p>
+    <p>🖖🏻 <strong>Billy VILLENA</strong>, with 🍆</p>
+</div>
+
+<hr>
+
+{% assign final_assessment_date = site.data.dates.project_sessions
+        | where_exp: "session", "session.type == 'final'"
+        | first
+%}
+<h2>
+    📆 Planning de la journée du
+    {{ final_assessment_date.date.day | downcase }}
+    {{ final_assessment_date.date.value | date: "%d" }}
+    {{ final_assessment_date.date.month }}
+</h2>
+{% include _templates/list/_related_pages.liquid pages=page.planning_pages %}
+
+<hr>
+
+<h2>📊 Éléments de notation</h2>
+{% include _templates/list/_related_pages.liquid pages=page.evaluation_pages %}
+
+<h2>📜 Contraintes projet imposées</h2>
+{% include _templates/panel/_comment.liquid text=page.specification_comment %}
+
+{% include _templates/list/_related_pages.liquid pages=page.technical_request_pages %}
+
+<hr>
+
+<h2>📖 Éléments complémentaires</h2>
+{% include _templates/list/_related_pages.liquid pages=page.complementary_pages %}

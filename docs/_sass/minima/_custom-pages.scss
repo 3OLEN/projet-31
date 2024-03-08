@@ -352,6 +352,30 @@
     }
   }
 }
+// Jury
+// ====
+.introduce {
+  background-color: rgba($brand-color, 0.25);
+  border: 2px solid $border-color-01;
+  margin: 0.25em;
+  padding: 0.25em $spacing-unit * 0.5;
+
+  > p {
+    &:first-letter {
+      color: $color-primary;
+      font-size: larger;
+      font-weight: bold;
+    }
+    &:last-of-type {
+      text-align: right;
+    }
+  }
+
+  @media screen and (min-width: $on-medium) {
+    margin: 0.5em 0;
+    padding: 0.5em $spacing-unit;
+  }
+}
 // Planning
 // ========
 table {
