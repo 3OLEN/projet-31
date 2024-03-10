@@ -5,7 +5,7 @@
                 <div class="name">{{ step.name }}</div>
             </header>
             <main>
-                <div class="sub-header">{{ step.duration | date: "%M min" }}</div>
+                <div class="sub-header">{{ step.duration | floor | append: " min" }}</div>
 
                 {{ step.description | markdownify }}
 
