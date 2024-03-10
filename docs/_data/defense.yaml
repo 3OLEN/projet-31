@@ -1,13 +1,9 @@
 _parameters:
   _durations:
-    _5mn: &duration_5mn
-      duration: "00:05"
-    _10mn: &duration_10mn
-      duration: "00:10"
-    _15mn: &duration_15mn
-      duration: "00:15"
-    _20mn: &duration_20mn
-      duration: "00:20"
+    - &duration_5mn "00:05"
+    - &duration_10mn "00:10"
+    - &duration_15mn "00:15"
+    - &duration_20mn "00:20"
   _groups:
     _dev: &dev_group
       group: Dev
@@ -23,19 +19,19 @@ _parameters:
       name: Installation
       description: Le groupe ou l'étudiant·e installe le matériel requis pour faire la présentation et la démonstration.
       warning: "On ne modifie pas le matériel en cours de présentation : on ne fait aucun changement de PC."
-      <<: *duration_5mn
+      duration: *duration_5mn
     _remarques_jury: &step_remarques_jury
       name: Remarques du Jury
       description: |
         Le jury fait part de ses points d'attention et conseils concernant la présentation et l'aspect professionnel de
         la soutenance orale et de·s étudiant·e·s concerné·e·s.
-      <<: *duration_5mn
+      duration: *duration_5mn
     _harmonisation_jury: &step_harmonisation_jury
       name: Harmonisation du Jury
       description: | 
         Le jury délibère sur la soutenance afin de se mettre d'accord sur l'évaluation et d'être cohérent vis-à-vis des
         autres étudiants.
-      <<: *duration_5mn
+      duration: *duration_5mn
   _time_values:
     - &day_begin_at "08:10"
     - &jury_begin_at "08:30"
@@ -97,7 +93,7 @@ jury_list:
 group_steps:
   - <<: *step_installation
   - name: Oral groupe
-    <<: *duration_20mn
+    duration: *duration_20mn
     content:
       - name: Présentation du groupe
         description: |
@@ -141,7 +137,7 @@ group_steps:
 student_steps:
   - <<: *step_installation
   - name: Oral individuel
-    <<: *duration_15mn
+    duration: *duration_15mn
     content:
       - name: Contexte projet
         description: Rappelez votre rôle au sein du projet et les objectifs couverts par votre contribution.
@@ -166,7 +162,7 @@ student_steps:
     description: |
       Le jury vous posera des questions sur le projet, sur votre contribution, sur vos connaissances techniques et sur
       votre approche face à des problématiques auxquelles vous n'avez peut-être pas pensé.
-    <<: *duration_10mn
+    duration: *duration_10mn
   - <<: *step_remarques_jury
 
 time_slots:
@@ -193,11 +189,11 @@ time_slots:
       - <<: *step_harmonisation_jury
     groups:
       - name: Les Apprenants Lents
-      - name: SAVE
+      - name: Save
       - name: CodeFusion
 
   - name: Pause
-    <<: *duration_15mn
+    duration: *duration_15mn
 
   - name: 2nds passages
     steps:

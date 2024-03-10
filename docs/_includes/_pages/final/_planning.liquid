@@ -1,0 +1,359 @@
+{% assign cell_count = site.data.defense.jury_list | size | times: 2 %}
+<table class="final-planning">
+    <thead>
+    <tr>
+        <th rowspan="2">Heure</th>
+        {% for jury in site.data.defense.jury_list %}
+            <th colspan="2">{{ jury.name }}</th>
+        {% endfor %}
+        <th rowspan="2">Durée</th>
+    </tr>
+    <tr>
+        {% for jury in site.data.defense.jury_list %}
+            <th>DEV</th>
+            <th>INFRA</th>
+        {% endfor %}
+    </tr>
+    </thead>
+    <tbody>
+    {% comment %} <!-- Group max count --> {% endcomment %}
+    {% assign group_max_count = 0 %}
+    {% for time_slot_for_group in site.data.defense.time_slots %}
+        {% if time_slot_for_groupe.groups == empty %}
+            {% continue %}
+        {% endif %}
+
+        {% assign group_size = time_slot_for_group.groups | size %}
+        {% if group_size > group_max_count %}
+            {% assign group_max_count = group_size %}
+        {% endif %}
+    {% endfor %}
+
+    {% for time_slot in site.data.defense.time_slots %}
+        {% comment %} <!-- Filtering --> {% endcomment %}
+        {% if time_slot.scope and time_slot.scope != include.scope %}
+            {% continue %}
+        {% endif %}
+
+        {% comment %} <!-- Student max count --> {% endcomment %}
+        {% assign student_max_count = 0 %}
+        {% if time_slot.groups %}
+            {% for slot_group in time_slot.groups %}
+                {% assign team = site.data.students.teams | where_exp: "team", "team.name == slot_group.name" | first %}
+                {% assign team_dev_count = 0 %}
+                {% assign team_ops_count = 0 %}
+                {% for team_member in team.members %}
+                    {% assign student = site.data.students.roster
+                        | where_exp: "student", "student.name == team_member.name"
+                        | first
+                    %}
+                    {% if student.group == site.data.students._templating._groups._dev.group %}
+                        {% assign team_dev_count = team_dev_count | plus: 1 %}
+                    {% elsif student.group == site.data.students._templating._groups._ops.group %}
+                        {% assign team_ops_count = team_ops_count | plus: 1 %}
+                    {% endif %}
+                {% endfor %}
+
+                {% if team_dev_count > team_ops_count %}
+                    {% assign group_member_count = team_dev_count %}
+                {% else %}
+                    {% assign group_member_count = team_ops_count %}
+                {% endif %}
+                {% if group_member_count > student_max_count %}
+                    {% assign student_max_count = group_member_count %}
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+
+        {% comment %} <!-- Step max count --> {% endcomment %}
+        {% assign step_max_count = 0 %}
+        {% if time_slot.groups %}
+
+            {% for passage_step in time_slot.steps %}
+                {% if passage_step.internal_ref contains 'student' %}
+                    {% for i in (1..student_max_count) %}
+                        {% comment %} <!-- Student name --> {% endcomment %}
+                        {% assign step_max_count = step_max_count | plus: 1 %}
+                        {% comment %} <!-- Student steps --> {% endcomment %}
+                        {% assign ref_step_count = site.data.defense[passage_step.internal_ref] | size %}
+                        {% assign step_max_count = step_max_count | plus: ref_step_count %}
+                    {% endfor %}
+                {% elsif passage_step.internal_ref %}
+                    {% comment %} <!-- Groupe name --> {% endcomment %}
+                    {% assign step_max_count = step_max_count | plus: 1 %}
+                    {% comment %} <!-- Groups steps --> {% endcomment %}
+                    {% assign ref_step_count = site.data.defense[passage_step.internal_ref] | size %}
+                    {% assign step_max_count = step_max_count | plus: ref_step_count %}
+                {% else %}
+                    {% comment %} <!-- Single step name --> {% endcomment %}
+                    {% assign step_max_count = step_max_count | plus: 1 %}
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            {% assign step_max_count = 1 %}
+        {% endif %}
+
+        {% comment %} <!-- Starting time + duration --> {% endcomment %}
+        {% assign starting_time = time_slot.begin_at | default: ending_time | default: starting_time %}
+        {% if time_slot.end_at %}
+            {% assign ending_time = time_slot.end_at %}
+        {% else %}
+            {% assign ending_time = starting_time | plus: time_slot.duration %}
+        {% endif %}
+
+        {% if time_slot.groups %}
+            {% assign duration = 0 %}
+            {% for passage_step in time_slot.steps %}
+                {% if passage_step.duration %}
+                    {% assign duration = duration | plus: passage_step.duration %}
+                    {% continue %}
+                {% endif %}
+
+                {% if passage_step.internal_ref contains 'student' %}
+                    {% for i in (1..student_max_count) %}
+                        {% for ref_step in site.data.defense[passage_step.internal_ref] %}
+                            {% assign duration = duration | plus: ref_step.duration %}
+                        {% endfor %}
+                    {% endfor %}
+                {% else %}
+                    {% for ref_step in site.data.defense[passage_step.internal_ref] %}
+                        {% assign duration = duration | plus: ref_step.duration %}
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+
+            {% assign ending_time = starting_time | plus: duration %}
+        {% else %}
+            {% assign duration = ending_time | minus: starting_time %}
+        {% endif %}
+
+        {% comment %} <!-- Time slot --> {% endcomment %}
+        <tr>
+            <th class="time-slot" rowspan="{{ step_max_count }}">
+                <div class="time-start">
+                    {% include _templates/text/_hour_minute.liquid time=starting_time %}
+                </div>
+                {% if duration > 0 %}
+                    <div class="time-end">
+                        {% include _templates/text/_hour_minute.liquid time=ending_time %}
+                    </div>
+                {% endif %}
+            </th>
+
+            {% if time_slot.groups %}
+                {% for slot_group in time_slot.groups %}
+                    <td class="group-name" colspan="2">{{ slot_group.name }}</td>
+                {% endfor %}
+
+                {% comment %} <!-- Empty space because less groups --> {% endcomment %}
+                {% assign group_size = time_slot.groups | size %}
+                {% if group_size < group_max_count %}
+                    {% assign missing_group_count = group_max_count | minus: group_size %}
+                    {% for i in (1..missing_group_count) %}
+                        <td class="group-empty" colspan="2" rowspan="{{ step_max_count }}"></td>
+                    {% endfor %}
+                {% endif %}
+            {% else %}
+                {% assign slot_duration_coef = duration | divided_by: 5 | floor %}
+                <td class="duration-coef-{{ slot_duration_coef }}" colspan="{{ cell_count }}">{{ time_slot.name }}</td>
+            {% endif %}
+
+            <td class="duration" rowspan="{{ step_max_count }}">
+                {% assign duration_hour = duration | divided_by: 60 | floor %}
+                {% assign duration_minute = duration | modulo: 60 | floor %}
+
+                {% if duration_hour > 0 %}
+                    {{ duration_hour }}h{{ duration_minute }}
+                {% elsif duration_minute > 0 %}
+                    {{ duration_minute }} min
+                {% endif %}
+            </td>
+        </tr>
+
+        {% if time_slot.groups %}
+            {% for passage_step in time_slot.steps %}
+                {% if passage_step.internal_ref %}
+                    {% if passage_step.internal_ref contains 'student' %}
+                        {% for i in (1..student_max_count) %}
+                            <tr>
+                                {% assign student_count_by_spe_per_groups = "" %}
+                                {% assign group_separator = ";" %}
+                                {% assign student_separator = "," %}
+                                {% assign student_count_separator = ":" %}
+
+                                {% for slot_group in time_slot.groups %}
+                                    {% assign related_team = site.data.students.teams
+                                            | where_exp: "team", "team.name == slot_group.name"
+                                            | first
+                                    %}
+
+                                    {% assign dev_group_students = "" %}
+                                    {% assign ops_group_students = "" %}
+                                    {% for team_student in related_team.members %}
+                                        {% comment %} <!-- Get related student in the expected order --> {% endcomment %}
+                                        {% assign related_student = site.data.students.roster
+                                                | where_exp: "student", "student.name == team_student.name"
+                                                | first
+                                        %}
+
+                                        {% if related_student.group == site.data.students._templating._groups._dev.group %}
+                                            {% if team_student.lead %}
+                                                {% if dev_group_students == "" %}
+                                                    {% assign dev_group_students = team_student.name %}
+                                                {% else %}
+                                                    {% assign dev_group_students = dev_group_students
+                                                            | prepend: student_separator
+                                                            | prepend: team_student.name
+                                                    %}
+                                                {% endif %}
+
+                                                {% continue %}
+                                            {% endif %}
+
+                                            {% unless dev_group_students == "" %}
+                                                {% assign dev_group_students = dev_group_students
+                                                        | append: student_separator
+                                                %}
+                                            {% endunless %}
+                                            {% assign dev_group_students = dev_group_students
+                                                    | append: team_student.name
+                                            %}
+                                        {% endif %}
+
+                                        {% if related_student.group == site.data.students._templating._groups._ops.group %}
+                                            {% if team_student.lead %}
+                                                {% if ops_group_students == "" %}
+                                                    {% assign ops_group_students = team_student.name %}
+                                                {% else %}
+                                                    {% assign ops_group_students = ops_group_students
+                                                            | prepend: student_separator
+                                                            | prepend: team_student.name
+                                                    %}
+                                                {% endif %}
+
+                                                {% continue %}
+                                            {% endif %}
+
+                                            {% unless ops_group_students == "" %}
+                                                {% assign ops_group_students = ops_group_students
+                                                        | append: student_separator
+                                                %}
+                                            {% endunless %}
+                                            {% assign ops_group_students = ops_group_students
+                                                    | append: team_student.name
+                                            %}
+                                        {% endif %}
+                                    {% endfor %}
+
+                                    {% assign array_dev_group_students = dev_group_students
+                                            | split: student_separator
+                                    %}
+                                    {% assign array_ops_group_students = ops_group_students
+                                            | split: student_separator
+                                    %}
+
+                                    {% assign array_index = i | minus: 1 %}
+                                    {% assign dev_group_student_i = array_dev_group_students[array_index] %}
+                                    {% assign ops_group_student_i = array_ops_group_students[array_index] %}
+
+                                    {% comment %} <!-- Display student names --> {% endcomment %}
+                                    {% assign student_step_count = site.data.defense[passage_step.internal_ref]
+                                            | size
+                                            | plus: 1
+                                    %}
+                                    {% if dev_group_student_i %}
+                                        <td class="student-name">
+                                            <div>
+                                                <div class="name">{{ dev_group_student_i }}</div>
+                                                <div class="badge dev">DEV</div>
+                                            </div>
+                                        </td>
+                                    {% else %}
+                                        <td class="group-empty" rowspan="{{ student_step_count }}"></td>
+                                    {% endif %}
+                                    {% if ops_group_student_i %}
+                                        <td class="student-name">
+                                            <div>
+                                                <div class="name">{{ ops_group_student_i }}</div>
+                                                <div class="badge infra">INFRA</div>
+                                            </div>
+                                        </td>
+                                    {% else %}
+                                        <td class="group-empty" rowspan="{{ student_step_count }}"></td>
+                                    {% endif %}
+
+                                    {% comment %} <!-- Add to group --> {% endcomment %}
+                                    {% assign dev_student_count = array_dev_group_students | size %}
+                                    {% assign ops_student_count = array_ops_group_students | size %}
+                                    {% assign student_count_group_data = slot_group.name
+                                            | append: student_count_separator
+                                            | append: dev_student_count
+                                            | append: student_count_separator
+                                            | append: ops_student_count
+                                    %}
+                                    {% if student_count_by_spe_per_groups == "" %}
+                                        {% assign student_count_by_spe_per_groups = student_count_group_data %}
+                                    {% else %}
+                                        {% assign student_count_by_spe_per_groups = student_count_by_spe_per_groups
+                                                | append: group_separator
+                                                | append: student_count_group_data
+                                        %}
+                                    {% endif %}
+                                {% endfor %}
+                            </tr>
+
+                            {% assign array_student_count_by_spe_per_groups = student_count_by_spe_per_groups
+                                    | split: group_separator
+                            %}
+                            {% for ref_step in site.data.defense[passage_step.internal_ref] %}
+                                {% assign step_duration_coef = ref_step.duration | divided_by: 5 | floor %}
+
+                                <tr>
+                                    {% for slot_group in time_slot.groups %}
+                                        {% comment %} <!-- Get group data --> {% endcomment %}
+                                        {% assign this_group_student_counts = array_student_count_by_spe_per_groups
+                                                | where_exp: "group_data", "group_data contains slot_group.name"
+                                                | first
+                                                | split: student_count_separator
+                                        %}
+                                        {% assign dev_group_count = this_group_student_counts[1] | plus: 0 %}
+                                        {% assign ops_group_count = this_group_student_counts[2] | plus: 0 %}
+
+                                        {% if i <= dev_group_count %}
+                                            <td class="duration-coef-{{ step_duration_coef }}">{{ ref_step.name }}</td>
+                                        {% endif %}
+
+                                        {% if i <= ops_group_count %}
+                                            <td class="duration-coef-{{ step_duration_coef }}">{{ ref_step.name }}</td>
+                                        {% endif %}
+                                    {% endfor %}
+                                </tr>
+                            {% endfor %}
+                        {% endfor %}
+                    {% elsif passage_step.internal_ref contains 'group' %}
+                        {% for ref_step in site.data.defense[passage_step.internal_ref] %}
+                            {% assign step_duration_coef = ref_step.duration | divided_by: 5 | floor %}
+
+                            <tr>
+                                {% for slot_group in time_slot.groups %}
+                                    <td class="duration-coef-{{ step_duration_coef }}" colspan="2">
+                                        {{ ref_step.name }}
+                                    </td>
+                                {% endfor %}
+                            </tr>
+                        {% endfor %}
+                    {% endif %}
+                {% else %}
+                    {% assign step_duration_coef = passage_step.duration | divided_by: 5 | floor %}
+
+                    <tr>
+                        <td class="duration-coef-{{ step_duration_coef }}" colspan="{{ cell_count }}">
+                            {{ passage_step.name }}
+                        </td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    {% endfor %}
+    </tbody>
+</table>

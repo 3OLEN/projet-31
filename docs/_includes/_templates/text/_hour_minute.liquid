@@ -1,0 +1,10 @@
+{% assign time_hour = include.time | divided_by: 60 | floor %}
+{% if time_hour < 10 %}
+    {% assign time_hour = time_hour | prepend: "0" %}
+{% endif %}
+{% assign time_minute = include.time | modulo: 60 | floor %}
+{% if time_minute < 10 %}
+    {% assign time_minute = time_minute | prepend: "0" %}
+{% endif %}
+
+<span>{{ time_hour }}:{{ time_minute }}</span>

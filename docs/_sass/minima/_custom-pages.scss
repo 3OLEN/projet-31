@@ -441,6 +441,66 @@ table {
     }
   }
 }
+// Planning soutenance
+// ===================
+.final-planning {
+  text-align: center;
+
+  .time-slot {
+    position: relative;
+
+    .time-start {
+      position: absolute;
+      top: 0;
+    }
+    .time-end {
+      bottom: 0;
+      position: absolute;
+    }
+  }
+  .group-name {
+    font-weight: 700;
+  }
+  .student-name {
+    padding-left: 0;
+    padding-right: 0;
+
+    > div {
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      row-gap: 0.5em;
+
+      .name {
+        font-weight: 700;
+      }
+      .badge {
+        @include text-black;
+        border-radius: 1em;
+        font-size: smaller;
+        padding: 0.15em 0.5em;
+        width: fit-content;
+
+        &.dev {
+          background-color: $color-dev;
+        }
+
+        &.infra {
+          background-color: $color-infra;
+        }
+      }
+    }
+  }
+  .group-empty {
+    background-color: $background-color;
+  }
+
+  @for $coef from 2 through 20 {
+    .duration-coef-#{$coef} {
+      height: 1.5em * $coef;
+    }
+  }
+}
 
 // Collections
 // ===========
