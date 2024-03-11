@@ -14,7 +14,7 @@ groupe permettra au jury d'avoir une première impression sur votre travail d'é
 ## Oral de groupe
 
 {% assign group_oral_step = site.data.defense.group_steps | where_exp: "step", "step.name == 'Oral groupe'" | first %}
-{% assign group_oral_duration = group_oral_step.duration | date: "%M minutes" %}
+{% assign group_oral_duration = group_oral_step.duration | floor | append: " min" %}
 {% assign group_comment = "**Rappel** : L'oral de groupe dure "
     | append: group_oral_duration
     | append: " (avec la démonstration)."
@@ -32,12 +32,12 @@ groupe permettra au jury d'avoir une première impression sur votre travail d'é
     | where_exp: "step", "step.name == 'Oral individuel'"
     | first
 %}
-{% assign student_oral_duration = student_oral_step.duration | date: "%M minutes" %}
+{% assign student_oral_duration = student_oral_step.duration | floor | append: " min" %}
 {% assign student_interview_step = site.data.defense.student_steps
     | where_exp: "step", "step.name == 'Entretien'"
     | first
 %}
-{% assign student_interview_duration = student_interview_step.duration | date: "%M minutes" %}
+{% assign student_interview_duration = student_interview_step.duration | floor | append: " min" %}
 
 {% assign student_comment = "**Rappel** : L'oral individuel dure "
     | append: student_oral_duration
