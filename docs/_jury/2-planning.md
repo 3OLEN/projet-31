@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: linked_pages/jury
 title: Planning
 slug: planning
 
