@@ -1,0 +1,40 @@
+{% assign current_page = page.url %}
+{% assign previous_page = nil %}
+{% assign next_page = nil %}
+{% assign has_reached_current = false %}
+{% for linked_collection_page in include.collection_pages %}
+    {% if linked_collection_page.url == current_page %}
+        {% assign has_reached_current = true %}
+        {% continue %}
+    {% endif %}
+    {% if linked_collection_page.id == main.id %}
+        {% continue %}
+    {% endif %}
+
+    {% if has_reached_current == false %}
+        {% assign previous_page = linked_collection_page %}
+    {% else %}
+        {% assign next_page = linked_collection_page %}
+        {% break %}
+    {% endif %}
+{% endfor %}
+
+<nav class="collection-nav">
+    <div class="previous">
+        {% if previous_page %}
+            <a href="{{ previous_page.url | relative_url }}">{{ previous_page.title }}</a>
+        {% endif %}
+    </div>
+
+    <div class="main">
+        {% if main %}
+            <a href="{{ main.url | relative_url }}" title="Retourner à la page principale">{{ main.title }}</a>
+        {% endif %}
+    </div>
+
+    <div class="next">
+        {% if next_page %}
+            <a href="{{ next_page.url | relative_url }}">{{ next_page.title }}</a>
+        {% endif %}
+    </div>
+</nav>

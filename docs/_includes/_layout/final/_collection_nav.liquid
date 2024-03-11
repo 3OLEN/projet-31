@@ -1,0 +1,2 @@
+{% assign main = site.final | where: "slug", "index" | first %}
+{% include _layout/linked_page/_collection_nav.liquid collection_pages=site.final main=main %}

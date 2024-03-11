@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: linked_pages/final
 title: Organisation
 slug: organisation
 
