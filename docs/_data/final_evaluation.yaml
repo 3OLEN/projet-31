@@ -105,46 +105,45 @@ _templates:
         description: |
           L'oral est structuré, organisé et suit un fil conducteur. Les transitions entre les différentes parties sont
           fluides et les éléments sont bien enchaînés.
-  _oral_malus: &_oral_malus
-    name: Minorations
-    malus: true
-    content:
-      - danger: Le non-respect de ces éléments entraînera des malus sur la note de l'oral.
-    elements:
-      - name: Fautes
-        description: |
-          Relisez et faites relire votre support ; une seule faute attire l'œil et vous fait perdre l'attention de votre
-          auditoire. Toute la dynamique de l'oral s'interrompt d'un seul coup et on ne retient plus que les fautes.
-        max: -2
-      - name: Dépassement du temps
-        description: |
-          Dès lors que vous dépassez le temps défini, le jury doit vous avertir. Vous avez alors une minute pour
-          conclure. Si vous dépassez cette minute supplémentaire, le malus sera plus important.
-        detail:
-          - value: -1
-            description: Vous avez dépassé le temps défini.
-          - value: -2
-            description: Vous avez dépassé le temps défini **ainsi que** la minute accordée à la conclusion.
-      - name: Respect du temps
-        description: |
-          Vous devez respecter la durée de la présentation et ne pas faire un temps trop inférieur. Vous bénéficiez
-          d'une marge de 10% : 1 minute pour 10 minutes, 1 minute 30 pour 15 minutes, 2 minutes pour 20 minutes, etc.
-        max: -1
-      - name: Lecture des notes
-        description: |
-          Vous faites face à un jury, pas à une feuille de notes (exception pour la feuille de récapitulatif et des
-          instructions pour la démonstration) ou à du texte sur diapositive ; vous maîtrisez votre sujet et êtes
-          capable de le retranscrire avec des mots-clefs ou des rappels, seulement.
-        cumulative: true
-        detail:
-          - value: -1
-            description: Vous lisez vos notes.
-          - value: -1
-            description: Vous lisez du texte sur diapositive.
-      - name: Tenue vestimentaire
-        description: |
-          Votre tenue vestimentaire doit être soignée : vous êtes des professionnels face à des clients.
-        max: -4
+  _oral_malus_content_fautes: &_oral_malus_content_fautes
+    name: Fautes
+    description: |
+      Relisez et faites relire votre support ; une seule faute attire l'œil et vous fait perdre l'attention de votre
+      auditoire. Toute la dynamique de l'oral s'interrompt d'un seul coup et on ne retient plus que les fautes.
+    max: -2
+  _oral_malus_content_limite_temps: &_oral_malus_content_limite_temps
+    name: Dépassement du temps
+    description: |
+      Dès lors que vous dépassez le temps défini, le jury doit vous avertir. Vous avez alors une minute pour
+      conclure. Si vous dépassez cette minute supplémentaire, le malus sera plus important.
+    detail:
+    - value: -1
+      description: Vous avez dépassé le temps défini.
+    - value: -2
+      description: Vous avez dépassé le temps défini **ainsi que** la minute accordée à la conclusion.
+  _oral_malus_content_respect_temps: &_oral_malus_content_respect_temps
+    name: Respect du temps
+    description: |
+      Vous devez respecter la durée de la présentation et ne pas faire un temps trop inférieur. Vous bénéficiez
+      d'une marge de 10% : 1 minute pour 10 minutes, 1 minute 30 pour 15 minutes, 2 minutes pour 20 minutes, etc.
+    max: -1
+  _oral_malus_content_notes: &_oral_malus_content_notes
+    name: Lecture des notes
+    description: |
+      Vous faites face à un jury, pas à une feuille de notes (exception pour la feuille de récapitulatif et des
+      instructions pour la démonstration) ou à du texte sur diapositive ; vous maîtrisez votre sujet et êtes
+      capable de le retranscrire avec des mots-clefs ou des rappels, seulement.
+    cumulative: true
+    detail:
+    - value: -1
+      description: Vous lisez vos notes.
+    - value: -1
+      description: Vous lisez du texte sur diapositive.
+  _oral_malus_content_tenue: &_oral_malus_content_tenue
+    name: Tenue vestimentaire
+    description: |
+      Votre tenue vestimentaire doit être soignée : vous êtes des professionnels face à des clients.
+    max: -4
   _remarques_jury: &_remarques_jury
     name: Remarques Jury
     content:
@@ -159,7 +158,17 @@ _templates:
 group_defense:
   - <<: *_step_support_quality
   - <<: *_oral_presentation
-  - <<: *_oral_malus
+  - name: Minorations
+    malus: true
+    content:
+    - danger: Le non-respect de ces éléments entraînera des malus sur la note de l'oral.
+    elements:
+    - <<: *_oral_malus_content_fautes
+    - <<: *_oral_malus_content_limite_temps
+    - <<: *_oral_malus_content_respect_temps
+    - <<: *_oral_malus_content_notes
+    - <<: *_oral_malus_content_tenue
+      max: -2
   - name: Description du projet
     coefficient: 2
     content:
@@ -270,7 +279,16 @@ group_defense:
 student_defense:
   - <<: *_step_support_quality
   - <<: *_oral_presentation
-  - <<: *_oral_malus
+  - name: Minorations
+    malus: true
+    content:
+    - danger: Le non-respect de ces éléments entraînera des malus sur la note de l'oral.
+    elements:
+    - <<: *_oral_malus_content_fautes
+    - <<: *_oral_malus_content_limite_temps
+    - <<: *_oral_malus_content_respect_temps
+    - <<: *_oral_malus_content_notes
+    - <<: *_oral_malus_content_tenue
   - name: Rappel du projet
     malus: true
     content:
