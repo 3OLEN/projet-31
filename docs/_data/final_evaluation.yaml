@@ -226,7 +226,9 @@ group_defense:
       - text: |
           L'objectif est de montrer à votre client l'utilisation de votre produit. Le détail sera abordé au cours des
           entretiens individuels, notamment pour l'infrastructure et son exploitation.
-      - danger: La démonstration se fait sur l'environnement de production et certainement pas en **local** !
+      - danger: |
+          La démonstration se fait sur l'environnement de production (ou un environnement de secours) et certainement
+          pas en **local** !
       - comment: |
           Vous êtes face à votre client qui va devoir prendre une décision si c'est votre solution ou celle de vos
           concurrents qui est retenue. Les moindres erreurs et maladresses (les imprécisions, les fautes, le hors-sujet)
@@ -340,6 +342,7 @@ student_defense:
           Les INFRA n'auront pas eu l'occasion de montrer ce qu'ils ont fait lors de la démonstration de groupe, c'est
           l'occasion de le faire. Cela signifie que les DEV n'auront peut-être pas besoin d'autant de temps de
           démonstration que leurs camarades en INFRA.
+      - comment: Cette démonstration peut se faire en local. C'est peut-être le plus sûr...
     elements:
       - name: Notation
         description: La notation de la partie « Entretien » prend en charge ce qui est présenté dans la démonstration.
