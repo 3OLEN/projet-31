@@ -32,30 +32,41 @@ _parameters:
         Le jury délibère sur la soutenance afin de se mettre d'accord sur l'évaluation et d'être cohérent vis-à-vis des
         autres étudiants.
       duration: *duration_5mn
+      room: 210
   _time_values:
     - &day_begin_at "08:10"
     - &jury_begin_at "08:30"
     - &defense_begin_at "09:00"
-    - &lunch_end_at "14:10"
+    - &lunch_end_at "14:05"
 
 jury_members:
   - name: &jury_palluin Philippe ALLUIN
     <<: *dev_group
-  - name: &jury_aaubert Alexis AUBERT
+  - name: &jury_qandre Quentin ANDRE
+    <<: *ops_group
+  - name: &jury_aaubert Alexy AUBERT
     <<: *ops_group
   - name: &jury_kbourki Karim BOURKI
     <<: *ops_group
+  - name: &jury_ybritti Yohan BRITTI
+    <<: *ops_group
+  - name: &jury_vcoquard Valentin COQUARD
+    <<: *ops_group
   - name: &jury_ddeyrieux Daniel DEYRIEUX
     <<: *ops_group
-  - name: &jury_shuguet Sébastien HUGUET
-    <<: *dev_group
   - name: &jury_lgilot Luc GILOT
+    <<: *dev_group
+  - name: &jury_rgrenier Remy GRENIER
+    <<: *ops_group
+  - name: &jury_shuguet Sébastien HUGUET
     <<: *dev_group
   - name: &jury_glegendre Guillaume LEGENDRE
     <<: *ops_group
   - name: &jury_pmalinge Philippe MALINGE
     <<: *ops_group
-  - name: &jury_trobert Thery ROBERT
+  - name: &jury_amonschein Alexandre MONSCHEIN
+    <<: *dev_group
+  - name: &jury_trobert Théry ROBERT
     <<: *dev_group
   - name: &jury_bvillena Billy VILLENA
     <<: *dev_group
@@ -64,31 +75,71 @@ jury_list:
   - name: Jury 1
     lead_dev: *jury_bvillena
     lead_ops: *jury_kbourki
+    dev_room: "204"
+    ops_room: "211"
     passages:
       - roaster:
-          - À définir
+          dev:
+          - *jury_trobert
+          ops:
+          - *jury_aaubert
+          - *jury_ybritti
       - roaster:
-          - À définir
+          dev:
+          - *jury_shuguet
+          ops:
+          - *jury_qandre
+          - *jury_rgrenier
       - roaster:
-          - À définir
+          dev:
+          - *jury_palluin
+          - *jury_amonschein
+          ops:
+          - *jury_vcoquard
+          - *jury_ddeyrieux
   - name: Jury 2
     lead_dev: *jury_lgilot
     lead_ops: *jury_pmalinge
+    dev_room: "203"
+    ops_room: "213"
     passages:
       - roaster:
-          - À définir
+          dev:
+          - *jury_amonschein
+          ops:
+          - *jury_qandre
+          - *jury_ddeyrieux
       - roaster:
-          - À définir
+          dev:
+          - *jury_trobert
+          ops:
+          - *jury_aaubert
+          - *jury_vcoquard
       - roaster:
-          - À définir
+          dev:
+          - *jury_aaubert
+          - *jury_shuguet
+          ops:
+          - *jury_qandre
+          - *jury_ybritti
   - name: Jury 3
     lead_dev: *jury_palluin
     lead_ops: *jury_glegendre
+    dev_room: "205"
+    ops_room: "212"
     passages:
       - roaster:
-          - À définir
+          dev:
+          - *jury_shuguet
+          ops:
+          - *jury_vcoquard
+          - *jury_rgrenier
       - roaster:
-          - À définir
+          dev:
+          - *jury_amonschein
+          ops:
+          - *jury_ybritti
+          - *jury_ddeyrieux
 
 group_steps:
   - <<: *step_installation
@@ -169,14 +220,17 @@ time_slots:
   - name: Accueil
     begin_at: *day_begin_at
     end_at: *jury_begin_at
+    room: 210
     <<: *scope_jury
   - name: Point Jury
     begin_at: *jury_begin_at
     end_at: *defense_begin_at
+    room: 210
     <<: *scope_jury
   - name: Appel et émargement
     begin_at: *day_begin_at
     end_at: *defense_begin_at
+    room: Salle étudiante
     <<: *scope_student
 
   - name: 1ers passages
@@ -223,6 +277,8 @@ time_slots:
       - name: AMAWA
 
   - name: Émargement manuel
+    room: 205
     <<: *scope_student
   - name: Harmonisation globale
+    room: 204
     <<: *scope_jury
