@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   jekyll:
     container_name: 3olen-projet_31-jekyll
