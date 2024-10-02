@@ -4,8 +4,26 @@ title: Spécifications
 permalink: /specifications
 ---
 
-<h2>Spécifications fonctionnelles</h2>
-{% include _templates/list/_pages.liquid pages=site.specifications %}
+<section class="specifications-projects dual-projects">
+    <main>
+        <article>
+            <header>
+                <span class="badge cyber">Cyber</span>
+                <strong class="title"></strong>
+            </header>
+            <main>
+                {% include _templates/list/_pages.liquid pages=site.specifications_cyber %}
+            </main>
+        </article>
 
-<h2>Contraintes techniques</h2>
-{% include _templates/list/_pages.liquid pages=site.technical_requests %}
+        <article>
+            <header>
+                <span class="badge dev">Dev</span>
+                <strong class="title">Disp'OLEN</strong>
+            </header>
+            <main>
+                {% include _templates/list/_pages.liquid pages=site.specifications_dev %}
+            </main>
+        </article>
+    </main>
+</section>
