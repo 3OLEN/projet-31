@@ -1,7 +1,0 @@
----
-layout: base
----
-{% include _layout/page/_article.html %}
-
-{% assign main = site.html_pages | where: "name", "specifications.html" | first %}
-{% include _layout/linked_page/_linked_nav.html linked_pages=site.specifications main=main %}

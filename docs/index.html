@@ -1,33 +1,11 @@
 ---
 layout: home
-title: Projet transverse N°1 « Bibli'OLEN »
-
-library_main_elements:
-  - label: Gestion des livres
-    description: lister l'ensemble des livres et pouvoir les modifier (ajout, modification, suppression), à condition d'en avoir les droits.
-  - label: Gestion de l'inventaire
-    description: indiquer le nombre d'exemplaires de chaque livre à l'instant actuel.
-  - label: Réservations
-    description: permettre aux étudiants et formateurs de demander la réservation d'un livre.
-  - label: Suivi des réservations
-    description: lister l'ensemble des réservations avec leur état (demandée, traitée, livre·s rendu·s) et l'historique.
-  - label: Informations utilisateurs
-    description: gérer les utilisateurs, leur rôle et leurs droits.
+title: Projet transverse N°1
 
 summary:
 - contexte.html
-- planning.html
-- specifications.html
 - evaluations.html
 ---
-
-<p>Projet permettant de gérer la bibliothèque OLEN, à savoir :</p>
-
-<ul>
-    {% for library_main_element in page.library_main_elements %}
-        <li><strong>{{ library_main_element.label }}</strong> : {{ library_main_element.description }}</li>
-    {% endfor %}
-</ul>
 
 <h2>Objectifs</h2>
 <p>
@@ -48,20 +26,3 @@ summary:
     </li>
     {% endfor %}
 </ol>
-
-<h2>Pages d'aide</h2>
-{% assign project_help_pages = site.project_helps | sort_by: "item", "item.category" %}
-
-<ul class="related-pages">
-    {% for project_help in project_help_pages %}
-        <li>
-            <a href="{{ project_help.url | relative_url }}" class="related-page-item">
-                <span class="related-page-badge project_help"></span>
-                <strong class="related-page-title">
-                    [{{ project_help.category }}]
-                    {{ project_help.title }}
-                </strong>
-            </a>
-        </li>
-    {% endfor %}
-</ul>

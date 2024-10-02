@@ -15,7 +15,7 @@
             {% endif %}
 
             {% if list_element.sub_elements %}
-                {% include _layout/project_help/_page_list.html list=list_element.sub_elements %}
+                {% include _layout/project_help/_page_list.liquid list=list_element.sub_elements %}
             {% endif %}
         </li>
     {% endfor %}

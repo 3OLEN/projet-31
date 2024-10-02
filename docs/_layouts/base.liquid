@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="fr">
-{%- include head.html -%}
+{%- include head.liquid -%}
 
 <body>
-{%- include header.html -%}
+{%- include header.liquid -%}
 
 <main class="page-content" aria-label="Content">
     <div class="wrapper{% if page.full_size %} full{% endif %}">
@@ -11,6 +11,6 @@
     </div>
 </main>
 
-{%- include footer.html -%}
+{%- include footer.liquid -%}
 </body>
 </html>

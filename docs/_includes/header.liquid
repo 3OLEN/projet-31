@@ -25,11 +25,6 @@
                 <a class="page-link" href="{{ spec_page.url | relative_url }}">
                     {{ spec_page.title }}
                 </a>
-
-                {% assign planning_page = site.html_pages | where: "name", "planning.html" | first %}
-                <a class="page-link" href="{{ planning_page.url | relative_url }}">
-                    {{ planning_page.title }}
-                </a>
             </div>
         </nav>
         {%- endif -%}

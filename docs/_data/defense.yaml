@@ -40,106 +40,24 @@ _parameters:
     - &lunch_end_at "14:05"
 
 jury_members:
-  - name: &jury_palluin Philippe ALLUIN
-    <<: *dev_group
-  - name: &jury_qandre Quentin ANDRE
-    <<: *ops_group
-  - name: &jury_aaubert Alexy AUBERT
+  - name: &jury_qblache Quentin BLACHE
     <<: *ops_group
   - name: &jury_kbourki Karim BOURKI
     <<: *ops_group
-  - name: &jury_ybritti Yohan BRITTI
-    <<: *ops_group
-  - name: &jury_vcoquard Valentin COQUARD
-    <<: *ops_group
-  - name: &jury_ddeyrieux Daniel DEYRIEUX
+  - name: &jury_scecillon Sigfried CECILLON
     <<: *ops_group
   - name: &jury_lgilot Luc GILOT
-    <<: *dev_group
-  - name: &jury_rgrenier Remy GRENIER
-    <<: *ops_group
-  - name: &jury_shuguet Sébastien HUGUET
     <<: *dev_group
   - name: &jury_glegendre Guillaume LEGENDRE
     <<: *ops_group
   - name: &jury_pmalinge Philippe MALINGE
     <<: *ops_group
-  - name: &jury_amonschein Alexandre MONSCHEIN
-    <<: *dev_group
   - name: &jury_trobert Théry ROBERT
     <<: *dev_group
   - name: &jury_bvillena Billy VILLENA
     <<: *dev_group
 
 jury_list:
-  - name: Jury 1
-    lead_dev: *jury_bvillena
-    lead_ops: *jury_kbourki
-    dev_room: "204"
-    ops_room: "211"
-    passages:
-      - roaster:
-          dev:
-          - *jury_trobert
-          ops:
-          - *jury_aaubert
-          - *jury_ybritti
-      - roaster:
-          dev:
-          - *jury_shuguet
-          ops:
-          - *jury_qandre
-          - *jury_rgrenier
-      - roaster:
-          dev:
-          - *jury_palluin
-          - *jury_amonschein
-          ops:
-          - *jury_vcoquard
-          - *jury_ddeyrieux
-  - name: Jury 2
-    lead_dev: *jury_lgilot
-    lead_ops: *jury_pmalinge
-    dev_room: "203"
-    ops_room: "213"
-    passages:
-      - roaster:
-          dev:
-          - *jury_amonschein
-          ops:
-          - *jury_qandre
-          - *jury_ddeyrieux
-      - roaster:
-          dev:
-          - *jury_trobert
-          ops:
-          - *jury_aaubert
-          - *jury_vcoquard
-      - roaster:
-          dev:
-          - *jury_aaubert
-          - *jury_shuguet
-          ops:
-          - *jury_qandre
-          - *jury_ybritti
-  - name: Jury 3
-    lead_dev: *jury_palluin
-    lead_ops: *jury_glegendre
-    dev_room: "205"
-    ops_room: "212"
-    passages:
-      - roaster:
-          dev:
-          - *jury_shuguet
-          ops:
-          - *jury_vcoquard
-          - *jury_rgrenier
-      - roaster:
-          dev:
-          - *jury_amonschein
-          ops:
-          - *jury_ybritti
-          - *jury_ddeyrieux
 
 group_steps:
   - <<: *step_installation
@@ -242,9 +160,6 @@ time_slots:
         internal_ref: student_steps
       - <<: *step_harmonisation_jury
     groups:
-      - name: Les Apprenants Lents
-      - name: Save
-      - name: CodeFusion
 
   - name: Pause
     duration: *duration_15mn
@@ -257,9 +172,6 @@ time_slots:
         internal_ref: student_steps
       - <<: *step_harmonisation_jury
     groups:
-      - name: Les 4 Fantastiques
-      - name: Lénine
-      - name: 1001 Librairies
 
   - name: Repas midi
     end_at: *lunch_end_at
@@ -273,8 +185,6 @@ time_slots:
         internal_ref: student_steps
       - <<: *step_harmonisation_jury
     groups:
-      - name: VirgilCorp
-      - name: AMAWA
 
   - name: Émargement manuel
     room: 205
