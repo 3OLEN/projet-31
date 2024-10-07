@@ -2,10 +2,35 @@
 layout: home
 title: Projet transverse N°1
 
+projects:
+  - label:
+    type: Cyber
+  - label: Disp'OLEN
+    type: Dev
+    page: specifications-dev.html
+    main_elements:
+      - label: Disponibilités
+        description: permettre aux tuteurs de renseigner leurs disponibilités sur des créneaux horaires pour des jours précis.
+      - label: Réservations
+        description: permettre aux étudiants de réserver un créneau horaire avec un tuteur.
+      - label: Suivi des réservations
+        description: lister l'ensemble des réservations avec leur état (demandée, acceptée, annulée).
+      - label: Utilisateurs
+        description: gérer les utilisateurs, leur rôle et leurs droits.
+
 summary:
 - contexte.html
-- evaluations.html
+- planning.html
+- specifications.html
 ---
+
+<section class="home-projects">
+    <main>
+        {% for project in page.projects %}
+            {% include _pages/home/_project.liquid project=project %}
+        {% endfor %}
+    </main>
+</section>
 
 <section class="home-objectives">
     <header>

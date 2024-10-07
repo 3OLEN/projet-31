@@ -1,0 +1,25 @@
+<article>
+    <header>
+        <span class="badge {{ include.project.type | downcase }}">{{ include.project.type }}</span>
+        <strong class="title">{{ include.project.label }}</strong>
+    </header>
+
+    <main>
+        <ul>
+            {% for main_element in include.project.main_elements %}
+                <li>
+                    <strong>{{ main_element.label }}</strong> : {{ main_element.description }}
+                </li>
+            {% endfor %}
+        </ul>
+    </main>
+
+    {% assign related_page = site.html_pages | where: "path", include.project.page | first %}
+    {% if include.project.page %}
+        <footer>
+            <a href="{{ related_page.url | relative_url }}">
+                {{ related_page.title }}
+            </a>
+        </footer>
+    {% endif %}
+</article>
