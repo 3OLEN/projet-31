@@ -7,22 +7,39 @@ summary:
 - evaluations.html
 ---
 
-<h2>Objectifs</h2>
-<p>
-    Le projet transverse a pour objectif premier de mettre en pratique les éléments de formation intégrés depuis le
-    début de l'année et tout au long de la réalisation de ce projet 31.
-</p>
-<p>
-    Par ailleurs, il est du devoir de chaque groupe de proposer une solution <strong>fonctionnelle</strong> et de
-    soumettre des livrables d'une qualité <strong>professionnelle</strong>.
-</p>
+<section class="home-objectives">
+    <header>
+        <h2>Objectifs</h2>
+    </header>
+    <main>
+        <p>
+            Le projet transverse a pour objectif premier de mettre en pratique les éléments de formation intégrés depuis le
+            début de l'année et tout au long de la réalisation de ce projet 31.
+        </p>
+        <p>
+            Par ailleurs, il est du devoir de chaque groupe de proposer une solution <strong>fonctionnelle</strong> et de
+            soumettre des livrables d'une qualité <strong>professionnelle</strong>.
+        </p>
+    </main>
+</section>
 
-<h2>Sommaire</h2>
-<ol>
-    {% for file_path in page.summary %}
-        {% assign related_page = site.html_pages | where: "path", file_path | first %}
-    <li>
-        <a href="{{ related_page.url | relative_url }}">{{ related_page.title }}</a>
-    </li>
-    {% endfor %}
-</ol>
+<section class="home-summary">
+    <header>
+        <h2>Sommaire</h2>
+    </header>
+    <main>
+        <ol class="related-pages">
+            {% for file_path in page.summary %}
+                {% assign related_page = site.html_pages | where: "path", file_path | first %}
+                <li>
+                    <a href="{{ related_page.url | relative_url }}" class="related-page-item">
+                        <span class="related-page-badge html_page"></span>
+                        <strong class="related-page-title">
+                            {{ related_page.title }}
+                        </strong>
+                    </a>
+                </li>
+            {% endfor %}
+        </ol>
+    </main>
+</section>
