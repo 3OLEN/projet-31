@@ -5,7 +5,9 @@ permalink: /specifications/dev
 ---
 
 <h2>Spécifications fonctionnelles</h2>
-{% include _templates/list/_pages.liquid pages=site.specifications %}
+{% assign functional_specifications = site.specifications_dev | where: "type", "functional" %}
+{% include _templates/list/_pages.liquid pages=functional_specifications %}
 
 <h2>Contraintes techniques</h2>
-{% include _templates/list/_pages.liquid pages=site.technical_requests %}
+{% assign technical_specifications = site.specifications_dev | where: "type", "technical" %}
+{% include _templates/list/_pages.liquid pages=technical_specifications %}

@@ -15,9 +15,9 @@ collections:
   roadmap:
     output: true
     permalink: /:collection/:slug
-  specifications:
+  specifications_dev:
     output: true
-    permalink: /:collection/:slug
+    permalink: /specifications/dev/:slug
   technical_requests:
     output: true
     permalink: /contraintes_techniques/:slug

@@ -1,0 +1,91 @@
+---
+layout: linked_pages/specification
+title: Disponibilités
+slug: disponibilites
+type: functional
+
+availability_fields:
+- name: Date
+- name: Heure de début
+- name: Heure de fin
+- name: Tuteur
+- name: Commentaire
+  note: Si besoin d'informations complémentaires.
+  mandatory: false
+- name: Réservé
+  note: Indique si le créneau est déjà réservé par un étudiant.
+---
+
+<p>
+    L'application doit permettre aux tuteurs de définir leurs disponibilités pour des créneaux horaires spécifiques avec
+    les étudiants pour le besoin du suivi tutorat : rencontre en entreprise, présentation du sujet d'analyse, bilan 2,
+    état de l'avancement du <abbr title="Compte Rendu d'Activité">CRA</abbr>, etc.
+</p>
+
+<h2>Données</h2>
+{% include _templates/list/_data_fields.liquid fields=page.availability_fields %}
+
+<h3>Date / Heure</h3>
+<p>
+    Une disponibilité est définie sur un créneau horaire d'une date précise. Il peut y avoir plusieurs disponibilités
+    sur la même journée : 9h-12h, 13h-14h, 16h-18h, etc. Mais il ne peut y avoir qu'une seule disponibilité sur le même
+    créneau horaire (pour un même tuteur, bien sûr).
+</p>
+
+<h2>Calendrier</h2>
+<p>
+    Chaque tuteur doit avoir un calendrier des jours ouvrés (i.e. exclusion du week-end) sur lequel sont renseignées
+    ses disponibilités. Ce calendrier doit répondre aux exigences suivantes :
+</p>
+<ul>
+    <li>
+        Un écran ou une action intermédiaire permet d'accéder au calendrier d'un tuteur spécifiquement.
+    </li>
+    <li>
+        Navigation de semaine en semaine, avec possibilité de choisir une semaine précise.
+        <br>Par défaut, le calendrier sera positionné à la semaine courante.
+    </li>
+    <li>
+        Les disponibilités non-réservées doivent être mises en évidence par rapport aux disponibilités déjà réservées.
+        <br>Soit par une nuance de couleur, soit en n'affichant que les créneaux non-réservés, etc.
+    </li>
+    <li>Le commentaire doit pouvoir être affichable : tooltip ou modal ou autre.</li>
+    <li>La durée de la disponibilité doit pouvoir être affichable : texte ou tooltip ou modal ou autre.</li>
+    <li>
+        {% assign reservation_page = site.specifications_dev | where: "slug", "reservations" | first %}
+        L'étudiant·e doit pouvoir sélectionner une disponibilité et/ou un créneau horaire afin de faire une demande de
+        <a href="{{ reservation_page.url | relative_url }}" target="_blank">rendez-vous</a>.
+    </li>
+    <li>
+        Le tuteur doit avoir accès à des boutons d'action pour son propre calendrier : ajouter, modifier, supprimer,
+        valider/invalider/annuler une réservation.
+    </li>
+</ul>
+
+<h2>Définir une disponibilité</h2>
+<p>
+    Chaque tuteur a la possibilité de définir ses disponibilités et doit répondre aux exigences définies sur les
+    données et celles suivantes :
+</p>
+<ul>
+    <li>
+        Il ne peut pas y avoir un chevauchement de disponibilités : deux disponibilités ne peuvent pas couvrir la
+        même plage horaire.
+    </li>
+    <li>Une disponibilité ne peut être définie que dans le futur.</li>
+    <li>Une disponibilité doit avoir une durée minimale de 30 minutes.</li>
+    <li>Une disponibilité doit être définie entre 8h et 19h.</li>
+</ul>
+
+<h2>Modification</h2>
+<p>La modification est identique à la création, de même pour les exigences à prendre en compte.</p>
+
+<h2>Suppression</h2>
+<p>Une disponibilité dans le futur peut être supprimée.</p>
+
+<h2>Couplage Disponibilités-Réservations</h2>
+<p>Les modifications et suppressions des disponibilités sont indépendantes des réservations.</p>
+<p>
+    La suppression d'une disponibilité ne doit pas entraîner la suppression de la réservation ou des réservations
+    définies sur les créneaux horaires de cette disponibilité.
+</p>
