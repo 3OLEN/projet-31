@@ -1,0 +1,172 @@
+---
+layout: linked_pages/specification
+title: Réservations
+slug: reservations
+type: functional
+
+reservation_fields:
+- name: Étudiant·e
+  description: Utilisateur ayant fait la demande de réservation.
+- name: Tuteur·rice
+- name: Date
+- name: Heure de début
+- name: Heure de fin
+- name: Motif
+  description: Bilan 1 / Bilan 2 / Présentation sujet & problématique / Point avancement / Autre.
+  mandatory: false
+- name: Type
+  description: Visite entreprise / Présentiel CFA / Appel téléphonique / Visio Discord / Visio Teams.
+  mandatory: false
+- name: Commentaire
+  note: Si besoin d'informations complémentaires.
+  mandatory: false
+- name: État
+  description: En cours / Acceptée / Refusée / Annulée.
+---
+
+<p>
+    L'application doit permettre aux étudiants de réserver un créneau horaire avec un·e tuteur·rice selon ses
+    disponibilités définies au préalable.
+</p>
+<p>
+    Ce rendez-vous est un engagement entre l'étudiant·e et un·e tuteur·rice et s'applique dans le cadre du tutorat
+    OLEN : visite entreprise, sujet d'analyse, point d'avancement, etc.
+</p>
+
+<h2>Données</h2>
+{% include _templates/list/_data_fields.liquid fields=page.reservation_fields %}
+
+<h3>Date / Heure</h3>
+<p>
+    Une réservation est liée à une disponibilité tuteur sur un créneau horaire d'une date précise. Il n'est pas possible
+    de faire chevaucher deux réservations pour un·e même tuteur·rice. La réservation ne peut pas non plus dépasser le
+    créneau horaire de la disponibilité.
+</p>
+<p>
+    <em>
+        <u>Exemple</u> : Si un·e tuteur·rice est disponible de 9h à 11h, une réservation ne peut être faite pour
+        10h à 12h.
+    </em>
+</p>
+
+<h2>Récapitulatif</h2>
+<p>
+    Chaque utilisateur pourra afficher une liste récapitulative de <strong>ses propres</strong> réservations en cours ou
+    à venir et non-annulées.
+</p>
+<p>Les utilisateurs ne peuvent pas visualiser le récapitulatif des autres utilisateurs.</p>
+<p>Cette liste est définie selon les exigences suivantes :</p>
+<ul>
+    <li>Affichage des données de la réservation : date, créneau horaire, motif, type, état.</li>
+    <li>Boutons d'action : affichage des détails de la réservation (affichera surtout le commentaire).</li>
+    <li>Pagination, avec un nombre d'éléments affichés par page cohérent.</li>
+    <li>Tri : date de la réservation (tri par défaut).</li>
+    <li>
+        Filtres :
+        <ul>
+            <li>Sélection d'une période durant laquelle la réservation doit s'effectuer.</li>
+            <li>Sélection des motifs.</li>
+            <li>Sélection des types.</li>
+            <li>Sélection des états.</li>
+            <li>Seulement les réservations dans le passé.</li>
+        </ul>
+    </li>
+</ul>
+
+<h3>Pour un·e tuteur·rice</h3>
+<p>Quelques exigences sont à prendre en compte pour les tuteurs, exclusivement :</p>
+<ul>
+    <li>Parmi les données de la réservation, on affichera également le nom de l'étudiant·e.</li>
+    <li>Cette donnée sera également prise en compte pour les filtres et la commande de tri.</li>
+    <li>
+        Boutons d'action : selon l'état de la réservation : Accepter ou Refuser / Annuler, modification.
+    </li>
+</ul>
+
+<h3>Pour un·e étudiant·e</h3>
+<p>Quelques exigences sont à prendre en compte pour les étudiants·es, exclusivement :</p>
+<ul>
+    <li>Parmi les données de la réservation, on affichera également le nom du tuteur / de la tutrice.</li>
+    <li>Boutons d'action : nouvelle demande de réservation.</li>
+</ul>
+
+<h3>Remarque</h3>
+<p>
+    {% assign disponibilite_page = site.specifications_dev | where: "slug", "disponibilites" | first %}
+    Les réservations doivent également être affichées sur le
+    <a href="{{ disponibilite_page | relative_url }}#calendrier" target="_blank">
+        calendrier de la page des disponibilités
+    </a>.
+</p>
+
+<h2>Nouvelle demande</h2>
+<p>
+    Un·e étudiant·e pourra faire une demande de réservation sur une disponibilité de son tuteur / sa tutrice et doit
+    répondre aux exigences définies sur les données et celles suivantes :
+</p>
+<ul>
+    <li>
+        Une réservation ne peut être définie que sur une disponibilité dans le futur, en prenant bien en compte le
+        créneau horaire de la disponibilité.
+    </li>
+    <li>
+        L'étudiant·e devra sélectionner une disponibilité pour faire une réservation, ainsi les informations du tuteur
+        / de la tutrice et la date seront automatiquement renseignées et non modifiables.
+    </li>
+    <li>
+        L'étudiant·e pourra définir le motif, le type et le commentaire, mais sera à charge du tuteur / de la tutrice de
+        définir les valeurs finales de ces champs.
+    </li>
+    <li>L'état sera initialisé à la valeur `En cours`.</li>
+</ul>
+
+<h2>Changement d'état</h2>
+<p>
+    Le·a tuteur·rice pourra changer l'état d'une réservation à venir, selon son état courant :
+</p>
+<ul>
+    <li>Si <strong>En cours</strong> => <strong>Acceptée</strong> / <strong>Refusée</strong>.</li>
+    <li>Si <strong>Acceptée</strong> => <strong>Annulée</strong>.</li>
+    <li>
+        Si <strong>Refusée</strong> => la réservation sera supprimée "physiquement", c'est-à-dire qu'elle sera
+        complètement supprimée de la base de données.
+    </li>
+</ul>
+
+<h2>Modification</h2>
+<p>
+    Le·a tuteur·rice pourra effectuer une modification sur une réservation à venir, selon les exigences suivantes :
+</p>
+<ul>
+    <li>
+        Le créneau horaire pourra être modifié, sans prendre en compte la vérification sur la disponibilité.
+        <br>Sa décision est souveraine, puisqu'il s'agit de sa propre disponibilité.
+    </li>
+    <li>
+        Les champs « Motif » / « Type » et « Commentaire » pourront être modifiés.
+    </li>
+</ul>
+
+<h2>Annuler</h2>
+<p>Le·a tuteur·rice pourra annuler une réservation, tant qu'elle n'est pas passée.</p>
+<p>
+    L'annulation modifie l'état et exclura la réservation des différentes requêtes : liste, calendrier, validations, etc.
+</p>
+
+<h2>Envoi de mail</h2>
+<p>
+    Après chaque enregistrement sur la réservation : création, modification, changement d'état, suppression, annulation,
+    un mail sera envoyé aux deux parties afin de les tenir informés.
+</p>
+<p>Le mail sera différent en fonction de l'action concernée :</p>
+<ul>
+    <li>Pour la création, il s'agira d'un récapitulatif complet.</li>
+    <li>Pour la modification, il s'agira d'un récapitulatif des changements.</li>
+    <li>
+        Pour un changement d'état ou la suppression, il s'agira d'une sorte de notification de l'action :
+        <br><em>« Validation de votre réservation du jj/mm/aaaa hh:ii. »</em>
+        <br><em>« Refus de votre réservation du jj/mm/aaaa hh:ii. »</em>
+        <br><em>« Suppression de votre réservation du jj/mm/aaaa hh:ii. »</em>
+        <br><em>« Annulation de votre réservation du jj/mm/aaaa hh:ii. »</em>
+    </li>
+</ul>
