@@ -1,0 +1,81 @@
+---
+layout: linked_pages/specification
+title: Utilisateurs
+slug: utilisateurs
+type: functional
+
+user_fields:
+- name: Nom
+- name: Prénom
+- name: Identifiant
+  unique: true
+  description: "Identifiant de connexion sous forme d'adresse mail."
+- name: Mot de passe
+  note: "Devra être soumis à une politique de sécurité forte."
+- name: Rôle
+  description: Admin / Tuteur / Étudiant
+- name: Tuteur·rice
+  description: Tuteur·rice de l'étudiant·e.
+  mandatory: false
+- name: Formation & Promotion
+  description: "Formation/Promotion de l'étudiant·e. Par exemple : formation « 3CSI » de la promotion « 2024-2025 »."
+  mandatory: false
+---
+
+<p>L'application est fermée au public et ne doit être accessible que par des personnes liées à l'établissement.</p>
+<p>
+  La gestion des utilisateurs est un aspect transverse qui doit être accessible seulement par les administrateurs.
+</p>
+<p>On y retrouve toute la gestion de compte et l'ensemble des informations annexes des personnes.</p>
+
+<h2>Données</h2>
+{% include _templates/list/_data_fields.liquid fields=page.user_fields %}
+
+<h3>Rôle et permissions</h3>
+<p>Il est prévu de définir trois rôles afin de définir des permissions d'accès et de traitement.</p>
+<ul>
+  <li>
+    <strong>Admin</strong> : Peut accéder à l'ensemble des fonctionnalités de l'application et afficher les
+    récapitulatifs de tous les tuteurs et de tous les étudiants.
+    <br>Le rôle admin permet la gestion des utilisateurs.
+  </li>
+  <li>
+    <strong>Tuteur</strong> : Désigne les tuteurs de la formation OLEN.
+    <br>Les tuteurs·rices définissent leurs disponibilités et peuvent gérer les réservations de leurs étudiant·e·s.
+  </li>
+  <li>
+    <strong>Étudiant</strong> : Désigne le rôle par défaut d'un utilisateur et par définition l'ensemble des étudiants
+    des formations OLEN.
+    <br>Les étudiant·e·s peuvent réserver des créneaux horaires avec leur tuteur·rice.
+  </li>
+</ul>
+
+<h2>Liste</h2>
+<p>Les admins doivent pouvoir afficher la liste de tous les utilisateurs selon les exigences suivantes :</p>
+<ul>
+  <li>
+    Affichage des données de l'utilisateur : nom, prénom, rôle et sa promotion actuelle si rôle « Étudiant ».
+  </li>
+  <li>Boutons d'action : créer un compte utilisateur, affichage des détails complets, accès à la modification.</li>
+  <li>Pagination, avec un nombre d'éléments affichés par page cohérent.</li>
+  <li>Tri : nom (tri par défaut), prénom. </li>
+  <li>
+    Filtre :
+    <ul>
+      <li>Recherche partielle sur le nom et le prénom.</li>
+      <li>Sélection du rôle.</li>
+      <li>Sélection de la formation / promotion.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2>Nouveau compte</h2>
+<p>La création d'un nouveau compte est accessible seulement par l'admin et doit répondre aux exigences des données.</p>
+
+<h3>Validation de compte</h3>
+<p>Une fois le compte utilisateur créé, il ne sera pas valide tant que la personne n'aura pas validé son compte.</p>
+<p>Lors de la validation, l'utilisateur est amené à saisir un mot de passe sécurisé.</p>
+
+<h2>Modification</h2>
+<p>Les données utilisateurs sont modifiables par l'admin seulement.</p>
+<p>Un utilisateur peut modifier son mot de passe seulement.</p>
