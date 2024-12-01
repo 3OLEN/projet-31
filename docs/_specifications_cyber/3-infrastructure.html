@@ -1,0 +1,59 @@
+---
+layout: linked_pages/specification
+title: Infrastructure cible
+slug: infrastructure-cible
+type: technical
+
+infrastructure:
+  - title: « Guichet A »
+    badge: Windows server
+    content: Héberge le partage initial et exécute un premier script d'analyse des fichiers.
+  - title: « Partage intermédiaire »
+    badge: Rocky Linux
+    content: |
+      Héberge un système de validation avancée en exécutant un second script d'analyse ou d'autres outils.
+      Définit les règles de quarantaine ou de suppression des fichiers.
+  - title: « Guichet B »
+    badge: Windows server
+    content: Héberge le partage final des fichiers analysés et validés, mis à disposition des utilisateurs.
+
+network:
+  - title: Guichet A
+    sub_listing:
+      - content: Accessible en écriture pour les utilisateurs déposants.
+      - content: Accessible en lecture seule pour le serveur Linux.
+      - content: Non accessible par le Guichet B.
+  - title: Partage intermédiaire
+    sub_listing:
+      - content: Non accessible par le Guichet A.
+      - content: Utilisé pour transférer les fichiers après leur première analyse.
+      - content: Accessible en lecture seule pour le Guichet B.
+  - title: Guichet B
+    sub_listing:
+      - content: |
+          Accessible en lecture seule pour récupérer les fichiers validés pour les utilisateurs / machines autorisé·e·s.
+---
+
+<p>
+    Chaque élément inscrit dans les parties suivantes sont des contraintes pour la réalisation du projet et
+    <strong>doivent être respectées</strong>.
+</p>
+
+<h2>Infrastructure</h2>
+<p>Trois éléments "physiques" composent votre système de décontamination :</p>
+
+{% include _templates/list/_listing.liquid listing_elements=page.infrastructure %}
+
+<h3>Partages réseau</h3>
+<p>
+    Rappel : vous devez définir les paramétrages à appliquer afin de limiter les communications sur l'infrastructure.
+</p>
+
+<p>
+    Il sera essentiel d'utiliser des protocoles sécurisés (SMBv3, SSH, etc.) pour les échanges de fichiers et les accès
+    distants.
+</p>
+
+<p>Les partages seront sécurisés par de l'authentification et de la gestion des permissions.</p>
+
+{% include _templates/list/_listing.liquid listing_elements=page.network %}

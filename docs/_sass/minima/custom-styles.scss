@@ -37,6 +37,32 @@ ol li + li {
   text-align: center;
 }
 
+// ---------- IMAGES
+.image {
+  display: flex;
+  row-gap: .75em;
+  flex-direction: column;
+  padding: $spacing-unit * .5;
+  border: 2px solid $border-color-01;
+  border-radius: .75em;
+
+  > .image-caption {
+    text-align: center;
+    padding-top: .25em;
+    padding-bottom: $spacing-unit * .5;
+    border-top: 2px solid $border-color-01;
+  }
+
+  @media (min-width: $on-laptop) {
+    align-items: center;
+    margin: 0 $spacing-unit;
+
+    > .image-caption {
+      width: 75%;
+    }
+  }
+}
+
 // ---------- LINKED-NAV
 .linked-nav {
   column-gap: 1em;

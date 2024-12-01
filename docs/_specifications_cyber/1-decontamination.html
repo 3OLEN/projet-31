@@ -1,0 +1,44 @@
+---
+layout: linked_pages/specification
+title: Zone de décontamination
+slug: decontamination
+type: functional
+
+workflow:
+  - content: Les fichiers sont déposés dans une zone spécifique, appelée « Guichet A ».
+  - content: Une première analyse est effectuée sur le « Guichet A ».
+  - content: Le fichier est récupéré vers une zone de partage intermédiaire pour une analyse plus poussée.
+  - content: Si le fichier est déclaré « illicite » ou « dangereux », il est placé en quarantaine ou supprimé.
+  - content: Si le fichier est déclaré « sain », il est transféré à une zone de partage final, appelée « Guichet B ».
+  - content: Les utilisateurs peuvent récupérer les fichiers depuis le « Guichet B ».
+---
+
+<p>
+    Le projet doit définir la mise en place d'un système de décontamination de fichiers à travers une analyse croisée
+    afin de garantir la licéité des fichiers transmis et réceptionnés avant de les rendre disponibles pour les
+    utilisateurs.
+</p>
+
+<p>
+    À noter que les analyses doivent prendre en charge les formats courante : « .pdf », « .docx », « .xlsx », « .jpg »,
+    « .zip », etc.
+</p>
+
+<h2>Workflow</h2>
+{% include _templates/list/_listing-order.liquid listing_elements=page.workflow main_class="workflow" %}
+
+<h3>Schéma de principe</h3>
+
+<div class="image">
+    <img src="{{ '/assets/images/cyber-specifications-decontamination-workflow.png' | relative_url }}" alt="Schéma du workflow">
+    <div class="image-caption">Schéma du principe de la zone de décontamination et de son workflow</div>
+</div>
+
+<h2>Restriction des accès</h2>
+<p>
+    Les machines doivent communiquer le moins possible avec l'extérieur, avec Internet ou avec d'autres services. Il
+    faudra définir les paramétrages à appliquer afin de limiter les communications sur l'infrastructure cible.
+</p>
+
+<h2>Automatisation</h2>
+<p>Le processus entier doit être automatisé pour garantir une réactivité et une efficacité maximale.</p>
