@@ -6,6 +6,9 @@ layout: base
 {% if page.collection == 'specifications_dev' %}
     {% assign main = site.html_pages | where: "name", "specifications-dev.html" | first %}
     {% include _layout/linked_page/_linked_nav.liquid linked_pages=site.specifications_dev main=main %}
+{% elsif page.collection == 'specifications_cyber' %}
+    {% assign main = site.html_pages | where: "name", "specifications-cyber.html" | first %}
+    {% include _layout/linked_page/_linked_nav.liquid linked_pages=site.specifications_cyber main=main %}
 {% else %}
     {% assign main = site.html_pages | where: "name", "specifications.html" | first %}
     {% include _layout/linked_page/_linked_nav.liquid linked_pages=site.specifications main=main %}

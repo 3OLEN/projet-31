@@ -1,0 +1,13 @@
+---
+layout: page
+title: Spécifications CYBER
+permalink: /specifications/cyber
+---
+
+<h2>Spécifications fonctionnelles</h2>
+{% assign functional_specifications = site.specifications_cyber | where: "type", "functional" %}
+{% include _templates/list/_pages.liquid pages=functional_specifications %}
+
+<h2>Contraintes techniques</h2>
+{% assign technical_specifications = site.specifications_cyber | where: "type", "technical" %}
+{% include _templates/list/_pages.liquid pages=technical_specifications %}

@@ -15,6 +15,9 @@ collections:
   roadmap:
     output: true
     permalink: /:collection/:slug
+  specifications_cyber:
+    output: true
+    permalink: /specifications/cyber/:slug
   specifications_dev:
     output: true
     permalink: /specifications/dev/:slug
