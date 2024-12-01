@@ -1,0 +1,58 @@
+---
+layout: linked_pages/specification
+title: Contraintes du développement
+slug: contraintes
+type: technical
+
+dev_env:
+  - title: Git
+    content: Le projet en son entier doit être versionné sur GitLab ou GitHub.
+  - title: PHP
+    badge: Version 8.3
+    sub_listing:
+      - content: "<strong>Composer</strong> est obligatoire pour gérer les dépendances."
+      - content: "Orienté objet <u>uniquement</u>."
+      - content: "Le choix des librairies est libre."
+      - content: "⛔️ Aucun framework n'est autorisé ; certains composants peuvent être autorisés."
+  - title: JavaScript
+    sub_listing:
+      - content: "⛔️ <strong>jQuery</strong> est <strong>INTERDIT</strong>."
+      - content: "Le choix des librairies est libre."
+  - title: PostgreSQL
+    content: Utilisation exclusive de PostgreSQL pour la base de données.
+
+quality:
+  - title: Jeu de données
+    content: |
+      Les données de développement et de tests doivent être réelles et cohérentes afin de mieux appréhender
+      l'application réalisée. Cela permet aussi de déceler certains bugs fonctionnels plus facilement.
+    advice: On se sert généralement d'un fichier SQL d'import des données.
+  - title: HTML sémantique
+    content: |
+      Vous respecterez les règles du HTML sémantique pour une meilleure compréhension du DOM et l'aide à
+      l'accessibilité et au responsive design.
+  - title: Aspect graphique
+    content: |
+      Le design de l'application doit être pensé dès le départ et appliqué au plus tôt pour faciliter
+      l'utilisation de l'application et la mise en place de nouvelles fonctionnalités.
+      <br>Par ailleurs, les soucis graphiques sont ainsi détectés plus rapidement.
+  - title: Responsive Design
+    content: L'application doit être utilisable sur ordinateur, tablette et smartphone.
+---
+
+<p>
+    Les éléments indiqués dans chacune des parties suivantes sont des contraintes pour la réalisation de l'application
+    ; ces éléments <strong>doivent être respectés</strong>.
+</p>
+
+<h2>Architecture web</h2>
+<p>
+    La solution reposera sur le concept <abbr title="Model View Controller">MVC</abbr> selon une arborescence de
+    fichiers cohérente.
+</p>
+
+<h2>Environnement de développement</h2>
+{% include _templates/list/_listing.liquid listing_elements=page.dev_env %}
+
+<h2>Qualité de l'application web</h2>
+{% include _templates/list/_listing.liquid listing_elements=page.quality %}
