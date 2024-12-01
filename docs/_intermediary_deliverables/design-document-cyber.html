@@ -1,0 +1,116 @@
+---
+layout: intermediary_deliverable
+title: "Livrable intermédiaire - Dossier de conception - Cyber"
+slug: dossier-conception-cyber
+
+assessment: design-document-cyber
+
+document_model:
+  - title: "Projet"
+    description: "Cette partie contiendra les informations globales du projet afin de le présenter ainsi que son
+      contexte. Vous présenterez également votre groupe."
+    sections:
+      - title: "Contexte"
+        description: "Vous rappellerez le contexte du projet Contr'OLEN, c'est-à-dire le sujet et le besoin énoncé."
+      - title: "Groupe"
+        description: "Vous présenterez votre groupe de projet, c'est-à-dire les membres qui le composent et leurs
+        rôles respectifs."
+      - title: "Notes de réunion"
+        description: |
+          Afin de vous motiver à collaborer ensemble et à entreprendre des points réguliers (organiser
+          des réunions hebdomadaires courtes pour faire l'état d'avancement, par exemple) vous allez devoir justifier la
+          conduite d'au moins **deux** réunions ayant servi à la conception du projet, et donc à la rédaction de ce
+          document.
+
+          Cette partie vous sert d'apprentissage dans les bonnes pratiques de la conduite de réunions. Dès lors que vous
+          organisez ou que vous participez à une réunion, prenez des notes afin de garder une trace écrite de ce qui
+          a été dit et demandé/décidé. Cette note est ensuite à partager avec les participants (ou en tout cas les
+          personnes concernées/intéressées/impliquées) afin de valider ce qui a été dit et de pouvoir prouver
+          des décisions.
+        related_pages:
+          - type: "assessment"
+            identifier: "notes-reunion"
+            title: "Aide à la prise de notes"
+            blank: true
+  - title: Étude
+    description: "Cette partie traitera de votre étude fonctionnelle du sujet."
+    sections:
+      - title: Parcours utilisateur
+        description: |
+          Vous définirez l'objectif du système pour l'utilisateur et les différentes étapes pour lesquelles il·elle est
+          impliqué·e. Vous pourrez vous aider d'un schéma, mais celui-ci doit traduire la vision utilisateur
+          exclusivement et non la vision technique.
+      - title: Supervision
+        description: |
+          Vous définirez la supervision du système par les administrateurs et en particulier les rapports à consulter
+          et les actions manuelles éventuelles à réaliser. Vous pouvez vous aider d'un schéma également, mais il doit
+          également se restreindre à la vision des administrateurs et toujours pas la vision technique.
+  - title: Solution
+    description: "Cette partie apportera des éléments plus techniques sur la solution qui sera mise en place."
+    sections:
+      - title: "Description"
+        description: Présentez globalement la solution telle qu'elle sera définie dans la finalité.
+      - title: Infrastructure
+        description: |
+          Cette partie décrit l'infrastructure cible du système en se basant sur les contraintes techniques fournies.
+        sections:
+          - title: Diagramme de déploiement
+            description: |
+              Représentation graphique de la solution technique qui devra être mise en place en prenant en compte les
+              configurations et les canaux de communication.
+          - title: Sécurité
+            description: |
+              Plusieurs éléments de sécurité sont impactants pour le projet, vous devrez les détailler et expliquer
+              les choix effectués et les mesures prises (par exemple : chiffrement, pare-feu, politique de mot de passe,
+              etc.).
+      - title: Analyses
+        description: Vous détaillerez les deux étapes de l'analyse croisée et les éléments qui sont vérifiés.
+      - title: Rapports
+        description: Vous préciserez les rapports générés par le système et la manière de les récupérer.
+        sections:
+          - title: Base de données
+            description: |
+              La mise en place est facultative, mais vous devez tout de même décrire le modèle et les données qui y
+              seront stockées.
+
+              Vous devrez également concevoir le modèle conceptuel de données (MCD) pour lister les tables, les champs
+              et les relations.
+            related_pages:
+            - type: assessment
+              identifier: mcd
+              title: Vous pouvez vous aider du document des Dev pour le MCD
+              blank: true
+      - title: Exploitation
+        description: |
+          Vous indiquerez l'ensemble des outils et demandes pour l'exploitation de l'infrastructure et de ses
+          composantes.
+  - title: Planification
+    description: |
+      Vous n'aurez pas à réaliser de la gestion de projet dans le cadre de ce projet transverse. Néanmoins,
+      certains éléments de base sont à prendre en compte et à définir afin de conduire au mieux le projet.
+
+      Vous pouvez prendre en charge la gestion de projet, mais ce ne sera pas du tout un critère d'évaluation.
+    sections:
+      - title: Tâches
+        description: |
+          Il est essentiel de définir l'ensemble des tâches à réaliser tout au long du projet afin de savoir ce que
+          vous avez à faire, ainsi que pouvoir suivre ce qui a été fait.
+      - title: Jalons
+        description: |
+          Les jalons sont des points de contrôle définis selon des dates calendaires. Ils définissent un état stable du
+          projet et sont une preuve de l'avancement du projet.
+
+          Vous devez donc définir au moins deux jalons pour le projet (la version finale est un jalon).
+      - title: Planning
+        description: |
+          À partir des jalons, vous pourrez définir un planning trivial afin d'organiser le travail à réaliser.
+
+          Ce planning doit se présenter sous une forme calendaire.
+        related_pages:
+          - type: "assessment"
+            identifier: "planification"
+            title: "Détail et informations sur la planification"
+            blank: true
+---
+
+{% include _pages/assessments/content/_document_model.liquid model_content=page.document_model %}
