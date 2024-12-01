@@ -2,9 +2,23 @@ _parameters:
   _types:
     - &_type_intermediary_deliverable "intermediary_deliverable"
   _modules:
-  - &_module_archi_web "Architecture web"
   - &_module_bdd "Base de données"
   - &_module_conduite_projet "Conduite de projet"
   - &_module_qa "Qualité applicative"
 
 values:
+- label: Dossier de conception
+  identifier: design-document
+  type: *_type_intermediary_deliverable
+
+- label: Point intermédiaire
+  identifier: checkup
+  type: *_type_intermediary_deliverable
+
+- label: Résumé anglais
+  identifier: english-summary
+  type: *_type_intermediary_deliverable
+
+- label: Livraison version finale
+  identifier: version-final
+  page: livraison-finale
