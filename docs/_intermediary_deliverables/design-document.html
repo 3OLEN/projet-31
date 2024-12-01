@@ -1,0 +1,65 @@
+---
+layout: intermediary_deliverable
+title: "Livrable intermédiaire - Dossier de conception"
+slug: dossier-conception
+
+assessment: design-document
+description: |
+  Dans le cadre de votre phase de conception, vous produirez un document
+  (`nom_groupe-dossier-conception.pdf`) qui présentera votre réflexion sur le sujet et votre organisation.
+
+  N'hésitez pas à recourir à des "annexes" pour inclure des documents de conception. Ces annexes peuvent être intégrées
+  au document (en fin de document) ou fournies à part (archives / pages web). Rappelez-vous que ces documents doivent
+  être accessibles quelle que soit la plateforme.
+
+  Par ailleurs, n'oubliez pas le sommaire, les index, les numérotations, les en-têtes et pieds de page, l'aspect visuel,
+  etc. Bref, tout ce qui fait un document "professionnel".
+
+  Ce dossier diffère selon le projet.
+---
+
+<section class="dual-projects">
+  <main>
+    <article>
+      <header>
+        <span class="badge cyber">Cyber</span>
+        <strong class="title">Contr'OLEN</strong>
+      </header>
+
+      <main>
+        {% assign related_page = site.intermediary_deliverables
+          | where: "slug", "dossier-conception-cyber"
+          | first
+        %}
+        {% if related_page %}
+          <div style="text-align: center">
+            <a href="{{ related_page.url | relative_url }}">
+              {{ related_page.title }}
+            </a>
+          </div>
+        {% endif %}
+      </main>
+    </article>
+
+    <article>
+      <header>
+        <span class="badge dev">Dev</span>
+        <strong class="title">Disp'OLEN</strong>
+      </header>
+
+      <main>
+        {% assign related_page = site.intermediary_deliverables
+          | where: "slug", "dossier-conception-dev"
+          | first
+        %}
+        {% if related_page %}
+          <div style="text-align: center">
+            <a href="{{ related_page.url | relative_url }}">
+              {{ related_page.title }}
+            </a>
+          </div>
+        {% endif %}
+      </main>
+    </article>
+  </main>
+</section>
