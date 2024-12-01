@@ -1,0 +1,74 @@
+---
+layout: linked_pages/specification
+title: Contraintes - Projet
+slug: projet
+type: technical
+
+project_management:
+  - title: Organisation des tâches
+    content: |
+      Le travail à réaliser se découpe en tâches, qui elles-mêmes se découpent en plus petites tâches, qui
+      représentent alors toutes actions permettant de produire l'ensemble des livrables du projet.
+    sub_listing:
+      - content: |
+          Les tâches doivent être énumérées « tagguées » selon leur·s domaine·s d'application (windows, linux, analyse,
+          documentation, etc.).
+      - content: |
+          GitLab/GitHub mettent à disposition un système de tickets et de tableau de bord plutôt adapté à ce système.
+      - content: |
+          Éventuellement, Trello, pour lister les tâches et fournir un kanban.
+          <br>⚠️ Trello n'est pas un outil de gestion de projet, mais un outil de « todo-list » seulement.
+      - content: JIRA est un outil de ticketing très complet, mais qui demande une importante montée en compétence.
+  - title: Communication
+    content: |
+      L'ensemble de l'équipe se doit d'être disponible pour communiquer sur le projet, en particulier sur
+      l'avancement des diverses tâches.
+    sub_listing:
+      - content: |
+          Mettre en place un serveur Discord pour organiser plus facilement les échanges, notamment sur des sujets qui
+          ne concernent pas forcément tout le monde.
+      - content: |
+          Lorsque les membres sont à distance, il est fortement recommandé de tous se connecter sur un salon vocal pour
+          travailler ensemble comme dans un open-space (honnêtement, super technique <code>#truestory</code> 🍷).
+  - title: Documentation
+    content: |
+      La gestion documentaire d'un projet aide à s'organiser et à améliorer la compréhension du sujet, notamment par le
+      biais de tableaux blancs, de brainstorming, de schémas, de prises de notes, etc.
+    sub_listing:
+      - content: |
+          <strong>Atlassian Confluence</strong> est un outil complet permettant de suivre les modifications et
+          d'intégrer des schémas assez facilement.
+      - content: |
+          GitLab/GitHub mettent à disposition un wiki, qui peut être utilisé pour renseigner diverses informations
+          utiles sur le projet, sa mise en place ou encore ses aspects techniques.
+      - content: |
+          Le <code>README.md</code> à la racine du projet permet de définir les informations essentielles pour
+          l'utilisation des éléments du projet.
+      - content: |
+          Un espace de stockage partagé comme OneDrive permet de partager des documents et surtout de sécuriser leur
+          stockage.
+
+warning_tools: |
+  De nombreuses solutions existent pour aider à la gestion et au suivi d'un projet, c'est pourquoi il est important de
+  ne pas multiplier les outils afin d'éviter que certains soient complètement délaissés.
+---
+
+<p>
+  Les éléments indiqués dans chacune des parties suivantes sont des contraintes pour le déroulement et la gestion du
+  projet ; ces éléments <strong>doivent être respectés</strong>.
+</p>
+
+<h2>Gestion et suivi</h2>
+{% include _templates/list/_listing.liquid listing_elements=page.project_management %}
+
+{% include _templates/panel/_warning.liquid text=page.warning_tools %}
+
+<h2>Livrables</h2>
+<p>
+  Chaque livrable (notamment documentaire) doit être soigné dans sa forme et dans son fond. Ils ont un usage
+  <strong>professionnel</strong> et doivent être traités en conséquence.
+</p>
+<p>
+  Un livrable de mauvaise qualité affecte inexorablement l'image du projet et de l'équipe, ce qui donne une mauvaise
+  impression sur le travail réalisé.
+</p>
