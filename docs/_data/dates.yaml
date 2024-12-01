@@ -33,7 +33,7 @@ project_sessions:
     type: *_type_session
   - date:
       value: 2024-12-09
-      month: *_month_01
+      month: *_month_12
       day: *_day_01
     type: *_type_session
   - date:
@@ -70,7 +70,7 @@ project_sessions:
 project_assessments:
   - date:
       value: 2024-12-23
-      month: *_month_01
+      month: *_month_12
       day: *_day_01
     type: *_type_assessment
     identifier: design-document
