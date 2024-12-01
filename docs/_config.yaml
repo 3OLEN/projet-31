@@ -21,9 +21,6 @@ collections:
   specifications_dev:
     output: true
     permalink: /specifications/dev/:slug
-  technical_requests:
-    output: true
-    permalink: /contraintes_techniques/:slug
   project_helps:
     output: true
     permalink: /aides-projet/:slug
