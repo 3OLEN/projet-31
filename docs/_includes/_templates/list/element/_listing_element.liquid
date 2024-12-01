@@ -1,0 +1,21 @@
+{% if include.element.title %}
+    <div class="listing-heading">
+        <div class="listing-title">{{ include.element.title }}</div>
+        {% if include.element.badge %}
+            <div class="listing-badge">{{ include.element.badge }}</div>
+        {% endif %}
+    </div>
+{% endif %}
+<div class="listing-content">
+    <div class="listing-content-main">{{ include.element.content }}</div>
+
+    {% if include.element.sub_listing %}
+        <ul class="sub-listing">
+            {% for sub_listing_element in include.element.sub_listing %}
+                <li>
+                    {% include _templates/list/element/_listing_element.liquid element=sub_listing_element %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</div>

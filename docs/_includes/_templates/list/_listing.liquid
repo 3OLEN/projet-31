@@ -1,0 +1,9 @@
+<ul class="listing{% if include.main_class %} {{ include.main_class }}{% endif %}">
+    {% for listing_element in include.listing_elements %}
+        <li>
+            <div class="listing-main">
+                {% include _templates/list/element/_listing_element.liquid element=listing_element %}
+            </div>
+        </li>
+    {% endfor %}
+</ul>
