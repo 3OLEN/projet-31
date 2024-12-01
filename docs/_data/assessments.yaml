@@ -1,6 +1,7 @@
 _parameters:
   _types:
     - &_type_intermediary_deliverable "intermediary_deliverable"
+    - &_type_composite_deliverable "composite_deliverable"
   _modules:
   - &_module_bdd "Base de données"
   - &_module_conduite_projet "Conduite de projet"
@@ -10,14 +11,48 @@ values:
 - label: Dossier de conception
   identifier: design-document
   type: *_type_intermediary_deliverable
+  composite:
+    - label: Dossier de conception - Cyber
+      identifier: design-document-cyber
+    - label: Dossier de conception - Dev
+      identifier: design-document-dev
+
+- label: Dossier de conception - Cyber
+  identifier: design-document-cyber
+  type: *_type_composite_deliverable
+  composite:
+  - label: Notes de réunion
+    identifier: meeting-notes
+    module: *_module_conduite_projet
+  - label: MCD
+    identifier: mcd
+    module: *_module_bdd
+  - label: Planification
+    identifier: planning
+    module: *_module_conduite_projet
+
+- label: Dossier de conception - Dev
+  identifier: design-document-dev
+  type: *_type_composite_deliverable
+  composite:
+  - label: Notes de réunion
+    identifier: meeting-notes
+    module: *_module_conduite_projet
+  - label: MCD
+    identifier: mcd
+    module: *_module_bdd
+  - label: Charte graphique
+    identifier: graphical-charter
+    module: *_module_qa
+  - label: Planification
+    identifier: planning
+    module: *_module_conduite_projet
 
 - label: Point intermédiaire
   identifier: checkup
-  type: *_type_intermediary_deliverable
 
 - label: Résumé anglais
   identifier: english-summary
-  type: *_type_intermediary_deliverable
 
 - label: Livraison version finale
   identifier: version-final

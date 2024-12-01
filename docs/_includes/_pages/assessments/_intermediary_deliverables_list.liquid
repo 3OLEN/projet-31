@@ -3,8 +3,7 @@
 {% assign intermediary_deliverables = site.data.assessments.values | where: "type", "intermediary_deliverable" %}
 <ol class="deliverable_list">
     {% comment %} <!-- On met les expirés à la fin --> {% endcomment %}
-    {% assign project_assessments = site.data.dates.project_assessments %}
-    {% comment %}{% assign project_assessments = site.data.dates.project_assessments | sort: "date.value" %}{% endcomment %}
+    {% assign project_assessments = site.data.dates.project_assessments | sort: "date.value" %}
     {% assign dated_assessments = project_assessments | where: "", true %}
     {% assign expired_assessments = dated_assessments %}
     {% for project_assessment in project_assessments %}
