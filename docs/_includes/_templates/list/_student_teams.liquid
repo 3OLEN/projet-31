@@ -1,57 +1,14 @@
 {% assign listed_teams = site.data.students.teams %}
-{% assign base_gitlab = "https://gitlab.com/ort.lyon.enseignement.numerique/3olen/2023.2024-lumos-camminus/projet-31/" %}
 
 <ul class="student-teams">
-    {% for team in listed_teams %}
-        <li>
-            <header class="team-heading">
-                <strong class="team-name">{{ team.name }}</strong>
-            </header>
-
-            <ul class="team-members">
-                {% assign team_members = team.members | where_exp: "item", "item.name != empty" | sort: "name" %}
-                {% for member in team_members %}
-                    {% assign related_student = site.data.students.roster | where: "name", member.name | first %}
-                    {% unless related_student %}
-                        {% continue %}
-                    {% endunless %}
-
-                    <li class="team-member">
-                        <span class="badge {{ related_student.group | downcase }}">
-                            {{ related_student.group | upcase }}
-                        </span>
-
-                        <a
-                            href="{{ related_student.gitlab | prepend: "https://gitlab.com/" }}"
-                            class="team-link"
-                            target="_blank"
-                            title="Accéder au compte utilisateur GitHub"
-                        >
-                            <img class="svg-icon" src="{{ '/assets/images/gitlab.svg' | relative_url }}" alt="GitLab">
-                        </a>
-
-                        <strong
-                            {% if member.lead %}
-                                class="text-secondary"
-                                title="Rôle de responsable"
-                            {% endif %}
-                        >
-                            {{ related_student.name }}
-                        </strong>
-                    </li>
-                {% endfor %}
-            </ul>
-
-            <footer class="team-footer">
-                <a
-                    href="{{ team.gitlab | prepend: base_gitlab }}"
-                    class="team-link"
-                    target="_blank"
-                    title="Accéder au groupe sur GitHub"
-                >
-                    <img class="svg-icon" src="{{ '/assets/images/gitlab.svg' | relative_url }}" alt="GitLab">
-                </a>
-            </footer>
-        </li>
+    {% assign cyber_teams = listed_teams | where_exp: "team", "team.group == 'Cyber'" %}
+    {% for cyber_team in cyber_teams %}
+        {% include _templates/list/element/_student_team.liquid team=cyber_team %}
+    {% endfor %}
+</ul>
+<ul class="student-teams">
+    {% assign dev_teams = listed_teams | where_exp: "team", "team.group == 'Dev'" %}
+    {% for dev_team in dev_teams %}
+        {% include _templates/list/element/_student_team.liquid team=dev_team %}
     {% endfor %}
 </ul>

@@ -2,9 +2,154 @@ _templating:
   _groups:
     _dev: &dev_group
       group: Dev
-    _ops: &ops_group
-      group: Infra
+    _cyber: &cyber_group
+      group: Cyber
 
 roster:
+  - name: &student_bach "BACH Loris"
+    <<: *dev_group
+    github: Loris01100
+  - name: &student_bacar "BACAR Fehisoil"
+    <<: *cyber_group
+  - name: &student_baeza "BAEZA Julien"
+    <<: *dev_group
+    github: JulienBaezaa
+  - name: &student_baudoy "BAUDOY Romain"
+    <<: *dev_group
+    github: RomainBAU
+  - name: &student_benayoun "BENAYOUN David-israel"
+    <<: *dev_group
+    github: Davidovitchfr
+  - name: &student_berns "BERNS Benjamin"
+    <<: *dev_group
+    github: BenjaminBerns
+  - name: &student_boissie "BOISSIE Angel"
+    <<: *dev_group
+    github: Angelb25
+  - name: &student_danjard_maza "DANJARD-MAZA Raphaël"
+    <<: *dev_group
+  - name: &student_di_cicco "DI CICCO Guillaume"
+    <<: *cyber_group
+  - name: &student_gonnord "GONNORD Marine"
+    <<: *dev_group
+    github: MarineG404
+  - name: &student_jolivet "JOLIVET Eylann"
+    <<: *cyber_group
+  - name: &student_kebriti "KEBRITI Eddy"
+    <<: *dev_group
+    github: EddyK727
+  - name: &student_korchia "KORCHIA Maxime"
+    <<: *cyber_group
+  - name: &student_krief "KRIEF Nataniel"
+    <<: *cyber_group
+  - name: &student_mahmoudi "MAHMOUDI Nassim"
+    <<: *cyber_group
+  - name: &student_maillet "MAILLET Arthur"
+    <<: *cyber_group
+  - name: &student_marzeridoux "MARZERIDOUX Hugo"
+    <<: *cyber_group
+  - name: &student_mendes_monteiro "MENDES MONTEIRO Eduardo"
+    <<: *dev_group
+    github: eduardo-mtr47
+  - name: &student_meunier "MEUNIER Anthony"
+    <<: *dev_group
+    github: KibaKiteru
+  - name: &student_mezine "MEZINE Nail"
+    <<: *cyber_group
+  - name: &student_ngon "NGO Léonie"
+    <<: *cyber_group
+  - name: &student_nidam "NIDAM Mamoune"
+    <<: *dev_group
+    github: Galahaaad
+  - name: &student_paoletti "PAOLETTI Erick"
+    <<: *dev_group
+    github: SkyWors
+  - name: &student_pichon "PICHON Luca"
+    <<: *dev_group
+    github: Pichonpignon
+  - name: &student_pronesti "PRONESTI Andrew"
+    <<: *cyber_group
+  - name: &student_reboul "REBOUL Scott"
+    <<: *cyber_group
+  - name: &student_rispoli "RISPOLI Mattéo"
+    <<: *cyber_group
+  - name: &student_said "SAID Amir"
+    <<: *dev_group
+    github: AmirS887
+  - name: &student_smajic "SMAJIC Emrah"
+    <<: *cyber_group
+  - name: &student_trapeau "TRAPEAU Gautier"
+    <<: *cyber_group
+  - name: &student_yazbek "YAZBEK Rachel"
+    <<: *dev_group
+    github: rachelyazbek789
 
 teams:
+  - name: "File Busters"
+    <<: *cyber_group
+    members:
+    - name: *student_jolivet
+    - name: *student_korchia
+    - name: *student_mahmoudi
+      lead: true
+    - name: *student_mezine
+  - name: "Gravity Files"
+    <<: *cyber_group
+    members:
+    - name: *student_bacar
+    - name: *student_di_cicco
+    - name: *student_pronesti
+      lead: true
+    - name: *student_smajic
+  - name: "Back 2 Back"
+    <<: *cyber_group
+    members:
+    - name: *student_marzeridoux
+    - name: *student_reboul
+      lead: true
+    - name: *student_rispoli
+    - name: *student_trapeau
+  - name: "CYBERLOUTRES"
+    <<: *cyber_group
+    members:
+    - name: *student_krief
+    - name: *student_maillet
+    - name: *student_ngon
+      lead: true
+
+  - name: "Kinder Pingui"
+    <<: *dev_group
+    github: RomainBAU/TeamKinderPingouinsDispOLEN
+    members:
+    - name: *student_bach
+    - name: *student_baudoy
+      lead: true
+    - name: *student_berns
+    - name: *student_kebriti
+  - name: "Ctrl+Alt+Win"
+    <<: *dev_group
+    github: eduardo-mtr47/projet-transverse
+    members:
+    - name: *student_baeza
+    - name: *student_benayoun
+    - name: *student_danjard_maza
+    - name: *student_mendes_monteiro
+      lead: true
+  - name: "Peaky Blinders"
+    <<: *dev_group
+    github: AmirS887/PK_Blind_DispOLEN
+    members:
+    - name: *student_boissie
+    - name: *student_nidam
+    - name: *student_pichon
+    - name: *student_said
+      lead: true
+  - name: "Smoke Detectors"
+    <<: *dev_group
+    github: RealSmokeDetector/DispOLEN
+    members:
+    - name: *student_gonnord
+    - name: *student_meunier
+    - name: *student_paoletti
+      lead: true
+    - name: *student_yazbek

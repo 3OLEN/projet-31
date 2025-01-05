@@ -1,0 +1,12 @@
+<a
+    href="{{ include.github | prepend: 'https://github.com/' }}"
+    class="team-link"
+    target="_blank"
+    {% if include.is_group %}
+        title="Accéder au groupe sur GitHub"
+    {% else %}
+        title="Accéder au compte utilisateur sur GitHub"
+    {% endif %}
+>
+    <img class="svg-icon" src="{{ '/assets/images/github.svg' | relative_url }}" alt="GitHub">
+</a>

@@ -1,0 +1,44 @@
+<li>
+    <header class="team-heading">
+        <strong class="team-name">{{ include.team.name }}</strong>
+    </header>
+
+    <ul class="team-members">
+        {% assign team_members = include.team.members | where_exp: "item", "item.name != empty" | sort: "name" %}
+        {% for member in team_members %}
+            {% assign related_student = site.data.students.roster | where: "name", member.name | first %}
+            {% unless related_student %}
+                {% continue %}
+            {% endunless %}
+
+            <li class="team-member">
+                <span class="badge {{ related_student.group | downcase }}">
+                    {{ related_student.group | upcase }}
+                </span>
+
+                {% if related_student.github %}
+                    {% include _templates/anchor/_anchor_github.liquid github=related_student.github %}
+                {% elsif related_student.gitlab %}
+                    {% include _templates/anchor/_anchor_gitlab.liquid gitlab=related_student.gitlab %}
+                {% endif %}
+
+                <strong
+                    {% if member.lead %}
+                        class="text-secondary"
+                        title="Rôle de responsable"
+                    {% endif %}
+                >
+                    {{ related_student.name }}
+                </strong>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <footer class="team-footer">
+        {% if include.team.github %}
+            {% include _templates/anchor/_anchor_github.liquid github=include.team.github is_group=true %}
+        {% elsif include.team.gitlab %}
+            {% include _templates/anchor/_anchor_gitlab.liquid gitlab=include.team.gitlab is_group=true %}
+        {% endif %}
+    </footer>
+</li>
