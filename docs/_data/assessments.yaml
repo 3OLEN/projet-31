@@ -50,9 +50,18 @@ values:
 
 - label: Point intermédiaire
   identifier: checkup
+  type: *_type_intermediary_deliverable
+  composite:
+  - label: Planification
+    identifier: planning-checkup
+    module: *_module_conduite_projet
+  - label: Cahier de recette
+    identifier: acceptance-testing
+    module: *_module_qa
 
 - label: Résumé anglais
   identifier: english-summary
+  type: *_type_intermediary_deliverable
 
 - label: Livraison version finale
   identifier: version-final

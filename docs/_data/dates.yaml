@@ -81,8 +81,8 @@ project_assessments:
     type: *_type_assessment
     identifier: checkup
   - date:
-      value: 2025-01-13
+      value: 2025-01-14
       month: *_month_01
-      day: *_day_01
+      day: *_day_02
     type: *_type_assessment
     identifier: english-summary
