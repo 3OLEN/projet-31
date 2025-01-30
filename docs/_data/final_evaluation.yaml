@@ -1,7 +1,45 @@
 _templates:
+  _oral_presentation: &_oral_presentation
+    name: Présentation orale
+    coefficient: 2.5
+    content:
+    - text: |
+        On attend de votre part un premier travail sur votre posture, votre langage corporel et votre attitude ; vous
+        vous adressez à un public et êtes le centre de l'attention, même lorsque vous ne parlez pas au risque d'avoir
+        un comportement parasite pour la soutenance.
+    - comment: |
+        Le stress n'est pas évident à gérer, mais il n'y a que la pratique qui permet d'en venir à bout petit à petit.
+        Soyez attentif·ve aux gestes parasites : jouer avec un stylo, rouler et dérouler une feuille, faire craquer
+        ses doigts, agiter les jambes, mettre sa main ou ses doigts devant sa bouche, etc.
+    - text: |
+        En tant qu'épreuve orale, vous devez faire attention à votre élocution, à votre débit et au volume de votre
+        voix : votre public doit pouvoir vous entendre du fond de la salle et, inversement, ne pas être assourdi en
+        étant au premier rang.
+    - text: |
+        Enfin, votre objectif est de transmettre un discours clair, compréhensible, structuré et adapté à votre
+        public. Vous faites face à des représentants de votre client, vous devez soigner votre discours et être
+        suffisamment explicite dans vos termes techniques.
+    - comment: |
+        Faites très attention à votre vocabulaire et vos tics de langage, notamment les injures en cas de pépin. De
+        plus, même si votre auditoire est composé d'intervenants du monde de l'informatique, certains pourraient ne
+        pas (ou plus) avoir les connaissances techniques de certains éléments. Pensez à vulgariser ces éléments.
+    elements:
+    - name: Posture et attitude
+      description: |
+        L'étudiant·e se tient face au jury lors de sa prestation orale et montre un langage corporel adapté à un
+        contexte professionnel : pas de mains dans les poches, ne tripote pas un stylo, n'est pas adossé·e à un mur ou
+        à une table, etc.
+    - name: Qualité verbale, élocution, voix
+      description: |
+        Est-ce que l'étudiant·e s'est bien fait·e entendre ? Est-ce que son débit de parole était correct ? Est-ce que
+        sa prestation verbale était fluide ? Est-ce que son vocabulaire était adapté à cette situation professionnelle ?
+    - name: Cohérence
+      description: |
+        L'oral est structuré, organisé et suit un fil conducteur. Les transitions entre les différentes parties sont
+        fluides et les éléments sont bien enchaînés.
   _support_quality: &_step_support_quality
     name: Qualité du support
-    coefficient: 4
+    coefficient: 1.5
     content:
       - text: Vous veillerez à présenter un support travaillé et qui reflète l'image de marque de votre groupe.
       - comment: |
@@ -19,34 +57,22 @@ _templates:
           diapositive de fin (« Merci pour votre écoute » / « Vous pouvez poser vos questions »).
       - warning: N'abusez pas et ne passez pas trop de temps sur les effets et les transitions.
     elements:
-      - name: Travaillé
-        coefficient: 1.5
+      - name: Travaillé et exploitation de l'espace
         description: |
           Est-ce que le support a une "âme" ; est-ce qu'il porte l'identité du groupe ? Est-ce qu'il est différent des
           PowerPoint de base ?
-      - name: Lisibilité
-        coefficient: 1.25
-        description: |
-          Vous avez pu lire correctement les diapositives, les images, les schémas. Les couleurs utilisées et la
-          structure visuelle des diapositives n'ont pas été un affront oculaire et vos yeux sont toujours intacts.
-      - name: Choix visuels
-        coefficient: 0.75
+      - name: Choix visuels et lisibilité
         description: |
           Le style du support (taille de texte, police d'écriture, couleurs) est cohérent et adapté. Des schémas ou
           images ont été judicieusement exploités. La représentation visuelle globale est de qualité.
-      - name: Exploitation de l'espace
-        coefficient: 0.5
-        description: |
-          L'espace des diapositives a été correctement exploité : il n'y a pas (trop) d'espaces vides, des éléments
-          (les titres par exemple) n'accaparent pas trop d'espace, etc.
+          
+          Vous avez pu lire correctement les diapositives, les images, les schémas. Les couleurs utilisées et la
+          structure visuelle des diapositives n'ont pas été un affront oculaire et vos yeux sont toujours intacts.
       - name: Composition du support
         malus: true
-        max: -2
+        max: -1.5
         description: |
           Si certains éléments propres à un diaporama viennent à manquer, vous devez appliquer un malus.
-          
-          Pour chaque élément manquant ou mal défini, vous pouvez définir un malus de 0.25 minimum. Libre à vous
-          d'appliquer un malus plus important.
         listing:
           - Diapositive de couverture (titre de l'oral, date, nom du groupe, promotion).
           - Sommaire (ici, vous vérifiez qu'il est présent ; son exploitation à l'oral fait l'objet d'un autre point).
@@ -54,57 +80,6 @@ _templates:
           - Numéro des diapositives (la lisibilité ou le choix visuel fait l'objet d'un autre point).
           - Conclusion.
           - Diapositive de fin (pour remercier l'auditoire et lui proposer de poser des questions).
-  _oral_presentation: &_oral_presentation
-    name: Présentation orale
-    coefficient: 6
-    content:
-      - text: |
-          On attend de votre part un premier travail sur votre posture, votre langage corporel et votre attitude ; vous
-          vous adressez à un public et êtes le centre de l'attention, même lorsque vous ne parlez pas au risque d'avoir
-          un comportement parasite pour la soutenance.
-      - comment: |
-          Le stress n'est pas évident à gérer, mais il n'y a que la pratique qui permet d'en venir à bout petit à petit.
-          Soyez attentif·ve aux gestes parasites : jouer avec un stylo, rouler et dérouler une feuille, faire craquer
-          ses doigts, agiter les jambes, mettre sa main ou ses doigts devant sa bouche, etc.
-      - text: |
-          En tant qu'épreuve orale, vous devez faire attention à votre élocution, à votre débit et au volume de votre
-          voix : votre public doit pouvoir vous entendre du fond de la salle et, inversement, ne pas être assourdi en
-          étant au premier rang.
-      - text: |
-          Enfin, votre objectif est de transmettre un discours clair, compréhensible, structuré et adapté à votre
-          public. Vous faites face à des représentants de votre client, vous devez soigner votre discours et être
-          suffisamment explicite dans vos termes techniques.
-      - comment: |
-          Faites très attention à votre vocabulaire et vos tics de langage, notamment les injures en cas de pépin. De
-          plus, même si votre auditoire est composé d'intervenants du monde de l'informatique, certains pourraient ne
-          pas (ou plus) avoir les connaissances techniques de certains éléments. Pensez à vulgariser ces éléments.
-    elements:
-      - name: Posture
-        coefficient: 1
-        description: |
-          L'étudiant·e se tient face au jury lors de sa prestation orale et montre un langage corporel adapté à un
-          contexte professionnel : pas de mains dans les poches, ne tripote pas un stylo, n'est pas adossé·e à un mur ou
-          à une table, etc.
-      - name: Attitude
-        coefficient: 1
-        description: |
-          L'étudiant·e adopte une attitude professionnelle et s'adresse en tant que tel au jury. L'étudiant·e est
-          impliqué·e dans l'oral et respecte la parole des autres membres du groupe.
-      - name: Élocution, voix
-        coefficient: 1.5
-        description: |
-          Est-ce que l'étudiant·e s'est bien fait·e entendre ? Est-ce que son débit de parole était correct ? Est-ce que
-          sa prestation verbale était fluide ?
-      - name: Qualité verbale
-        coefficient: 1.5
-        description: |
-          L'étudiant·e a su adapter son discours et vocabulaire à l'auditoire, a su vulgariser les termes techniques, a
-          su être suffisamment explicite dans ses propos et a su garder un niveau de détail suffisant.
-      - name: Mise en commun
-        coefficient: 1
-        description: |
-          L'oral est structuré, organisé et suit un fil conducteur. Les transitions entre les différentes parties sont
-          fluides et les éléments sont bien enchaînés.
   _oral_malus_content_fautes: &_oral_malus_content_fautes
     name: Fautes
     description: |
@@ -112,33 +87,14 @@ _templates:
       auditoire. Toute la dynamique de l'oral s'interrompt d'un seul coup et on ne retient plus que les fautes.
     max: -2
   _oral_malus_content_limite_temps: &_oral_malus_content_limite_temps
-    name: Dépassement du temps
-    description: |
-      Dès lors que vous dépassez le temps défini, le jury doit vous avertir. Vous avez alors une minute pour
-      conclure. Si vous dépassez cette minute supplémentaire, le malus sera plus important.
-    detail:
-    - value: -1
-      description: Vous avez dépassé le temps défini.
-    - value: -2
-      description: Vous avez dépassé le temps défini **ainsi que** la minute accordée à la conclusion.
-  _oral_malus_content_respect_temps: &_oral_malus_content_respect_temps
     name: Respect du temps
     description: |
       Vous devez respecter la durée de la présentation et ne pas faire un temps trop inférieur. Vous bénéficiez
       d'une marge de 10% : 1 minute pour 10 minutes, 1 minute 30 pour 15 minutes, 2 minutes pour 20 minutes, etc.
-    max: -1
-  _oral_malus_content_notes: &_oral_malus_content_notes
-    name: Lecture des notes
-    description: |
-      Vous faites face à un jury, pas à une feuille de notes (exception pour la feuille de récapitulatif et des
-      instructions pour la démonstration) ou à du texte sur diapositive ; vous maîtrisez votre sujet et êtes
-      capable de le retranscrire avec des mots-clefs ou des rappels, seulement.
-    cumulative: true
-    detail:
-    - value: -1
-      description: Vous lisez vos notes.
-    - value: -1
-      description: Vous lisez du texte sur diapositive.
+      
+      Dès lors que vous dépassez le temps défini, le jury doit vous avertir. Vous avez alors une minute pour
+      conclure. Si vous dépassez cette minute supplémentaire, le malus sera plus important.
+    max: -2
   _oral_malus_content_tenue: &_oral_malus_content_tenue
     name: Tenue vestimentaire
     description: |
@@ -151,132 +107,8 @@ _templates:
         Le Jury bénéficie d'un court temps pendant lequel il pourra vous faire des remarques générales pour vous aider à
         corriger certains éléments et à vous améliorer.
     - danger: |
-        Vous avez obligation (toutes et tous, sans exception, même sur la soutenance de groupe) de prendre des notes à
-        ce sujet. Vous devrez me fournir ces notes au propre (`.txt` / `.md` / `.pdf`) le soir-même (dépôt Moodle).
-        <br><br>Ce travail fait aussi partie de la notation personnelle de votre projet.
-
-group_defense:
-  - <<: *_step_support_quality
-  - <<: *_oral_presentation
-  - name: Minorations
-    malus: true
-    content:
-    - danger: Le non-respect de ces éléments entraînera des malus sur la note de l'oral.
-    elements:
-    - <<: *_oral_malus_content_fautes
-    - <<: *_oral_malus_content_limite_temps
-    - <<: *_oral_malus_content_respect_temps
-    - <<: *_oral_malus_content_notes
-    - <<: *_oral_malus_content_tenue
-      max: -2
-  - name: Description du projet
-    coefficient: 2
-    content:
-      - text: |
-          Vous devez vous présenter de manière professionnelle auprès du jury afin de lui permettre de comprendre
-          l'implication de chacun·e et leur·s responsabilité·s.
-      - comment: |
-          Il y a plusieurs manières de procéder, libre à vous d'adopter celle qui vous convient le mieux. Par ailleurs,
-          un rappel visuel sur le diaporama avec une photo peut être un atout majeur.
-      - text: |
-          Vous prouverez au jury que vous avez compris et que vous avez bien cerné le besoin et le contexte de votre
-          client, que vous avez bien appréhendé les objectifs et que vous avez bien cerné les principales
-          demandes / exigences.
-      - danger: Vous devez absolument **reformuler** ces aspects et ne pas faire un copier/coller des éléments du sujet.
-    elements:
-      - name: Présentation du groupe
-        coefficient: 0.75
-        description: |
-          L'ensemble du groupe est présenté : chaque membre est visuellement identifié, les responsables se distinguent
-          au sein de leur équipe DEV ou INFRA et le rôle principal de chacun·e est stipulé.
-      - name: Présentation du projet
-        coefficient: 1.25
-        description: |
-          Le contexte, le besoin et les objectifs sont définis, **reformulés** et compris. Les principales demandes / 
-          exigences sont indiquées, mais sans rentrer dans le détail ; l'idée n'est pas de présenter tout le sujet.
-  - name: Description de la solution
-    coefficient: 4.5
-    content:
-      - text: Vous présenterez la solution mise en place, à savoir votre application web et votre infrastructure.
-      - text: |
-          Vous rappellerez sommairement les contraintes et les demandes concernant le produit demandé par votre client.
-      - comment: |
-          Usez d'images et de schémas pour présenter la solution avec clarté, tout en restant bref dans votre discours ;
-          de petits éléments visuels valent mieux qu'un long discours, surtout s'il est écrit sur le diaporama.
-      - comment: |
-          Abordez les éléments de manière générale afin de permettre à votre jury d'avoir une vision d'ensemble. Le
-          détail (notamment sur l'infrastructure) sera abordé pendant les parties individuelles.
-    elements:
-      - name: Application web
-        coefficient: 1.5
-        description: |
-          La solution DEV est présentée : description, objectifs, utilisation, technologies, versions, etc. et respecte
-          les contraintes imposées (🐘 PHP POO / 🚫 Framework Back / 🚫 jQuery / etc.).
-          <br><br>Mention spéciale si l'architecture (normalement MVC) est présentée également.
-      - name: Infrastructure
-        coefficient: 3
-        description: |
-          L'infrastructure est complexe (🐋 Docker, 🏘️ multi-environnements, 🛂 réseau privé, etc.) ; des schémas et
-          diagrammes sont une obligation pour pouvoir la représenter.
-          <br><br>Il est aussi fait mention des éléments d'exploitation, parmi ceux demandés dans les spécifications.
-  - name: Démonstration
-    coefficient: 2.5
-    content:
-      - text: Vous devez présenter votre solution à sa version "finale" sur ses aspects principaux.
-      - text: |
-          L'objectif est de montrer à votre client l'utilisation de votre produit. Le détail sera abordé au cours des
-          entretiens individuels, notamment pour l'infrastructure et son exploitation.
-      - danger: |
-          La démonstration se fait sur l'environnement de production (ou un environnement de secours) et certainement
-          pas en **local** !
-      - comment: |
-          Vous êtes face à votre client qui va devoir prendre une décision si c'est votre solution ou celle de vos
-          concurrents qui est retenue. Les moindres erreurs et maladresses (les imprécisions, les fautes, le hors-sujet)
-          peuvent faire pencher la balance du mauvais côté.
-      - warning: |
-          La démonstration doit être scriptée et préparée ; ne tentez pas d'improvisation et n'interrompez pas les
-          personnes responsables de la démonstration.
-      - comment: |
-          Les membres du jury adorent "jouer avec la prod". Ils voudront accéder à l'application et tester un peu ce
-          qu'ils peuvent faire. Vous avez diverses façons de le leur permettre.
-    elements:
-      - name: Fonctionnel
-        coefficient: 1.5
-        description: |
-          L'application est en production et fonctionnelle. Les éléments principaux sont implémentés et la solution
-          répond au besoin.
-      - name: Préparation
-        coefficient: 1
-        description: |
-          La démonstration a été préparée autant dans son enchaînement que dans les données de démonstration. Les
-          étudiant·e·s intervenants maîtrisent leur sujet et leur participation est appropriée (i.e. si un·e étudiant·e
-          intervient pendant la démonstration, ce n'est ni superflu ni interruption maladroite et malvenue).
-      - name: Données de test
-        malus: true
-        description: |
-          Les données présentes et les données de démonstration ne sont pas des données réelles de production, ni liées
-          au contexte de l'application.
-        max: -1
-  - name: Conclusion
-    coefficient: 1
-    content:
-      - text: |
-          Vous devez faire un bilan concis et constructif du projet, faire l'état des lieux, définir le reste à faire et
-          aborder les points d'amélioration.
-      - warning: |
-          Faites attention à ne pas consommer trop de temps ; il s'agit de la conclusion du projet, de l'oral et ce doit
-          être rapide et efficace.
-      - comment: Pensez à inclure une diapositive de fin et à travailler votre transition orale finale.
-    elements:
-      - name: Bilan
-        coefficient: 0.5
-        description: |
-          Le bilan est a minima constructif (pas de plaintes injustifiée, pas de jérémiades sur la disponibilité du
-          matériel, sur les contraintes de temps, etc. Ce sont des éléments qu'ils doivent prendre en considération).
-      - name: État des lieux
-        coefficient: 0.5
-        description: Le reste à faire est indiqué et des points d'amélioration sont évoqués.
-  - <<: *_remarques_jury
+        Vous avez obligation (toutes et tous, sans exception) de prendre des notes à ce sujet. Vous devrez me fournir
+        ces notes au propre (`.txt` / `.md` / `.pdf`) juste après votre passage (dépôt Moodle).
 
 student_defense:
   - <<: *_step_support_quality
@@ -288,8 +120,6 @@ student_defense:
     elements:
     - <<: *_oral_malus_content_fautes
     - <<: *_oral_malus_content_limite_temps
-    - <<: *_oral_malus_content_respect_temps
-    - <<: *_oral_malus_content_notes
     - <<: *_oral_malus_content_tenue
   - name: Rappel du projet
     malus: true
@@ -302,7 +132,7 @@ student_defense:
           Indiquez au jury quels sont les objectifs et demandes du projet sur lesquels s'est portée votre contribution.
     max: -2
   - name: Tâches réalisées
-    coefficient: 3
+    coefficient: 2
     content:
       - text: |
           Décrivez les tâches principales / primordiales qui vous ont été attribuées, leur importance, leur durée, les
@@ -338,23 +168,20 @@ student_defense:
       - text: |
           Vous aborderez dans cette démonstration des éléments plus spécifiques et techniques indiquant la mise en
           œuvre de la solution.
-      - comment: |
-          Les INFRA n'auront pas eu l'occasion de montrer ce qu'ils ont fait lors de la démonstration de groupe, c'est
-          l'occasion de le faire. Cela signifie que les DEV n'auront peut-être pas besoin d'autant de temps de
-          démonstration que leurs camarades en INFRA.
-      - comment: Cette démonstration peut se faire en local. C'est peut-être le plus sûr...
-    elements:
-      - name: Notation
-        description: La notation de la partie « Entretien » prend en charge ce qui est présenté dans la démonstration.
-  - name: Entretien
-    coefficient: 5
+      - warning: |
+          La démonstration doit être scriptée et préparée ; ne tentez pas d'improvisation et n'interrompez pas les
+          personnes responsables de la démonstration.
+      - danger: |
+          Les données ou fichiers présentés et utilisés lors de la démonstration doivent être cohérents et adaptés au
+          contexte du projet.
+  - name: Réalisation personnelle et expertise technique
+    coefficient: 12
     content:
       - text: |
-          Vous êtes capable de répondre aux questions posées par les référents techniques du client et de prouver votre
-          contribution personnelle au sein du projet.
-      - warning: |
-          Le jury peut être amené à poser des questions sur des éléments de votre soutenance (individuelle et de groupe)
-          qui ne sont, sûrement, pas totalement clairs.
+         Vous êtes capable de prouver votre contribution personnelle au sein du projet et que vous avez fourni un
+         résultat fonctionnel.
+      - text: |
+          Vous êtes capable de répondre aux questions posées et d'expliquer ce que vous avez fait.
     elements:
       - name: Contribution personnelle
         description: |
@@ -364,9 +191,5 @@ student_defense:
           <br><br>N'ayez aucun scrupule à mettre 0 à quelqu'un qui n'a rien fait. À l'inverse, n'ayez aucune retenue à
           attribuer la note maximale à une personne qui a fait plus qu'il ne fallait pour son groupe.
       - name: IA
-        description: L'IA n'était pas interdite, mais ont-ils compris ce qu'ils ont récupéré de ChatGPT et de Copilot ?
-      - name: Tests
-        description: |
-          Les DEV avaient pour obligation pour faire du PHPUnit. Vérifiez aussi la politique de tests et de recette de
-          chacun·e.
+        description: L'IA n'était pas interdite, mais ont-ils compris ce qu'ils ont récupéré de ChatGPT et autres ?
   - <<: *_remarques_jury

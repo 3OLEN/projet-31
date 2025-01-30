@@ -154,7 +154,7 @@
     --defense-grid-color-primary: #{$color-primary};
     --defense-grid-color-secondary: #{$color-secondary};
 
-    background-color: rgba($brand-color-dark, .8);
+    background-color: rgba($brand-color, .1);
     border-top: 0.75em solid var(--defense-grid-color-primary);
     border-radius: 0 0 1em 1em;
     padding: 0.25em $spacing-unit * 0.5;
