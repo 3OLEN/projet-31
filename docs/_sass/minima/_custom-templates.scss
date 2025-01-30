@@ -594,6 +594,10 @@ li {
   margin: 1rem;
   padding: 1rem;
 
+  &-content {
+    text-align: justify;
+  }
+
   &.comment {
     border-left-color: $color-info;
     background-color: #{$color-info}33;

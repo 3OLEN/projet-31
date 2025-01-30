@@ -77,6 +77,16 @@ summary:
                     </a>
                 </li>
             {% endfor %}
+
+            {% assign final_page = site.final | where_exp: "item", "item.slug == 'index'" | first %}
+            <li>
+                <a href="{{ final_page.url | relative_url }}" class="related-page-item">
+                    <span class="related-page-badge final"></span>
+                    <strong class="related-page-title">
+                        {{ final_page.title }}
+                    </strong>
+                </a>
+            </li>
         </ol>
     </main>
 </section>

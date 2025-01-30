@@ -30,6 +30,11 @@
                 <a class="page-link" href="{{ planning_page.url | relative_url }}">
                     {{ planning_page.title }}
                 </a>
+
+                {% assign final_page = site.final | where_exp: "item", "item.slug == 'index'" | first %}
+                <a class="page-link" href="{{ final_page.url | relative_url }}">
+                    {{ final_page.title }}
+                </a>
             </div>
         </nav>
         {%- endif -%}
