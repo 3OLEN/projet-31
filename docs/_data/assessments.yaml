@@ -63,6 +63,10 @@ values:
   identifier: english-summary
   type: *_type_intermediary_deliverable
 
+- label: Préparation soutenance
+  identifier: defense-preparation
+  type: *_type_intermediary_deliverable
+
 - label: Livraison version finale
   identifier: version-final
   page: livraison-finale
