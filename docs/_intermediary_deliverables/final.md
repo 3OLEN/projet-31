@@ -11,5 +11,6 @@ description: |
 
 ## Rendus à fournir
 
+- PDF du support de la présentation de groupe
 - PDF du support de la présentation individuelle
 - Fichier du suivi de la démonstration
