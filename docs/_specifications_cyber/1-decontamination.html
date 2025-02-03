@@ -7,9 +7,10 @@ type: functional
 workflow:
   - content: Les fichiers sont déposés dans une zone spécifique, appelée « Guichet A ».
   - content: Une première analyse est effectuée sur le « Guichet A ».
-  - content: Le fichier est récupéré vers une zone de partage intermédiaire pour une analyse plus poussée.
-  - content: Si le fichier est déclaré « illicite » ou « dangereux », il est placé en quarantaine ou supprimé.
-  - content: Si le fichier est déclaré « sain », il est transféré à une zone de partage final, appelée « Guichet B ».
+  - content: Le fichier est récupéré vers une zone de partage intermédiaire pour une deuxième analyse.
+  - content: Le fichier sera enfin transféré vers une zone de partage final, appelée « Guichet B » pour une dernière analyse.
+  - content: Lors d'une analyse, si le fichier est déclaré « illicite » ou « dangereux », il est placé en quarantaine ou supprimé.
+  - content: Si le fichier est déclaré « sain », il est mis à disposition dans la zone de partage final.
   - content: Les utilisateurs peuvent récupérer les fichiers depuis le « Guichet B ».
 ---
 

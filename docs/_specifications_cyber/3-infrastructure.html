@@ -10,12 +10,10 @@ infrastructure:
     content: Héberge le partage initial et exécute un premier script d'analyse des fichiers.
   - title: « Partage intermédiaire »
     badge: Rocky Linux
-    content: |
-      Héberge un système de validation avancée en exécutant un second script d'analyse ou d'autres outils.
-      Définit les règles de quarantaine ou de suppression des fichiers.
+    content: Héberge un système de validation en exécutant un second script d'analyse ou d'autres outils.
   - title: « Guichet B »
     badge: Windows server
-    content: Héberge le partage final des fichiers analysés et validés, mis à disposition des utilisateurs.
+    content: Héberge un troisième système de validation en exécutant un nouveau script d'analyse ou d'autres outils. <br>Définit également le partage final des fichiers analysés et validés et la mise à disposition des utilisateurs.
 
 network:
   - title: Guichet A
@@ -26,7 +24,6 @@ network:
   - title: Partage intermédiaire
     sub_listing:
       - content: Non accessible par le Guichet A.
-      - content: Utilisé pour transférer les fichiers après leur première analyse.
       - content: Accessible en lecture seule pour le Guichet B.
   - title: Guichet B
     sub_listing:
