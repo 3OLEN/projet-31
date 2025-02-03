@@ -61,52 +61,50 @@ jury_list:
 
 group_steps:
   - <<: *step_installation
-  - name: Oral groupe
-    duration: *duration_20mn
+  - name: Présentation groupe
+    duration: *duration_5mn
     content:
-      - name: Présentation du groupe
-        description: |
-          Chaque membre est présenté succinctement en précisant son rôle dans le projet et, éventuellement, sa tâche
-          principale.
-        advice: |
-          Adjoindre une photo pour chaque membre permet au jury de mieux représenter les candidats, notamment lors de
-          l'analyse du support après coup.
-      - name: Présentation du projet
-        description: |
-          Vous rappellerez le contexte et les besoins du projet (merci de reformuler les éléments du sujet) et vous
-          aborderez les objectifs de ce projet pour le client, afin de prouver votre bonne compréhension de la demande
-          du client.
-          
-          Vous indiquerez, bien sûr, les principales exigences fonctionnelles.
-      - name: Présentation de la solution
-        description: |
-          Vous décrirez tout d'abord l'**application web** et les technologies employées.
-          
-          Puis, vous présenterez l'**infrastructure** mise en place et son exploitation.
-        advice: Pensez à des schémas. Et faites en sorte qu'ils soient lisibles surtout !
-      - name: Démonstration
-        description: |
-          Vous ferez une démonstration complète et globale (trouvez le bon équilibre) de l'application et de ses
-          fonctionnalités afin de prouver au client que le produit proposé est cohérent et adapté à son besoin et ses
-          demandes.
-        advice: |
-          Une démonstration **se prépare** : tout le déroulé de votre démonstration est pré-établi, notamment par le
-          biais d'une feuille, afin de pouvoir dépiler tous les éléments dans l'ordre et sans les oublier.
-          <br><br>De même, les éléments de saisie sont notées sur votre feuille afin de ne pas perdre de temps à vous
-          rappeler des identifiants de connexion, par exemple.
-        danger: |
-          Vous faites une démonstration au client de l'application qu'il a demandée. C'est pourquoi toutes les données
-          présentées (à l'écran et lors de la saisie des formulaires) doivent être adaptées à son contexte.
-          <br>Pas de "Lorem ipsum", pas de "test demo", pas de données hors-sujet (livres / utilisateurs / etc.).
-      - name: Conclusion
-        description: |
-          Une conclusion globale du projet et son état des lieux. Vous pouvez aborder les points d'amélioration.
-  - <<: *step_remarques_jury
+    - name: Introduction
+      description: |
+        Introduction à la demi-journée des soutenances de votre groupe : présentation du groupe, du contexte de la
+        journée et du projet. Chaque membre se présente succinctement afin de se faire connaître auprès du jury.
+      advice: |
+        Adjoindre une photo pour chaque membre permet au jury de mieux représenter les candidats, notamment lors de
+        l'analyse du support après coup.
+    - name: Présentation projet
+      description: |
+        Vous rappellerez le contexte et les besoins du projet et vous aborderez les objectifs de ce projet pour le
+        client, afin de prouver votre bonne compréhension de la demande du client.
+    - name: Présentation de la solution
+      description: |
+        Vous décrirez votre solution, les technologies employées et les choix techniques effectués.
+      advice: Pensez à des schémas et faites en sorte qu'ils soient lisibles surtout ! Le "dark mode" est à proscrire.
+  - name: Démonstration
+    duration: *duration_10mn
+    content:
+    - name: Démonstration
+      description: |
+        Vous ferez une démonstration de bout en bout de votre solution afin de prouver que votre solution est
+        fonctionnelle et complète.
+    - name: Déroulement de la démonstration
+      description: |
+        Une démonstration **se prépare** : tout le déroulé de votre démonstration est pré-établi, notamment par le
+        biais d'une feuille, afin de pouvoir dépiler tous les éléments dans l'ordre et sans les oublier.
+      advice: |
+        Notez sur votre feuille les éléments de saisie afin de ne pas perdre de temps à vous rappeler des
+        identifiants de connexion, par exemple.
+      danger: |
+        Vous faites une démonstration au client de votre solution, c'est pourquoi toutes les données présentées (que ce
+        soit à l'écran, les noms des fichiers ou les saisies des formulaires) doivent être cohérentes et adaptées à son
+        contexte.
+        <br><br>Pas de "Lorem ipsum", pas de "test demo", pas de "sfsqdkls", pas de "toto", etc.
+        <br><br>Votre démonstration suit une manipulation utilisateur "réelle" afin de permettre à votre client de bien
+        se rendre compte de l'utilisation de la solution et de vérifier que c'est adapté à son besoin.
 
 student_steps:
   - <<: *step_installation
   - name: Oral individuel
-    duration: *duration_15mn
+    duration: *duration_10mn
     content:
       - name: Contexte projet
         description: Rappelez votre rôle au sein du projet et les objectifs couverts par votre contribution.
@@ -118,15 +116,15 @@ student_steps:
         description: |
           Si vous avez besoin de faire une démonstration plus poussée de vos contributions.
           
-          Pour les INFRA, c'est le moment de montrer exactement ce que vous avez fait pour l'infrastructure et son
-          exploitation.
+          Pour les CYBER, c'est le moment de montrer exactement ce que vous avez fait pour l'infrastructure et
+          son exploitation.
         advice: |
           Tout comme la démonstration de groupe, votre démonstration **se prépare** de la même manière. C'est d'autant
           plus essentiel, car vous montrez des éléments spécifiques du produit et des aspects plus techniques.
         danger: |
           Pareillement à la présentation de groupe, vous faites une démonstration au client, bien que vos interlocuteurs
           soient ses référents techniques. Votre démonstration doit toujours être adaptée à son contexte.
-          <br><br>Par ailleurs, vous n'avez pas à lui montrer du code !
+          <br><br>Par ailleurs, vous n'avez pas à lui montrer du code pour l'instant ! Ce sera pendant l'entretien.
   - name: Entretien
     description: |
       Le jury vous posera des questions sur le projet, sur votre contribution, sur vos connaissances techniques et sur
