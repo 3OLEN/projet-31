@@ -531,29 +531,29 @@ table {
             .group {
               // Colors
               --background-color-fade: 0.2;
-              &.group-les-apprenants-lents {
-                background-color: rgba(#b45f06, var(--background-color-fade));
+              &.group-file-busters {
+                background-color: rgba(#ffcfc9, var(--background-color-fade));
               }
-              &.group-save {
-                background-color: rgba(#38761d, var(--background-color-fade));
+              &.group-gravity-files {
+                background-color: rgba(#e6cff2, var(--background-color-fade));
               }
-              &.group-codefusion {
-                background-color: rgba(#1155cc, var(--background-color-fade));
+              &.group-back-2-back {
+                background-color: rgba(#e6e6e6, var(--background-color-fade));
               }
-              &.group-les-4-fantastiques {
-                background-color: rgba(#f1c232, var(--background-color-fade));
+              &.group-cyberloutres {
+                background-color: rgba(#d4edbc, var(--background-color-fade));
               }
-              &.group-lénine {
-                background-color: rgba(#a64d79, var(--background-color-fade));
+              &.group-kinder-pingui {
+                background-color: rgba(#ffe5a0, var(--background-color-fade));
               }
-              &.group-1001-librairies {
-                background-color: rgba(#a61c00, var(--background-color-fade));
+              &.group-ctrl-alt-win {
+                background-color: rgba(#bfe1f6, var(--background-color-fade));
               }
-              &.group-virgilcorp {
-                background-color: rgba(#a2c4c9, var(--background-color-fade));
+              &.group-peaky-blinders {
+                background-color: rgba(#ffc8aa, var(--background-color-fade));
               }
-              &.group-amawa {
-                background-color: rgba(#351c75, var(--background-color-fade));
+              &.group-smoke-detectors {
+                background-color: rgba(#c6dbe1, var(--background-color-fade));
               }
               &:hover {
                 --background-color-fade: 0.5;
