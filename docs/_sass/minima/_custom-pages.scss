@@ -484,8 +484,6 @@ table {
         text-align: center;
       }
       > main {
-        @extend %grid-cols-2;
-
         .jury-detail {
           align-items: center;
           display: flex;
@@ -613,13 +611,6 @@ table {
                       flex-direction: column;
                       padding: 0.5em 0;
                       row-gap: 0.25em;
-
-                      & + .student-name {
-                        border-left: 1px dashed $border-color-01;
-                      }
-                      &:only-child {
-                        border-right: 1px dashed $border-color-01;
-                      }
                       .name {
                         font-size: 1.1em;
                         font-weight: 700;
@@ -646,13 +637,6 @@ table {
                           font-weight: 700;
                           text-align: center;
                         }
-                      }
-
-                      & + .student-step {
-                        border-left: 1px dashed $border-color-01;
-                      }
-                      &:only-child {
-                        border-right: 1px dashed $border-color-01;
                       }
                     }
                   }

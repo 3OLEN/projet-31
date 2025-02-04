@@ -6,9 +6,9 @@ _parameters:
     - &duration_20mn "00:20"
   _groups:
     _dev: &dev_group
-      group: Dev
-    _ops: &ops_group
-      group: Infra
+      group: dev
+    _cyber: &cyber_group
+      group: cyber
   _scopes:
     _student: &scope_student
       scope: Student
@@ -26,38 +26,70 @@ _parameters:
         Le jury fait part de ses points d'attention et conseils concernant la présentation et l'aspect professionnel de
         la soutenance orale et de·s étudiant·e·s concerné·e·s.
       duration: *duration_5mn
-    _harmonisation_jury: &step_harmonisation_jury
-      name: Harmonisation du Jury
-      description: | 
-        Le jury délibère sur la soutenance afin de se mettre d'accord sur l'évaluation et d'être cohérent vis-à-vis des
-        autres étudiants.
-      duration: *duration_5mn
-      room: 210
   _time_values:
     - &day_begin_at "08:10"
     - &jury_begin_at "08:30"
     - &defense_begin_at "09:00"
-    - &lunch_end_at "14:05"
+    - &lunch_end_at "13:15"
 
 jury_members:
-  - name: &jury_qblache Quentin BLACHE
-    <<: *ops_group
-  - name: &jury_kbourki Karim BOURKI
-    <<: *ops_group
+  - name: &jury_aaubert Alexy AUBERT
+    <<: *cyber_group
+  - name: &jury_mbadin Maxime BADIN
+    <<: *dev_group
   - name: &jury_scecillon Sigfried CECILLON
-    <<: *ops_group
+    <<: *cyber_group
+  - name: &jury_dguillot Duan GUILLOT
+    <<: *cyber_group
   - name: &jury_lgilot Luc GILOT
     <<: *dev_group
-  - name: &jury_glegendre Guillaume LEGENDRE
-    <<: *ops_group
-  - name: &jury_pmalinge Philippe MALINGE
-    <<: *ops_group
-  - name: &jury_trobert Théry ROBERT
+  - name: &jury_shuguet Sébastien HUGUET
     <<: *dev_group
+  - name: &jury_glegendre Guillaume LEGENDRE
+    <<: *cyber_group
   - name: &jury_bvillena Billy VILLENA
     <<: *dev_group
 
 jury_list:
+- name: Jury Cyber A
+  <<: *cyber_group
+  lead: *jury_scecillon
+  room: "211"
+  passages:
+  - roaster:
+    - *jury_aaubert
+  - roaster:
+    - *jury_dguillot
+
+- name: Jury Cyber B
+  <<: *cyber_group
+  lead: *jury_glegendre
+  room: "213"
+  passages:
+  - roaster:
+    - *jury_dguillot
+  - roaster:
+    - *jury_aaubert
+
+- name: Jury Dev A
+  lead: *jury_bvillena
+  <<: *dev_group
+  room: "204"
+  passages:
+  - roaster:
+    - *jury_shuguet
+  - roaster:
+    - *jury_mbadin
+
+- name: Jury Dev B
+  lead: *jury_lgilot
+  <<: *dev_group
+  room: "203"
+  passages:
+  - roaster:
+    - *jury_mbadin
+  - roaster:
+    - *jury_shuguet
 
 group_steps:
   - <<: *step_installation
@@ -131,62 +163,154 @@ student_steps:
       votre approche face à des problématiques auxquelles vous n'avez peut-être pas pensé.
     duration: *duration_10mn
   - <<: *step_remarques_jury
+  - name: Délibération Jury
+    description: | 
+      Le jury délibère sur la soutenance afin de se mettre d'accord sur l'évaluation et d'être cohérent vis-à-vis des
+      autres étudiants.
+    duration: *duration_5mn
 
 time_slots:
   - name: Accueil
     begin_at: *day_begin_at
     end_at: *jury_begin_at
-    room: 210
+    room: "210"
     <<: *scope_jury
   - name: Point Jury
     begin_at: *jury_begin_at
     end_at: *defense_begin_at
-    room: 210
+    room: "210"
     <<: *scope_jury
   - name: Appel et émargement
     begin_at: *day_begin_at
     end_at: *defense_begin_at
-    room: Salle étudiante
+    room: "Salle étudiante"
     <<: *scope_student
 
-  - name: 1ers passages
+  - name: "Matin - 1ère partie"
     begin_at: *defense_begin_at
     steps:
       - name: Groupe
         internal_ref: group_steps
       - name: Étudiants
         internal_ref: student_steps
-      - <<: *step_harmonisation_jury
+    jury_roaster: 1
     groups:
+    - name: Groupe Cyber 1
+      <<: *cyber_group
+      order:
+      - "Étudiant·e 1"
+      - "Étudiant·e 2"
+    - name: Groupe Cyber 2
+      <<: *cyber_group
+      order:
+      - "Étudiant·e 1"
+      - "Étudiant·e 2"
+    - name: Groupe Dev 1
+      <<: *dev_group
+      order:
+      - "Étudiant·e 1"
+      - "Étudiant·e 2"
+    - name: Groupe Dev 2
+      <<: *dev_group
+      order:
+      - "Étudiant·e 1"
+      - "Étudiant·e 2"
 
   - name: Pause
-    duration: *duration_15mn
+    duration: *duration_20mn
 
-  - name: 2nds passages
+  - name: "Matin - 2e partie"
     steps:
-      - name: Groupe
-        internal_ref: group_steps
-      - name: Étudiants
-        internal_ref: student_steps
-      - <<: *step_harmonisation_jury
+    - name: Étudiants
+      internal_ref: student_steps
+    jury_roaster: 1
     groups:
+    - name: Groupe Cyber 1
+      <<: *cyber_group
+      order:
+      - "Étudiant·e 3"
+      - "Étudiant·e 4"
+    - name: Groupe Cyber 2
+      <<: *cyber_group
+      order:
+      - "Étudiant·e 3"
+      - "Étudiant·e 4"
+    - name: Groupe Dev 1
+      <<: *dev_group
+      order:
+      - "Étudiant·e 3"
+      - "Étudiant·e 4"
+    - name: Groupe Dev 2
+      <<: *dev_group
+      order:
+      - "Étudiant·e 3"
+      - "Étudiant·e 4"
 
   - name: Repas midi
     end_at: *lunch_end_at
 
-  - name: 3èmes passages
-    begin_at: *lunch_end_at
+  - name: "Après-midi - 1ère partie"
     steps:
       - name: Groupe
         internal_ref: group_steps
       - name: Étudiants
         internal_ref: student_steps
-      - <<: *step_harmonisation_jury
+    jury_roaster: 2
     groups:
+    - name: Groupe Cyber 3
+      <<: *cyber_group
+      order:
+      - "Étudiant·e 1"
+      - "Étudiant·e 2"
+    - name: Groupe Cyber 4
+      <<: *cyber_group
+      order:
+      - "Étudiant·e 1"
+      - "Étudiant·e 2"
+    - name: Groupe Dev 3
+      <<: *dev_group
+      order:
+      - "Étudiant·e 1"
+      - "Étudiant·e 2"
+    - name: Groupe Dev 4
+      <<: *dev_group
+      order:
+      - "Étudiant·e 1"
+      - "Étudiant·e 2"
+
+  - name: Pause
+    duration: *duration_20mn
+
+  - name: 'Après-midi - 2e partie'
+    steps:
+    - name: Étudiants
+      internal_ref: student_steps
+    jury_roaster: 2
+    groups:
+    - name: Groupe Cyber 3
+      <<: *cyber_group
+      order:
+      - "Étudiant·e 3"
+      - "Étudiant·e 4"
+    - name: Groupe Cyber 4
+      <<: *cyber_group
+      order:
+      - "Étudiant·e 3"
+      - "Étudiant·e 4"
+    - name: Groupe Dev 3
+      <<: *dev_group
+      order:
+      - "Étudiant·e 3"
+      - "Étudiant·e 4"
+    - name: Groupe Dev 4
+      <<: *dev_group
+      order:
+      - "Étudiant·e 3"
+      - "Étudiant·e 4"
 
   - name: Émargement manuel
-    room: 205
+    room: "Salle étudiante"
     <<: *scope_student
   - name: Harmonisation globale
-    room: 204
+    room: "204"
     <<: *scope_jury
