@@ -10,7 +10,6 @@
                 <header>{{ jury.name }}</header>
                 <main>
                     <div class="jury-detail">
-                        <span class="badge {{ include.project }}">{{ include.project | upcase }}</span>
                         {% if include.scope == jury_scope %}
                             <strong class="leader">{{ jury.lead }}</strong>
                         {% endif %}
@@ -132,14 +131,16 @@
                                         </div>
 
                                         {% if include.scope == jury_scope %}
-                                            {% assign jury_passage_i = time_slot.jury_roaster | minus: 1 %}
                                             <div class="jury">
                                                 <div class="jury-detail">
-                                                    <div class="badge {{ include.project }}">{{ include.project | upcase }}</div>
-                                                    {% for jury in jury_list[group_index_0].passages[jury_passage_i].roaster %}
-                                                        <div>{{ jury }}</div>
-                                                    {% endfor %}
+                                                    <span>👑</span>
+                                                    {{ jury_list[group_index_0].lead }}
                                                 </div>
+
+                                                {% assign jury_passage_i = time_slot.jury_roaster | minus: 1 %}
+                                                {% for jury in jury_list[group_index_0].passages[jury_passage_i].roaster %}
+                                                    <div class="jury-detail">{{ jury }}</div>
+                                                {% endfor %}
                                             </div>
                                         {% endif %}
                                     </div>
@@ -189,9 +190,6 @@
                                                 <div class="heading">
                                                     {% if group_student_i %}
                                                         <div class="student-name">
-                                                            <div class="badge {{ include.project }}">
-                                                                {{ include.project | upcase }}
-                                                            </div>
                                                             <div class="name">{{ group_student_i }}</div>
                                                             <div class="room">
                                                                 {{ jury_list[group_index_0].room }}
