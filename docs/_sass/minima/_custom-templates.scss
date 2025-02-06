@@ -53,6 +53,12 @@
   display: flex;
   justify-content: space-between;
 
+  @include media-query($on-palm) {
+    align-items: center;
+    flex-wrap: wrap;
+    row-gap: $spacing-unit * .5;
+  }
+
   > div {
     flex-basis: 0;
     flex-grow: 1;
@@ -63,6 +69,15 @@
       > a {
         border-radius: 0.5em;
         font-weight: bold;
+
+        @include media-query($on-palm) {
+          display: block;
+        }
+      }
+
+      @include media-query($on-palm) {
+        order: 2;
+        flex-basis: 100%;
       }
     }
     &.next {
