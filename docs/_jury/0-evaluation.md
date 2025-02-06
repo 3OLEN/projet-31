@@ -4,19 +4,16 @@ title: Grille d'évaluation
 slug: evaluation
 
 description: Éléments de notation lors des passages de groupe et en individuel.
-warning_evaluation: |
-    La note de la soutenance de groupe est individuelle. Plusieurs éléments sont communs à chaque membre du groupe, mais
-    d'autres concernent exclusivement l'individu.
-warning_interview: |
-    Méfiez-vous, ils risquent de se plaindre de certains éléments du Projet 31 : ils n'ont pas eu le GitLab 3OLEN tout
-    de suite, ils ont eu les VM école en milieu de Projet 31, il n'y a pas d'accès distant possible sur les VM école...
-    <br><br>Vous pouvez couper court à leurs plaintes, sauf si c'est argumenté et pertinent. Vous n'êtes pas là pour
-    écouter leurs doléances.
+warning_group_oral: |
+  L'oral de groupe peut faire appliquer des malus sur les notes individuelles de l'équipe : projet non fini, oral de
+  groupe ou démonstration non préparés, manque de sérieux, etc.
 ---
 
-Chaque étudiant·e aura deux notes, correspondant aux deux soutenances auxquelles il·elle participera.
+Chaque étudiant·e sera noté sur sa soutenance individuelle.
 
-{% include _templates/panel/_warning.liquid text=page.warning_evaluation %}
+L'oral de groupe permet au jury de découvrir l'équipe et la solution réalisée.
+
+{% include _templates/panel/_warning.liquid text=page.warning_group_oral %}
 
 ## 🎯 Objectifs pédagogiques
 
@@ -34,52 +31,20 @@ En d'autres termes, imaginez que vous avez affaire à des prestataires dans le c
 N'hésitez pas à attribuer une note dans l'un des extrêmes :
 
 - Si l'étudiant·e n'a pas une attitude professionnelle ou n'a pas une production et contribution suffisante, n'ayez
-  aucun scrupule à lui mettre des 0.
+  aucun scrupule à lui mettre un 0.
 - Si l'étudiant·e s'est impliqué·e, a fait plus que sa part, a porté le groupe en solitaire ou à bout de bras,
-  récompensez son mérite et mettez-lui des points au max.
-
-### 🪁 Pousser à l'amélioration
-
-Malgré tout, notre volonté, c'est de les accompagner vers les objectifs pédagogiques des projets transverses et de leur
-diplôme. Nous voulons être plus ferme avec eux pour leur faire prendre conscience que le bachelor est une étape
-charnière dans leurs études et leur intégration au monde professionnel.
-
-Cette soutenance (groupe + individuelle) est l'occasion de les mettre en situation ± réelle et de faire le maximum de
-retours pour pointer ce qui ne va pas et les aider à améliorer ce qu'ils ont fait, présenté, produit.
-
-Je vous saurai gré de définir le maximum de remarques sur l'oral, le support, l'aspect professionnel et de me les
-transmettre ensuite que je puisse les faire remonter à chacun·e. J'ai aussi défini un court moment (5 minutes), intitulé
-« Remarques du Jury », après chaque soutenance (groupe et individuelle) pour que vous puissiez donner les remarques les
-plus importantes à chaud.
-
-Ils doivent toutes et tous en prendre note textuellement et n'ont pas à discuter vos remarques. Faites attention à ne
-pas déborder sur les 5 minutes prévues et n'utilisez pas non plus le temps alloué à l'entretien individuel pour faire
-d'autres remarques.
-
-Merci beaucoup ☺️
-
-## 🗣️ Entretien
-
-Lors des passages individuels (seulement), vous avez une phase d'entretien, de questions-réponses, de 10 minutes.
-
-Mettez l'accent sur la contribution personnelle de l'étudiant·e afin de définir qui a travaillé et qui a laissé les
-autres faire le travail. Plusieurs personnes se sont plaintes de leurs camarades de groupe et il y a eu des rendus
-intermédiaires (dossier de conception / cahier de recette) dont la contribution de chacun·e a été assez inégale.
-
-Concernant la gestion de projet et la communication interne, je leur ai fourni des éléments de base pour avoir un
-minimum viable. C'est surtout sur le Projet 32 que l'on évaluera la gestion de projet.
-
-Vous pouvez les titiller à ce sujet lors de l'entretien (à savoir qu'ils ont commencé les cours de gestion de projet en
-plein milieu du Projet 31) et notamment voir s'ils ont commencé à y réfléchir et s'ils ont un avis ou pas encore.
-
-{% include _templates/panel/_warning.liquid text=page.warning_interview %}
+  récompensez son mérite.
 
 ## 📊 Notation des soutenances
 
 ### Oral de groupe
 
-{% assign group_oral_step = site.data.defense.group_steps | where_exp: "step", "step.name == 'Oral groupe'" | first %}
-{% assign group_oral_duration = group_oral_step.duration | floor | append: " min" %}
+{% assign group_introduce_step = site.data.defense.group_steps | where_exp: "step", "step.name == 'Présentation groupe'" | first %}
+{% assign group_introduce_duration = group_introduce_step.duration | floor %}
+{% assign group_proof_step = site.data.defense.group_steps | where_exp: "step", "step.name == 'Démonstration'" | first %}
+{% assign group_proof_duration = group_proof_step.duration | floor %}
+
+{% assign group_oral_duration = group_introduce_duration | plus: group_proof_duration | append: " min" %}
 {% assign group_comment = "**Rappel** : L'oral de groupe dure "
     | append: group_oral_duration
     | append: " (avec la démonstration)."
@@ -106,7 +71,7 @@ plein milieu du Projet 31) et notamment voir s'ils ont commencé à y réfléchi
 
 {% assign student_comment = "**Rappel** : L'oral individuel dure "
     | append: student_oral_duration
-    | append: " (avec la démonstration), suivi de "
+    | append: " (avec une potentielle démonstration), suivi de "
     | append: student_interview_duration
     | append: " d'entretien avec le jury."
 %}
