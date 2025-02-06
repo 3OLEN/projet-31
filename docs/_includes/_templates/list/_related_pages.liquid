@@ -29,7 +29,7 @@ parameters:
             {% when "technical_requests" %}
                 {% assign collection_pages = site.technical_requests %}
             {% when "html_page" %}
-                {% assign page_name = page_date.identifier | append: ".html" %}
+                {% assign page_name = page_data.identifier | append: ".html" %}
                 {% assign related_page = site.html_pages | where: "name", page_name | first %}
         {% endcase %}
         {% assign all_collection = page_data.collection | default: false %}
@@ -41,12 +41,12 @@ parameters:
             {% for collection_page in collection_pages %}
                 {% include
                     _templates/list/element/_related_page.liquid
-                    page_data=page_date
+                    page_data=page_data
                     related_page=collection_page
                 %}
             {% endfor %}
         {% else %}
-            {% include _templates/list/element/_related_page.liquid page_data=page_date related_page=related_page %}
+            {% include _templates/list/element/_related_page.liquid page_data=page_data related_page=related_page %}
         {% endif %}
     {% endfor %}
 </ul>

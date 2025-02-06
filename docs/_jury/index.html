@@ -3,17 +3,18 @@ layout: page
 title: Évaluation finale
 permalink: /interne/jury
 
-specification_comment: Prenez connaissance des trois types (DEV / INFRA / Projet) afin d'avoir ces éléments en tête.
-complementary_comment: Si vous vous ennuyez, vous pouvez prendre connaissance de ces éléments.
-
 planning_pages:
-- type: jury
-  identifier: planning
-  title: Planification de la journée d'examen et ordres de passage.
-  badge: calendar
 - type: jury
   identifier: organisation
   title: Ordonnancement de la soutenance de projet.
+  badge: calendar
+- type: jury
+  identifier: planning-cyber
+  title: Planification de la journée d'examen et ordres de passage pour le projet CYBER.
+  badge: calendar
+- type: jury
+  identifier: planning-dev
+  title: Planification de la journée d'examen et ordres de passage pour le projet DEV.
   badge: calendar
 evaluation_pages:
 - type: jury
@@ -21,53 +22,55 @@ evaluation_pages:
   title: Grille de notation complète.
   badge: evaluation
 - type: external_link
-  identifier: "https://lyonortasso-my.sharepoint.com/:x:/g/personal/billy_villena_lyon_ort_asso_fr/EWzVFhcPkVZMqk6Nx9SsBQYBBbs2g1-uo7TMXatiND04Og?e=ZxCJqw"
+  identifier: ""
   title: "[Excel] Modèle de la grille de notation."
   blank: true
-technical_request_pages:
-- type: technical_requests
-  collection: true
+specification_pages:
+- type: html_page
+  identifier: specifications-cyber
+  title: Spécifications CYBER
+  badge: specifications
+- type: html_page
+  identifier: specifications-dev
+  title: Spécifications DEV
+  badge: specifications
 complementary_pages:
 - type: final
   identifier: index
   title: Page d'évaluation pour les étudiants.
   blank: true
-- type: specifications
-  collection: true
 ---
 
 <div class="introduce">
     <p>
-        Bienvenue aux soutenances du Projet-31 « Bibli'OLEN » des 3OLEN 2023-2024, surnommés les « Lumos Camminus » (le
-        chemin éclairé).
+        Bienvenue aux soutenances du Projet-31 des 3OLEN promotion 2024-2025.
     </p>
     <p>
-        Cette année, nous avons décidé avec Magali de mettre l'accent sur un aspect très "professionnel" concernant le
-        déroulé et la notation des projets transverses. Nous voulons que nos futur·e·s (peut-être) titulaires de bachelor
-        valident une attitude digne d'un·e professionnel·le, autant dans la tenue, dans l'expression que dans la qualité des
-        livrables.
+        Au programme : un projet dédié aux Cyber, à savoir « Contr'OLEN », et un projet dédié aux Dev, à savoir
+        « Disp'OLEN ».
     </p>
     <p>
-        Ayant toujours en tête que vous êtes en train de réaliser l'évaluation de professionnel·le·s ; la note attribuée
-        conviendrait-elle à l'un·e de vos collègues/prestataires de votre quotidien ?
+        Suite aux remontées du projet 31 de l'année dernière, nous avons décidé avec Magali de dissocier les Cyber des
+        Dev pour ce premier projet et de mettre l'accent sur leur réalisation personnelle et leur implication.
     </p>
     <p>
-        N'ayez pas peur d'être ferme et d'attribuer aussi bien des cartons abominables (0) que des notes "top level" (20).
-        L'objectif est de pouvoir leur faire des retours pour éliminer les aspects indésirables, éliminatoires,
-        anti-professionnels et les aider à s'améliorer au maximum, notamment pour sublimer leur oral professionnel de fin
-        d'études.
+        L'aspect professionnel est toujours au cœur de cette évaluation ; ils doivent se comporter comme des
+        professionnel·le·s face à un comité sélectionné par leur client, donc évaluez-les comme s'ils étaient vos
+        prestataires.
+    </p>
+    <p>N'ayez pas peur d'être ferme et d'oser les extrémités sur les notes, aussi bien le 0 que le 20 !</p>
+    <p>
+        Vous aurez 5mn après chaque soutenance individuelle pour faire des retours et remarques à chaud à l'étudiant·e,
+        donc n'hésitez pas à remonter absolument tout ce qui vous semble pertinent et qui pourrait les aider à "casser
+        la baraque" pour le projet 32 et surtout leur épreuve professionnelle.
     </p>
     <p>
-        Vous avez accès à toutes les ressources du Projet-31, accessibles sur cet hébergement "GitHub pages". Cette page est
-        votre point d'entrée en tant que jury, donc conservez bien l'URL pour accéder aux éléments spécifiques aux jurys.
+        Je vous le rappelle, notre objectif avec Magali est de former des Bachelors avec une attitude, des codes, une
+        maturité et une qualité digne du milieu professionnel.
     </p>
     <p>
-        C'est beaucoup de lecture, j'en suis conscient, profitez d'un moment aux toilettes ou dans les transports en commun
-        😆 ou lisez les informations principales en diagonale (comme on le fait toutes et tous pour les mémoires 5OLEN 😜).
-    </p>
-    <p>
-        Vous trouverez sur cette page les liens vers les pages importantes, mais libre à vous d'en lire davantage si le 💙
-        vous en dit !
+        Vous trouverez sur cette page les liens vers les pages importantes, mais libre à vous d'en lire davantage en
+        vous baladant sur l'ensemble du site si le 💙 vous en dit !
     </p>
     <p>Merci et j'espère que vous apprécierez cette expérience !</p>
     <p>🖖🏻 <strong>Billy VILLENA</strong>, with 🍆</p>
@@ -93,9 +96,7 @@ complementary_pages:
 {% include _templates/list/_related_pages.liquid pages=page.evaluation_pages %}
 
 <h2>📜 Contraintes projet imposées</h2>
-{% include _templates/panel/_comment.liquid text=page.specification_comment %}
-
-{% include _templates/list/_related_pages.liquid pages=page.technical_request_pages %}
+{% include _templates/list/_related_pages.liquid pages=page.specification_pages %}
 
 <hr>
 
