@@ -198,23 +198,23 @@ time_slots:
     - name: Gravity Files
       <<: *cyber_group
       order:
-      - "Étudiant·e 1"
-      - "Étudiant·e 2"
+      - "Fehisoil Bacar"
+      - "Guillaume Di Cicco"
     - name: Back 2 Back
       <<: *cyber_group
       order:
-      - "Étudiant·e 1"
-      - "Étudiant·e 2"
+      - "Mattéo Rispoli"
+      - "Gautier Trapeau"
     - name: Kinder Pingui
       <<: *dev_group
       order:
-      - "Étudiant·e 1"
-      - "Étudiant·e 2"
+      - "Romain Baudoy"
+      - "Eddy Kebriti"
     - name: Ctrl+Alt+Win
       <<: *dev_group
       order:
-      - "Étudiant·e 1"
-      - "Étudiant·e 2"
+      - "Eduardo Mendes Monteiro"
+      - "Raphaël Danjard-Maza"
 
   - name: Pause
     duration: *duration_20mn
@@ -228,23 +228,23 @@ time_slots:
     - name: Gravity Files
       <<: *cyber_group
       order:
-      - "Étudiant·e 3"
-      - "Étudiant·e 4"
+      - "Andrew Pronesti"
+      - "Smajic Emrah"
     - name: Back 2 Back
       <<: *cyber_group
       order:
-      - "Étudiant·e 3"
-      - "Étudiant·e 4"
+      - "Scott Reboul"
+      - "Hugo Marzeridoux"
     - name: Kinder Pingui
       <<: *dev_group
       order:
-      - "Étudiant·e 3"
-      - "Étudiant·e 4"
+      - "Benjamin Berns"
+      - "Loris Bach"
     - name: Ctrl+Alt+Win
       <<: *dev_group
       order:
-      - "Étudiant·e 3"
-      - "Étudiant·e 4"
+      - "David Benayoun"
+      - "Julien Baeza"
 
   - name: Repas midi
     end_at: *lunch_end_at
@@ -260,23 +260,23 @@ time_slots:
     - name: File Busters
       <<: *cyber_group
       order:
-      - "Étudiant·e 1"
-      - "Étudiant·e 2"
+      - "Eylann Jolivet"
+      - "Nail Mezine"
     - name: Cyberloutres
       <<: *cyber_group
       order:
-      - "Étudiant·e 1"
-      - "Étudiant·e 2"
+      - "Nataniel Krief"
+      - "Léonie Mback Ngo"
     - name: Smoke Detectors
       <<: *dev_group
       order:
-      - "Étudiant·e 1"
-      - "Étudiant·e 2"
+      - "Marine Gonnord"
+      - "Anthony Meunier"
     - name: Peaky Blinders
       <<: *dev_group
       order:
-      - "Étudiant·e 1"
-      - "Étudiant·e 2"
+      - "Mamoune Nidam"
+      - "Angel Boissié"
 
   - name: Pause
     duration: *duration_20mn
@@ -290,18 +290,17 @@ time_slots:
     - name: File Busters
       <<: *cyber_group
       order:
-      - "Étudiant·e 3"
-      - "Étudiant·e 4"
+      - "Maxime Korchia"
+      - "Nassim Mahmoudi"
     - name: Smoke Detectors
       <<: *dev_group
       order:
-      - "Étudiant·e 3"
-      - "Étudiant·e 4"
+      - "Rachel Yazbek"
+      - "Érick Paoletti"
     - name: Peaky Blinders
       <<: *dev_group
       order:
-      - "Étudiant·e 3"
-      - "Étudiant·e 4"
+      - "Amir Said"
 
   - name: Harmonisation globale
     room: "204"
