@@ -180,7 +180,7 @@ time_slots:
     end_at: *defense_begin_at
     room: "204"
     <<: *scope_jury
-  - name: Appel et émargement
+  - name: Salle d'attente
     begin_at: *day_begin_at
     end_at: *defense_begin_at
     room: "Salle étudiante"
@@ -303,9 +303,6 @@ time_slots:
       - "Étudiant·e 3"
       - "Étudiant·e 4"
 
-  - name: Émargement manuel
-    room: "Salle étudiante"
-    <<: *scope_student
   - name: Harmonisation globale
     room: "204"
     <<: *scope_jury
