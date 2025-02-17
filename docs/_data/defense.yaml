@@ -74,7 +74,7 @@ jury_list:
 - name: Jury Dev A
   lead: *jury_bvillena
   <<: *dev_group
-  room: "204"
+  room: "202"
   passages:
   - roaster:
     - *jury_shuguet
@@ -84,7 +84,7 @@ jury_list:
 - name: Jury Dev B
   lead: *jury_lgilot
   <<: *dev_group
-  room: "203"
+  room: "205"
   passages:
   - roaster:
     - *jury_mbadin
@@ -173,12 +173,12 @@ time_slots:
   - name: Accueil
     begin_at: *day_begin_at
     end_at: *jury_begin_at
-    room: "210"
+    room: "204"
     <<: *scope_jury
   - name: Point Jury
     begin_at: *jury_begin_at
     end_at: *defense_begin_at
-    room: "210"
+    room: "204"
     <<: *scope_jury
   - name: Appel et émargement
     begin_at: *day_begin_at
@@ -195,22 +195,22 @@ time_slots:
         internal_ref: student_steps
     jury_roaster: 1
     groups:
-    - name: Groupe Cyber 1
+    - name: Gravity Files
       <<: *cyber_group
       order:
       - "Étudiant·e 1"
       - "Étudiant·e 2"
-    - name: Groupe Cyber 2
+    - name: Back 2 Back
       <<: *cyber_group
       order:
       - "Étudiant·e 1"
       - "Étudiant·e 2"
-    - name: Groupe Dev 1
+    - name: Kinder Pingui
       <<: *dev_group
       order:
       - "Étudiant·e 1"
       - "Étudiant·e 2"
-    - name: Groupe Dev 2
+    - name: Ctrl+Alt+Win
       <<: *dev_group
       order:
       - "Étudiant·e 1"
@@ -225,22 +225,22 @@ time_slots:
       internal_ref: student_steps
     jury_roaster: 1
     groups:
-    - name: Groupe Cyber 1
+    - name: Gravity Files
       <<: *cyber_group
       order:
       - "Étudiant·e 3"
       - "Étudiant·e 4"
-    - name: Groupe Cyber 2
+    - name: Back 2 Back
       <<: *cyber_group
       order:
       - "Étudiant·e 3"
       - "Étudiant·e 4"
-    - name: Groupe Dev 1
+    - name: Kinder Pingui
       <<: *dev_group
       order:
       - "Étudiant·e 3"
       - "Étudiant·e 4"
-    - name: Groupe Dev 2
+    - name: Ctrl+Alt+Win
       <<: *dev_group
       order:
       - "Étudiant·e 3"
@@ -257,22 +257,22 @@ time_slots:
         internal_ref: student_steps
     jury_roaster: 2
     groups:
-    - name: Groupe Cyber 3
+    - name: File Busters
       <<: *cyber_group
       order:
       - "Étudiant·e 1"
       - "Étudiant·e 2"
-    - name: Groupe Cyber 4
+    - name: Cyberloutres
       <<: *cyber_group
       order:
       - "Étudiant·e 1"
       - "Étudiant·e 2"
-    - name: Groupe Dev 3
+    - name: Smoke Detectors
       <<: *dev_group
       order:
       - "Étudiant·e 1"
       - "Étudiant·e 2"
-    - name: Groupe Dev 4
+    - name: Peaky Blinders
       <<: *dev_group
       order:
       - "Étudiant·e 1"
@@ -287,22 +287,17 @@ time_slots:
       internal_ref: student_steps
     jury_roaster: 2
     groups:
-    - name: Groupe Cyber 3
+    - name: File Busters
       <<: *cyber_group
       order:
       - "Étudiant·e 3"
       - "Étudiant·e 4"
-    - name: Groupe Cyber 4
-      <<: *cyber_group
-      order:
-      - "Étudiant·e 3"
-      - "Étudiant·e 4"
-    - name: Groupe Dev 3
+    - name: Smoke Detectors
       <<: *dev_group
       order:
       - "Étudiant·e 3"
       - "Étudiant·e 4"
-    - name: Groupe Dev 4
+    - name: Peaky Blinders
       <<: *dev_group
       order:
       - "Étudiant·e 3"
